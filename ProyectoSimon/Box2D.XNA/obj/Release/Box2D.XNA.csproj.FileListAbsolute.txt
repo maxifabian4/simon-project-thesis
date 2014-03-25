@@ -1,0 +1,5 @@
+C:\Users\brandf\Documents\Visual Studio 2008\Projects\PhysicsDemo.Part1\Box2D.XNA\bin\Release\Box2D.XNA.dll
+C:\Users\brandf\Documents\Visual Studio 2008\Projects\PhysicsDemo.Part1\Box2D.XNA\bin\Release\Box2D.XNA.pdb
+C:\Users\brandf\Documents\Visual Studio 2008\Projects\PhysicsDemo.Part1\Box2D.XNA\obj\Release\ResolveAssemblyReference.cache
+C:\Users\brandf\Documents\Visual Studio 2008\Projects\PhysicsDemo.Part1\Box2D.XNA\obj\Release\Box2D.XNA.dll
+C:\Users\brandf\Documents\Visual Studio 2008\Projects\PhysicsDemo.Part1\Box2D.XNA\obj\Release\Box2D.XNA.pdb
