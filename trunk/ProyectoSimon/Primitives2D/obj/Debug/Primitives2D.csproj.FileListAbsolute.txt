@@ -1,0 +1,25 @@
+C:\Users\Maximiliano\Downloads\Primitives2D\bin\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Maximiliano\Downloads\Primitives2D\bin\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Maximiliano\Downloads\Primitives2D\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Downloads\Primitives2D\obj\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Maximiliano\Downloads\Primitives2D\obj\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\Primitives2D\bin\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\Primitives2D\bin\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\Primitives2D\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\Primitives2D\obj\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\Primitives2D\obj\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\Primitives2D\bin\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\Primitives2D\bin\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\Primitives2D\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\Primitives2D\obj\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\Primitives2D\obj\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\Primitives2D\bin\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\Primitives2D\bin\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\Primitives2D\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\Primitives2D\obj\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\Primitives2D\obj\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Maximiliano\Desktop\ProyectoSimon\Primitives2D\bin\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Maximiliano\Desktop\ProyectoSimon\Primitives2D\bin\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Maximiliano\Desktop\ProyectoSimon\Primitives2D\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Desktop\ProyectoSimon\Primitives2D\obj\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Maximiliano\Desktop\ProyectoSimon\Primitives2D\obj\Debug\C3.XNA.Primitives2D.pdb

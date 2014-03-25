@@ -1,0 +1,256 @@
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\fondoGameScreen.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground - copia.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground1.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground2 (2).xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimePanel.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BlockographyTitleMenu.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography_Entry.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography_Number.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gamefont.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\GoodMorningAfternoon.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\GoodMorningAfternoonGame.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\menufont.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont15.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont21.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont30.xnb
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\fondoGameScreen.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground - copia.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground1.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground2 (2).xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimePanel.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BlockographyTitleMenu.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography_Entry.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography_Number.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gamefont.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\GoodMorningAfternoon.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\GoodMorningAfternoonGame.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\menufont.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont15.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont21.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont30.xnb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe.config
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\fondoGameScreen.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground - copia.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground1.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground2 (2).xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimePanel.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BlockographyTitleMenu.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography_Entry.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography_Number.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gamefont.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\GoodMorningAfternoon.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\GoodMorningAfternoonGame.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\menufont.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont15.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont21.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont30.xnb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe.config
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\fondoGameScreen.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground - copia.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground1.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground2 (2).xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimePanel.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BlockographyTitleMenu.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography_Entry.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\Blockography_Number.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gamefont.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\GoodMorningAfternoon.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\GoodMorningAfternoonGame.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\menufont.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont15.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont21.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\ubuntuFont30.xnb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe.config
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe.config
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\userModuleFont.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gameInstanceFont.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainmenu.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground2.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\algo.xnb
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\backgroundArrows.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainmenu.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground2.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\algo.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\backgroundArrows.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\userModuleFont.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gameInstanceFont.xnb
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe.config
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainmenu.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground2.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\algo.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\backgroundArrows.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\userModuleFont.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gameInstanceFont.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe.config
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainmenu.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground2.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\algo.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\backgroundArrows.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\userModuleFont.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gameInstanceFont.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe.config
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\boxempty.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainBackground.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\userTemplate.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\blank.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\mainmenu.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\gameBackground2.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\algo.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\Textures\backgroundArrows.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTime.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\BeautifulEveryTimeProject.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\userModuleFont.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\gameInstanceFont.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Content\SpriteFont\StatisticFont.xnb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe.config
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.exe
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\ProyectoSimon.pdb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.dll
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\C3.XNA.Primitives2D.dll
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\Box2D.XNA.pdb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\bin\x86\Debug\C3.XNA.Primitives2D.pdb
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb
+C:\Users\Maximiliano\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Maximiliano\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.exe
+C:\Users\Maximiliano\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimon\obj\x86\Debug\ProyectoSimon.pdb

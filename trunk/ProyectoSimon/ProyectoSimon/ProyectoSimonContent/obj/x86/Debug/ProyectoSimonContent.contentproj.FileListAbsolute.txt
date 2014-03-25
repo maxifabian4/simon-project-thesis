@@ -1,0 +1,10 @@
+c:\users\mauricio\documents\visual studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Documents\Visual Studio 2010\Projects\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Downloads\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Desktop\Simon\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Desktop\último backup\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mauricio\Desktop\UltimoBackup Simon\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Maximiliano\Desktop\ProyectoSimon\ProyectoSimon\ProyectoSimonContent\obj\x86\Debug\ResolveAssemblyReference.cache

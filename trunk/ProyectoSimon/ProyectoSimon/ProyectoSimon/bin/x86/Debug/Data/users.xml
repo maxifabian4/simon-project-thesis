@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<users>
+  <user>
+    <name>martín</name>
+    <surname>rodríguez</surname>
+    <picture>data//martín_rodríguez.jpg</picture>
+    <age>10</age>
+    <statistic>
+      <gamename>circulos</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>9017</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>69</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>450437</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>128</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>clasificador</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>11</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>284</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>11958</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>1</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>flechas</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>9</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>116</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>1</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>libre</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>1</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>11</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+  </user>
+  <user>
+    <name>mariana</name>
+    <surname>paz</surname>
+    <picture>data//mariana_paz.jpg</picture>
+    <age>12</age>
+    <statistic>
+      <gamename>circulos</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>74</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>6</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>3456</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>19</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>clasificador</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>9</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>3</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>401</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>3</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>flechas</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>3</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>4</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>libre</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+  </user>
+  <user>
+    <name>juan cruz</name>
+    <surname>ruíz</surname>
+    <picture>data//juan_cruz_ruíz.jpg</picture>
+    <age>9</age>
+    <statistic>
+      <gamename>circulos</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>3</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>1</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>173</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>clasificador</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>1</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>6</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>373</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>flechas</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>libre</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+  </user>
+  <user>
+    <name>mauricio</name>
+    <surname>pérez</surname>
+    <picture>data//mauricio_pérez.jpg</picture>
+    <age>5</age>
+    <statistic>
+      <gamename>circulos</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>15</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>650</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>2</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>clasificador</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>flechas</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>1</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>2</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+    <statistic>
+      <gamename>libre</gamename>
+      <attribute>
+        <name>ganados</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>perdidos</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>tiempo jugado</name>
+        <value>0</value>
+      </attribute>
+      <attribute>
+        <name>máximo nivel alcanzado</name>
+        <value>0</value>
+      </attribute>
+    </statistic>
+  </user>
+</users>
