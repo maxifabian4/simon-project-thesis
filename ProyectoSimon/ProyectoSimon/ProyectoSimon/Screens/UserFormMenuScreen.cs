@@ -14,9 +14,8 @@ using Microsoft.Xna.Framework.Input;
 namespace ProyectoSimon
 {
     /// <summary>
-    /// The options screen is brought up over the top of the main menu
-    /// screen, and gives the user a chance to configure the game
-    /// in various hopefully useful ways.
+    /// This class represents a new user form in order to create a account in the system.
+    /// The user can move up and down to select an entry, or cancel to back out of the screen.
     /// </summary>
     class UserFormMenuScreen : MenuScreen
     {
