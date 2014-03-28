@@ -135,7 +135,7 @@ namespace ProyectoSimon
                     else if (isFieldSelected[2])
                         ageField = ageField.Remove(cursorIndex, 1);
                 }
-                
+
             }
             else if (backSelect.Evaluate(input, ControllingPlayer, out playerIndex))
             {
@@ -191,7 +191,7 @@ namespace ProyectoSimon
                     cursorIndex--;
             }
             else if (isFieldSelected[3] && captureKinect.Evaluate(input, ControllingPlayer, out playerIndex) && screenManager.Kinect.isConected())
-                 video = screenManager.Kinect.getCapture();
+                video = screenManager.Kinect.getCapture();
         }
 
         /// <summary>
@@ -230,11 +230,11 @@ namespace ProyectoSimon
             if (!nameField.Equals("") && !surnameField.Equals("") && !ageField.Equals("") && video != null)
             {
                 string photoPath = "Data//" + nameField.ToLower() + "_" + surnameField.ToLower() + ".jpg";
-                System.IO.FileStream stream = new System.IO.FileStream(@photoPath, System.IO.FileMode.Create);           
-                video.SaveAsJpeg(stream,video.Width,video.Height);
+                System.IO.FileStream stream = new System.IO.FileStream(@photoPath, System.IO.FileMode.Create);
+                video.SaveAsJpeg(stream, video.Width, video.Height);
                 User user = new User(nameField.ToLower(), surnameField.ToLower(), photoPath, Convert.ToInt32(ageField), video);
                 //Creating statistic fields
-                Statistics game1 = new Statistics("círculos");                
+                Statistics game1 = new Statistics("círculos");
                 user.addStatistic(0, game1);
                 Statistics game2 = new Statistics("clasificador");
                 user.addStatistic(1, game2);
@@ -302,7 +302,7 @@ namespace ProyectoSimon
             blankSpace = 50;
             frameSize = 80;
             textLabel = "foto";
-            wText = (int)menuFont.MeasureString(textLabel).X;
+            wText = (int) menuFont.MeasureString(textLabel).X;
             posX = x + w / 2 - 60 - wText;
 
             if (isSelected)
@@ -340,12 +340,12 @@ namespace ProyectoSimon
             // Draw capture frame.
             if (video == null)
                 captureFrame.drawPrimitive(screenManager);
-            
+
             edgeCaptureFrame.drawPrimitive(screenManager);
 
             if (!isSelected)
                 cameraFrame.drawPrimitive(screenManager);
-            
+
             edgeCameraFrame.drawPrimitive(screenManager);
         }
 
@@ -360,7 +360,7 @@ namespace ProyectoSimon
             blankSpace = 50;
             wField = 150;
             hField = 30;
-            wText = (int)menuFont.MeasureString(textLabel).X;
+            wText = (int) menuFont.MeasureString(textLabel).X;
             posX = x + w / 2 - 60 - wText;
 
             if (isSelected)
@@ -368,7 +368,7 @@ namespace ProyectoSimon
                 namefield = new ElementPolygon(posX + blankSpace + wText, posY, wField, hField, new Color(55, 55, 55), .8f, true);
                 edgeNamefield = new ElementPolygon(posX + blankSpace + wText, posY, wField, hField, new Color(227, 117, 64), .8f, false);
                 if (blink)
-                    textField = textField.Insert(cursorIndex, "|");                
+                    textField = textField.Insert(cursorIndex, "|");
             }
             else
             {
@@ -402,7 +402,7 @@ namespace ProyectoSimon
         //    line.drawPrimitive(screenManager);
         //}
 
-        
+
 
         /// <summary>
         /// Draws the title for the frame.
