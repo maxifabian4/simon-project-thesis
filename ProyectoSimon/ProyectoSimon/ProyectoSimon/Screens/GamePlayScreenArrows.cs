@@ -9,7 +9,7 @@ using System;
 
 namespace ProyectoSimon
 {
-    class GamePlayScreenFlechas : GameplayScreen
+    class GamePlayScreenArrows : GameplayScreen
     {
         // Kinect parameters.
         Skeleton skeleton;
@@ -30,7 +30,7 @@ namespace ProyectoSimon
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GamePlayScreenFlechas(int w, int h, IList<Level> l)
+        public GamePlayScreenArrows(int w, int h, IList<Level> l)
         {
             // Create the statistics.
             currentStatistics = new Statistics("flechas");

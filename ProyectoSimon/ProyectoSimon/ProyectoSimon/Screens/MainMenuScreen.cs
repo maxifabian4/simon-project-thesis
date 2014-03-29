@@ -47,22 +47,22 @@ namespace ProyectoSimon
             {
                 if (screenManager.getIndexGame() == 0)
                 {
-                    GamePlayScreenCirculos circleGame = new GamePlayScreenCirculos(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
+                    GamePlayScreenCircles circleGame = new GamePlayScreenCircles(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
                     LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(ScreenManager.TEXTURE_BACKGROUND_GAME2), circleGame);
                 }
                 else if (screenManager.getIndexGame() == 1)
                 {
-                    GamePlayScreenSeleccionador selectorGame = new GamePlayScreenSeleccionador(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
+                    GamePlayScreenChooser selectorGame = new GamePlayScreenChooser(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
                     LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(ScreenManager.TEXTURE_BACKGROUND_GAME), selectorGame);
                 }
                 else if (screenManager.getIndexGame() == 2)
                 {
-                    GamePlayScreenFlechas arrowsGame = new GamePlayScreenFlechas(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
+                    GamePlayScreenArrows arrowsGame = new GamePlayScreenArrows(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
                     LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(ScreenManager.TEXTURE_BACKGROUND_ARROWS), arrowsGame);
                 }
                 else if (screenManager.getIndexGame() == 3)
                 {
-                    GamePlayScreenLibre freeGame = new GamePlayScreenLibre(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
+                    GamePlayScreenFree freeGame = new GamePlayScreenFree(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
                     LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(ScreenManager.TEXTURE_BACKGROUND_GAME2), freeGame);
                 }                
             }
