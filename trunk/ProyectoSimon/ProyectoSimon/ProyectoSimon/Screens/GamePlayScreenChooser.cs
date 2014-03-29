@@ -17,7 +17,7 @@ using ProyectoSimon.Elements;
 
 namespace ProyectoSimon
 {
-    class GamePlayScreenSeleccionador : GameplayScreen
+    class GamePlayScreenChooser : GameplayScreen
     {
         private ElementPolygon quad, fillQuad;
         private Random random = new Random();
@@ -44,7 +44,7 @@ namespace ProyectoSimon
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GamePlayScreenSeleccionador(int w, int h, IList<Level> l)
+        public GamePlayScreenChooser(int w, int h, IList<Level> l)
         {
             // Create the statistics.
             currentStatistics = new Statistics("clasificador");
