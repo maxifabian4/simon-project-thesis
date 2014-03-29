@@ -24,7 +24,7 @@ namespace ProyectoSimon
         //protected InputAction cameraKey;
         // Physics world parameters.
         private World physicsWorld;
-        protected List<ElementPhysic> physicsElements;
+        protected List<GameElement> physicsElements;
         // Logic game parameters.
         private bool simulate, camera, video;
         private int kickeds, elements, bwidth, bheight;
@@ -71,7 +71,7 @@ namespace ProyectoSimon
         private void loadWorld()
         {
             // Inicialize physic elements list.
-            physicsElements = new List<ElementPhysic>();
+            physicsElements = new List<GameElement>();
             // Create physic world with a specific gravity.
             physicsWorld = new World(new Vector2(0, Convert.ToInt32(levels[currentLevel].getAttribute("gravity"))), true);
             // Asign a custom ContactListener.
@@ -158,13 +158,13 @@ namespace ProyectoSimon
 
         private int getCountKicked()
         {
-            ElementPhysic e;
+            GameElement element;
             int count = 0;
 
             for (int i = 0; i < physicsElements.Count; i++)
             {
-                e = physicsElements[i];
-                if (e.ToString().Contains("Circle") && ((Circle)e).isKicked())
+                element = physicsElements[i];
+                if (element.ToString().Contains("Circle") && ((Circle)element).isKicked())
                     count++;
             }
             

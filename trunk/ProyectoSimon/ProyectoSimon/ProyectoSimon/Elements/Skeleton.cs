@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace ProyectoSimon.Elements
 {
-    class Skeleton : ElementPhysic
+    class Skeleton : GameElement
     {
         private List<Circle> circleJoints;
         //private List<MouseJoint> mouseJoints;

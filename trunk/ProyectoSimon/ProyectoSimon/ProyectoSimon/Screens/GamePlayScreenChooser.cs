@@ -24,7 +24,7 @@ namespace ProyectoSimon
         //protected InputAction keyA, cameraKey;
         // Phisycs world parameters.
         private World physicsWorld;
-        protected List<ElementPhysic> physicsElments, bodyJoints;
+        protected List<GameElement> physicsElments, bodyJoints;
         private string[] movements;
         private BoxGame leftBox, rightBox;
         // Zones.
@@ -93,7 +93,7 @@ namespace ProyectoSimon
 
         private void loadWorld()
         {
-            physicsElments = new List<ElementPhysic>();
+            physicsElments = new List<GameElement>();
             movements = new string[elements];
 
             if (!levels[currentLevel].exist("move"))
@@ -549,8 +549,8 @@ namespace ProyectoSimon
             ElementPolygon rectangleR = new ElementPolygon(zoneR.X, zoneR.Y, zoneR.Width, zoneR.Height, Color.Gray, 0.3f, true);
             //ElementPolygon rectangleFault = new ElementPolygon(zoneFault.X, zoneFault.Y, zoneFault.Width, zoneFault.Height, Color.Gray, 0.1f, true);
             //rectangleFault.drawPrimitive(screenManager);
-            rectangleL.drawPrimitive(screenManager);
-            rectangleR.drawPrimitive(screenManager);
+            rectangleL.draw(screenManager);
+            rectangleR.draw(screenManager);
 
             //draw boxes
             //ElementPolygon boxLeft = new ElementPolygon(boxL.X, boxL.Y, boxL.Width, boxL.Height, Color.SaddleBrown, 1, true);
@@ -563,15 +563,16 @@ namespace ProyectoSimon
             spriteBatch.Draw(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX), new Vector2(boxL.X, boxL.Y), null, Color.Green, 0, new Vector2(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Width / 3 + 100, screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
             spriteBatch.Draw(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX), new Vector2(boxR.X, boxR.Y), null, Color.Yellow, 0, new Vector2(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Width / 3 + 100, screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
             spriteBatch.End();
+            
             base.Draw(gameTime);
         }
 
         private void drawGroundPrimitive(SpriteBatch spriteBatch)
         {
             quad = new ElementPolygon(0, bheight - 30, bwidth, 30, new Color(124, 107, 70), 1, true);
-            quad.drawPrimitive(screenManager);
+            quad.draw(screenManager);
             fillQuad = new ElementPolygon(0, bheight - 30, bwidth, 30, new Color(152, 131, 87), 1, false);
-            fillQuad.drawPrimitive(screenManager);
+            fillQuad.draw(screenManager);
         }
     }
 }

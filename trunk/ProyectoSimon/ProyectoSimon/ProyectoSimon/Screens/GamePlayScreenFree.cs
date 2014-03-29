@@ -24,7 +24,7 @@ namespace ProyectoSimon
         protected InputAction moreBalls, lessBalls, winKey;
         // Physics world parameters.
         private World physicsWorld;
-        protected List<ElementPhysic> physicsElements;
+        protected List<GameElement> physicsElements;
         // Logic game parameters.
         private bool simulate, camera, video, win;
         private int elements, bwidth, bheight;
@@ -97,7 +97,7 @@ namespace ProyectoSimon
         private void loadWorld()
         {
             // Inicialize physic elements list.
-            physicsElements = new List<ElementPhysic>();
+            physicsElements = new List<GameElement>();
             // Create physic world with a specific gravity.
             physicsWorld = new World(new Vector2(0, Convert.ToInt32(levels[currentLevel].getAttribute("gravity"))), true);
             // Asign a custom ContactListener.

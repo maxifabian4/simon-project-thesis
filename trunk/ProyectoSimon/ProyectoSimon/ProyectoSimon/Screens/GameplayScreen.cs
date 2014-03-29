@@ -156,7 +156,7 @@ namespace ProyectoSimon
         /// <summary>
         /// Draws the elements in the Box2D world.
         /// </summary>
-        protected void drawElementsInTheWorld(List<ElementPhysic> elements)
+        protected void drawElementsInTheWorld(List<GameElement> elements)
         {
             for (int i = 0; i < elements.Count; i++)
                 elements[i].display(screenManager);

@@ -98,7 +98,7 @@ namespace ProyectoSimon
                 for (float i = 0; i < size; i += .5f) 
                 {
                     circleBorder = new ElementCircle(radius + i, center, color, 1);
-                    circleBorder.drawPrimitive(sManager);
+                    circleBorder.draw(sManager);
                 }
             }
         }

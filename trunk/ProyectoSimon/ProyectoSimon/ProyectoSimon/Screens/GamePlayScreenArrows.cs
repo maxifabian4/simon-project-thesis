@@ -325,9 +325,9 @@ namespace ProyectoSimon
         {
             // Cambiar !!!
             ElementPolygon rectPrimitive = new ElementPolygon(rect.Center.X - rect.Width / 2, rect.Center.Y - rect.Height / 2, rect.Width, rect.Height, fillColor, alpha, true);
-            rectPrimitive.drawPrimitive(screenManager);
+            rectPrimitive.draw(screenManager);
             ElementPolygon rectEdgePrimitive = new ElementPolygon(rect.Center.X - rect.Width / 2, rect.Center.Y - rect.Height / 2, rect.Width, rect.Height, edgeColor, alpha, false);
-            rectEdgePrimitive.drawPrimitive(screenManager);
+            rectEdgePrimitive.draw(screenManager);
         }
 
         private int getIndexAngle()
