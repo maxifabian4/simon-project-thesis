@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework;
 
 namespace ProyectoSimon
 {
-    public abstract class ElementShape
+    public abstract class ElementShape : DrawableElement
     {
         protected VertexPositionColor[] vertexData;
         protected PrimitiveType primitiveType;
         protected int primitiveCount;
         protected int vertexOffset;
 
-        public void drawPrimitive(ScreenManager screenManager)
+        public override void draw(ScreenManager screenManager)
         {
             screenManager.getBasicEffect().CurrentTechnique.Passes[0].Apply();
 

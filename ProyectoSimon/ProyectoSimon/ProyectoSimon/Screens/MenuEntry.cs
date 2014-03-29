@@ -132,7 +132,7 @@ namespace ProyectoSimon
             originY = (int)(position.Y - font.MeasureString(text).Y / 2);
             destineY = (int)(position.Y + font.MeasureString(text).Y / 2);
             ElementPolygon box = new ElementPolygon(originX, originY, destineX, destineY - originY + 5, selectedBoxColor, 1, true);
-            box.drawPrimitive(screenManager);
+            box.draw(screenManager);
             //ElementPolygon boxEdge = new ElementPolygon(originX + 20, originY, destineX - 40, destineY - originY + 5, Color.White, 0.5f, false);
             //boxEdge.drawPrimitive(screenManager);
         }

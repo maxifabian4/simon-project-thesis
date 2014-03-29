@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace ProyectoSimon.Elements
 {
-    abstract class ElementPhysic
+    abstract class GameElement
     {
         protected const int PIXELS_TO_METERS = 30;
 

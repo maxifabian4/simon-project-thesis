@@ -335,7 +335,7 @@ namespace ProyectoSimon
         private void drawMenuPanel(ScreenManager screenManager, int widthScreen, int heightScreen)
         {
             ElementPolygon panel = new ElementPolygon(MARGIN_LEFT_MENU_PANEL, MARGIN_UP_MENU_PANEL, widthScreen / 4, heightScreen - 2 * MARGIN_UP_MENU_PANEL, panelColor * TransitionAlpha, 1, true);
-            panel.drawPrimitive(screenManager);
+            panel.draw(screenManager);
             //ElementPolygon edgePanel = new ElementPolygon(MARGIN_LEFT_MENU_PANEL, MARGIN_UP_MENU_PANEL, widthScreen / 4, heightScreen - 2 * MARGIN_UP_MENU_PANEL, new Color(33, 33, 33), 1, false);
             //edgePanel.drawPrimitive(screenManager);
         }

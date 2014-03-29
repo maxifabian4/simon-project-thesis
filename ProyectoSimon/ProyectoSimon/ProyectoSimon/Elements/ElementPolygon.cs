@@ -115,7 +115,7 @@ namespace ProyectoSimon
                         vertexs[j] += new Vector2(i, i);
 
                     polygonBorder = new ElementPolygon(vertexs, PrimitiveType.LineList, color, alpha, vertexCount);
-                    polygonBorder.drawPrimitive(sManager);
+                    polygonBorder.draw(sManager);
                 }
             }
         }

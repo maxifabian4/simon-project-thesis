@@ -8,10 +8,11 @@ using ProyectoSimon.Elements;
 
 namespace ProyectoSimon
 {
-    class BoxGame 
+    class BoxGame : GameElement
     {
         private Rectangle rec;
         private String property;
+        private Color color;
 
         public BoxGame(int a1, int a2, int a3, int a4)
         {
@@ -34,13 +35,24 @@ namespace ProyectoSimon
             return rec.Contains((int) pos.X, (int) pos.Y);
         }
 
-        public bool isStorable(ElementPhysic elementPhysic)
+        public bool isStorable(GameElement element)
         {
             // Change !! !!
-            if (property.Equals(((Circle)elementPhysic).getKind()))
+            if (property.Equals(((Circle)element).getKind()))
                 return true;
             else
                 return false;
         }
+
+        public override void change(Color mColor, Color sColor) { }
+
+        public override void display(ScreenManager screenManager) {
+            TextureElement element = new TextureElement(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX),new Vector2(rec.X, rec.Y),
+                                        new Vector2(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Width / 3 + 100, 
+                                        screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Height / 2),color);
+            element.draw(screenManager);            
+        }
+       
+        
     }
 }

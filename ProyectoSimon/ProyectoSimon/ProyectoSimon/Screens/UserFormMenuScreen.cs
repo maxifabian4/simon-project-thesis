@@ -339,14 +339,14 @@ namespace ProyectoSimon
 
             // Draw capture frame.
             if (video == null)
-                captureFrame.drawPrimitive(screenManager);
+                captureFrame.draw(screenManager);
 
-            edgeCaptureFrame.drawPrimitive(screenManager);
+            edgeCaptureFrame.draw(screenManager);
 
             if (!isSelected)
-                cameraFrame.drawPrimitive(screenManager);
+                cameraFrame.draw(screenManager);
 
-            edgeCameraFrame.drawPrimitive(screenManager);
+            edgeCameraFrame.draw(screenManager);
         }
 
         /// <summary>
@@ -381,8 +381,8 @@ namespace ProyectoSimon
             spriteBatch.DrawString(menuFont, textLabel, new Vector2(posX, posY), userDataColor * TransitionAlpha);
             spriteBatch.End();
             // Draw field.
-            namefield.drawPrimitive(screenManager);
-            edgeNamefield.drawPrimitive(screenManager);
+            namefield.draw(screenManager);
+            edgeNamefield.draw(screenManager);
             // Draw current keys.
             spriteBatch.Begin();
             spriteBatch.DrawString(menuFont, textField, new Vector2(posX + blankSpace + wText + 5, posY + 2), Color.White * TransitionAlpha);
@@ -421,9 +421,9 @@ namespace ProyectoSimon
         private void drawUserFormFrame(int verticalValue)
         {
             ElementPolygon frame = new ElementPolygon(x, hScreen / 4, w, hScreen / 4 * 2 + 10, userFrameColor * TransitionAlpha, 1, true);
-            frame.drawPrimitive(screenManager);
+            frame.draw(screenManager);
             ElementPolygon titleFrame = new ElementPolygon(x, hScreen / 4, w, verticalValue + 12, panelColor * TransitionAlpha, 1, true);
-            titleFrame.drawPrimitive(screenManager);
+            titleFrame.draw(screenManager);
         }
     }
 }

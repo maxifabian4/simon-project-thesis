@@ -149,9 +149,9 @@ namespace ProyectoSimon
             //ElementPolygon frameShadow = new ElementPolygon(x + 5, hScreen / 4 + 5, w, hScreen / 4 + 50, new Color(33, 33, 33) * TransitionAlpha, .25f, true);
             //frameShadow.drawPrimitive(screenManager);
             ElementPolygon frame = new ElementPolygon(x, hScreen / 4, w, hScreen / 4 + 50, statisticsFrameColor * TransitionAlpha, 1, true);
-            frame.drawPrimitive(screenManager);
+            frame.draw(screenManager);
             ElementPolygon titleFrame = new ElementPolygon(x, hScreen / 4, w, verticalValue + 10, panelColor * TransitionAlpha, 1, true);
-            titleFrame.drawPrimitive(screenManager);
+            titleFrame.draw(screenManager);
         }
     }
 }

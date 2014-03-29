@@ -212,9 +212,9 @@ namespace ProyectoSimon
             // Darken down any other screens that were drawn beneath the popup.
             screenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3, backgroundRectangle);
             ElementPolygon frame = new ElementPolygon(x, y, wBox, hBox, colorFrameBox * TransitionAlpha, 1, true);
-            frame.drawPrimitive(screenManager);
+            frame.draw(screenManager);
             ElementPolygon titleFrame = new ElementPolygon(x, y, wBox, verticalValue + 20, colorTitleBox * TransitionAlpha, 1, true);
-            titleFrame.drawPrimitive(screenManager);
+            titleFrame.draw(screenManager);
         }
 
         /// <summary>

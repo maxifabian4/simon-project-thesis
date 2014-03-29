@@ -7,7 +7,7 @@ using Box2D.XNA;
 
 namespace ProyectoSimon.Elements
 {
-    class Circle : ElementPhysic
+    class Circle : GameElement
     {
         private Body body;
         private Color mainColor, secondColor, edgeColor;
@@ -142,7 +142,7 @@ namespace ProyectoSimon.Elements
         public override void display(ScreenManager screenManager)
         {
             ElementCircle solidCircle = new ElementCircle(radius, body.Position * PIXELS_TO_METERS, mainColor, secondColor, alpha);
-            solidCircle.drawPrimitive(screenManager);
+            solidCircle.draw(screenManager);
             solidCircle.drawBorderWeigth(screenManager, edgeColor, 1.5f);
         }
 

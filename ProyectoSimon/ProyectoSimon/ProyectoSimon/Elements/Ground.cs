@@ -7,7 +7,7 @@ using Box2D.XNA;
 
 namespace ProyectoSimon.Elements
 {
-    class Ground : ElementPhysic
+    class Ground : GameElement
     {
         private Vector2 v1, v2;
 

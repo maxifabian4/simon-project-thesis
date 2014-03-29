@@ -370,7 +370,7 @@ namespace ProyectoSimon
             Color colorSkeleton = new Color(206, 103, 0); // Change!!
             ElementCircle circle = new ElementCircle(radius, vector2, colorSkeleton, colorSkeleton, alpha);
             circle.drawBorderWeigth(screenManager, new Color(64, 64, 64), 1);
-            circle.drawPrimitive(screenManager);
+            circle.draw(screenManager);
         }
 
         // Draw a simple line primitive.
