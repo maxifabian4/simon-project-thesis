@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using ProyectoSimon.Utils;
 
 namespace ProyectoSimon
 {
@@ -25,9 +26,9 @@ namespace ProyectoSimon
             : base()
         {
             // Create our menu entries.
-            MenuEntry playGameMenuEntry = new MenuEntry("jugar");
-            MenuEntry statisticsMenuEntry = new MenuEntry("estadísticas");
-            MenuEntry newUserMenuEntry = new MenuEntry("nuevo usuario");
+            MenuEntry playGameMenuEntry = new MenuEntry(CommonConstants.MENU_ENTRY_PLAY);
+            MenuEntry statisticsMenuEntry = new MenuEntry(CommonConstants.MENU_ENTRY_STATISTICS);
+            MenuEntry newUserMenuEntry = new MenuEntry(CommonConstants.MENU_ENTRY_NEW_USER);
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
             statisticsMenuEntry.Selected += StatisticsMenuEntrySelected;
@@ -47,26 +48,38 @@ namespace ProyectoSimon
             {
                 if (screenManager.getIndexGame() == 0)
                 {
-                    GamePlayScreenCircles circleGame = new GamePlayScreenCircles(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
+                    GamePlayScreenCircles circleGame = new GamePlayScreenCircles(
+                        screenManager.getWidthScreen(),
+                        screenManager.getHeightScreen(),
+                        screenManager.getGames()[CurrentGame].getLevels());
                     LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(ScreenManager.TEXTURE_BACKGROUND_GAME2), circleGame);
                 }
                 else if (screenManager.getIndexGame() == 1)
                 {
-                    GamePlayScreenChooser selectorGame = new GamePlayScreenChooser(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
+                    GamePlayScreenChooser selectorGame = new GamePlayScreenChooser(
+                        screenManager.getWidthScreen(),
+                        screenManager.getHeightScreen(),
+                        screenManager.getGames()[CurrentGame].getLevels());
                     LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(ScreenManager.TEXTURE_BACKGROUND_GAME), selectorGame);
                 }
                 else if (screenManager.getIndexGame() == 2)
                 {
-                    GamePlayScreenArrows arrowsGame = new GamePlayScreenArrows(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
+                    GamePlayScreenArrows arrowsGame = new GamePlayScreenArrows(
+                        screenManager.getWidthScreen(),
+                        screenManager.getHeightScreen(),
+                        screenManager.getGames()[CurrentGame].getLevels());
                     LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(ScreenManager.TEXTURE_BACKGROUND_ARROWS), arrowsGame);
                 }
                 else if (screenManager.getIndexGame() == 3)
                 {
-                    GamePlayScreenFree freeGame = new GamePlayScreenFree(screenManager.getWidthScreen(), screenManager.getHeightScreen(), screenManager.getGames()[currentGame].getLevels());
+                    GamePlayScreenFree freeGame = new GamePlayScreenFree(
+                        screenManager.getWidthScreen(),
+                        screenManager.getHeightScreen(),
+                        screenManager.getGames()[CurrentGame].getLevels());
                     LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(ScreenManager.TEXTURE_BACKGROUND_GAME2), freeGame);
-                }                
+                }
             }
-            else 
+            else
             {
                 showMessageToUser();
             }
@@ -74,7 +87,7 @@ namespace ProyectoSimon
 
         private void showMessageToUser()
         {
-            MessageBoxScreen kinectState = new MessageBoxScreen("Dispositivo Kinect desconectado !!", "Presione Enter para regresar al menú principal.");
+            MessageBoxScreen kinectState = new MessageBoxScreen(CommonConstants.TITLE_MESSAGE_UNPLUGGED_KINECT, CommonConstants.DESCRIPTION_MESSAGE_UNPLUGGED_KINECT);
             kinectState.Accepted += ConfirmExitMessageKinectAccepted;
             screenManager.AddScreen(kinectState, null);
         }
@@ -85,8 +98,8 @@ namespace ProyectoSimon
         void ConfirmExitMessageKinectAccepted(object sender, PlayerIndexEventArgs e)
         {
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.setCurrentUser(screenManager.getUserIndex());
-            mainMenuScreen.setCurrentGame(screenManager.getIndexGame());
+            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
+            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
 
@@ -97,11 +110,16 @@ namespace ProyectoSimon
         {
             string[] statisticsItems = screenManager.getCurrentStatisticsItems();
             int availableAreaX0, availableAreaX1;
-            availableAreaX0 = MARGIN_LEFT_MENU_PANEL + screenManager.getWidthScreen() / 4;
+            availableAreaX0 = CommonConstants.MARGIN_LEFT_MENU_PANEL + screenManager.getWidthScreen() / 4;
             availableAreaX1 = screenManager.getWidthScreen();
-            StatisticsMenuScreen statisticsMenuScreen = new StatisticsMenuScreen(statisticsItems, availableAreaX0, availableAreaX1, screenManager.getWidthScreen(), screenManager.getHeightScreen());
-            statisticsMenuScreen.setCurrentUser(screenManager.getUserIndex());
-            statisticsMenuScreen.setCurrentGame(screenManager.getIndexGame());
+            StatisticsMenuScreen statisticsMenuScreen = new StatisticsMenuScreen(
+                statisticsItems,
+                availableAreaX0,
+                availableAreaX1,
+                screenManager.getWidthScreen(),
+                screenManager.getHeightScreen());
+            statisticsMenuScreen.CurrentUser = screenManager.getUserIndex();
+            statisticsMenuScreen.CurrentGame = screenManager.getIndexGame();
             screenManager.AddScreen(statisticsMenuScreen, e.PlayerIndex);
         }
 
@@ -111,11 +129,15 @@ namespace ProyectoSimon
         void NewUserMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             int availableAreaX0, availableAreaX1;
-            availableAreaX0 = MARGIN_LEFT_MENU_PANEL + screenManager.getWidthScreen() / 4;
+            availableAreaX0 = CommonConstants.MARGIN_LEFT_MENU_PANEL + screenManager.getWidthScreen() / 4;
             availableAreaX1 = screenManager.getWidthScreen();
-            UserFormMenuScreen userFormMenuScreen = new UserFormMenuScreen(availableAreaX0, availableAreaX1, screenManager.getWidthScreen(), screenManager.getHeightScreen());
-            userFormMenuScreen.setCurrentUser(-1);
-            userFormMenuScreen.setCurrentGame(screenManager.getIndexGame());
+            UserFormMenuScreen userFormMenuScreen = new UserFormMenuScreen(
+                availableAreaX0,
+                availableAreaX1,
+                screenManager.getWidthScreen(),
+                screenManager.getHeightScreen());
+            userFormMenuScreen.CurrentUser = CommonConstants.NEW_USER_INDEX;
+            userFormMenuScreen.CurrentGame = screenManager.getIndexGame();
             screenManager.AddScreen(userFormMenuScreen, e.PlayerIndex);
         }
 
@@ -124,8 +146,8 @@ namespace ProyectoSimon
         /// </summary>
         protected override void OnCancel(PlayerIndex playerIndex)
         {
-            string question = "Desea salir del sistema?";
-            string message = "aceptar (enter)       cancelar (esc)";
+            string question = CommonConstants.EXIT_SYSTEM_QUESTION;
+            string message = CommonConstants.EXIT_SYSTEM_ANSWER_OPTIONS;
             MessageBoxScreen confirmExitMessageBox = new MessageBoxScreen(question, message);
             confirmExitMessageBox.Accepted += ConfirmExitMessageBoxAccepted;
             screenManager.AddScreen(confirmExitMessageBox, playerIndex);

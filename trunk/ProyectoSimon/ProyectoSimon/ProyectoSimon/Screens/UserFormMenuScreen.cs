@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Box2D.XNA;
 using System;
 using Microsoft.Xna.Framework.Input;
+using ProyectoSimon.Utils;
 
 namespace ProyectoSimon
 {
@@ -19,7 +20,6 @@ namespace ProyectoSimon
     /// </summary>
     class UserFormMenuScreen : MenuScreen
     {
-        private const int MAX_FIELDS = 3;
         private int availableAreaX0, availableAreaX1;
         private int x, y, w, h;
         private int wScreen, hScreen;
@@ -55,10 +55,10 @@ namespace ProyectoSimon
             userDataColor = new Color(64, 64, 64);
             userFrameColor = titleColor = Color.White;
             isFieldSelected = new Boolean[] { true, false, false, false };
-            nameField = surnameField = ageField = "";
+            nameField = surnameField = ageField = String.Empty;
             // Create our menu entries.
-            cancelEntry = new MenuEntry("cancelar");
-            addEntry = new MenuEntry("agregar");
+            cancelEntry = new MenuEntry(CommonConstants.MENU_ENTRY_CANCEL);
+            addEntry = new MenuEntry(CommonConstants.MENU_ENTRY_ADD);
             // Hook up menu event handlers.
             cancelEntry.Selected += CancelEntrySelected;
             addEntry.Selected += AddEntrySelected;
@@ -104,7 +104,7 @@ namespace ProyectoSimon
         /// </summary>
         public override void HandleInput(GameTime gameTime, InputState input)
         {
-            mainMenuScreen = false;
+            MainMenuScreen = false;
             base.HandleInput(gameTime, input);
             PlayerIndex playerIndex;
 
@@ -115,7 +115,7 @@ namespace ProyectoSimon
 
             if (tabSelected.Evaluate(input, ControllingPlayer, out playerIndex))
             {
-                if (indexField < MAX_FIELDS)
+                if (indexField < CommonConstants.USER_FORM_MAX_FIELDS)
                     indexField++;
                 else
                     indexField = 0;
@@ -160,7 +160,7 @@ namespace ProyectoSimon
                 {
                     auxKey = input.CurrentKeyboardStates[0].GetPressedKeys()[0].ToString();
                     if (auxKey.Equals("Space"))
-                        nameField = nameField.Insert(cursorIndex, " ");
+                        nameField = nameField.Insert(cursorIndex, CommonConstants.STRING_BLANK_SPACE);
                     else
                         nameField = nameField.Insert(cursorIndex, auxKey.Substring(auxKey.Length - 1, 1));
                 }
@@ -168,7 +168,7 @@ namespace ProyectoSimon
                 {
                     auxKey = input.CurrentKeyboardStates[0].GetPressedKeys()[0].ToString();
                     if (auxKey.Equals("Space"))
-                        surnameField = surnameField.Insert(cursorIndex, " ");
+                        surnameField = surnameField.Insert(cursorIndex, CommonConstants.STRING_BLANK_SPACE);
                     else
                         surnameField = surnameField.Insert(cursorIndex, auxKey.Substring(auxKey.Length - 1, 1));
                 }
@@ -180,12 +180,12 @@ namespace ProyectoSimon
 
                 cursorIndex++;
             }
-            else if (menuRight.Evaluate(input, ControllingPlayer, out playerIndex))
+            else if (MenuRight.Evaluate(input, ControllingPlayer, out playerIndex))
             {
                 if (cursorIndex < getCurrentText().Length)
                     cursorIndex++;
             }
-            else if (menuLeft.Evaluate(input, ControllingPlayer, out playerIndex))
+            else if (MenuLeft.Evaluate(input, ControllingPlayer, out playerIndex))
             {
                 if (cursorIndex > 0)
                     cursorIndex--;
@@ -199,7 +199,7 @@ namespace ProyectoSimon
         /// </summary>
         private string getCurrentText()
         {
-            string auxText = "";
+            string auxText = String.Empty;
 
             if (isFieldSelected[0])
                 auxText = nameField;
@@ -217,8 +217,8 @@ namespace ProyectoSimon
         void CancelEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.setCurrentUser(screenManager.getUserIndex());
-            mainMenuScreen.setCurrentGame(screenManager.getIndexGame());
+            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
+            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
 
@@ -227,27 +227,28 @@ namespace ProyectoSimon
         /// </summary>
         void AddEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (!nameField.Equals("") && !surnameField.Equals("") && !ageField.Equals("") && video != null)
+            if (!nameField.Equals(String.Empty) && !surnameField.Equals(String.Empty) && !ageField.Equals(String.Empty) && video != null)
             {
-                string photoPath = "Data//" + nameField.ToLower() + "_" + surnameField.ToLower() + ".jpg";
+                string photoPath = CommonUtilMethods.GenerateCapturePath(nameField, surnameField, CommonUtilMethods.JPG);
                 System.IO.FileStream stream = new System.IO.FileStream(@photoPath, System.IO.FileMode.Create);
                 video.SaveAsJpeg(stream, video.Width, video.Height);
+
                 User user = new User(nameField.ToLower(), surnameField.ToLower(), photoPath, Convert.ToInt32(ageField), video);
                 //Creating statistic fields
-                Statistics game1 = new Statistics("círculos");
-                user.addStatistic(0, game1);
-                Statistics game2 = new Statistics("clasificador");
-                user.addStatistic(1, game2);
-                Statistics game3 = new Statistics("flechas");
-                user.addStatistic(2, game3);
+                Statistics circlesGame = new Statistics(CommonConstants.CIRCLES_GAME_NAME);
+                user.addStatistic(0, circlesGame);
+                Statistics chooserGame = new Statistics(CommonConstants.CHOOSER_GAME_NAME);
+                user.addStatistic(1, chooserGame);
+                Statistics arrowsGame = new Statistics(CommonConstants.ARROWS_GAME_NAME);
+                user.addStatistic(2, arrowsGame);
                 screenManager.addNewUser(user);
                 // Store users in a XML file
                 screenManager.storeUsersToXml();
 
                 // Modularizar!!!!!!!!!
                 MainMenuScreen mainMenuScreen = new MainMenuScreen();
-                mainMenuScreen.setCurrentUser(screenManager.getUsersCount() - 1);
-                mainMenuScreen.setCurrentGame(screenManager.getIndexGame());
+                mainMenuScreen.CurrentUser = screenManager.getUsersCount() - 1;
+                mainMenuScreen.CurrentGame = screenManager.getIndexGame();
                 LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
             }
         }
@@ -260,7 +261,7 @@ namespace ProyectoSimon
             base.Draw(gameTime);
             SpriteFont comandsFont = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
             SpriteFont titleFont = screenManager.getFont(ScreenManager.GAME_INSTANCE_FONT);
-            string title = "nuevo usuario";
+            string title = CommonConstants.NEWFORM_SCREEN_TITLE;
             int horizontalValue = (int) comandsFont.MeasureString(title).X;
             int verticalValue = (int) comandsFont.MeasureString(title).Y;
 
@@ -268,10 +269,6 @@ namespace ProyectoSimon
             drawUserFormFrame(verticalValue);
             // Draw tittle.
             drawTitleFrame(title, screenManager.SpriteBatch, titleFont, horizontalValue);
-            // Draw header line.
-            //drawLine(screenManager.SpriteBatch, new Vector2(x + 10, y + verticalValue + 15), new Vector2(x + w - 10, y + verticalValue + 15));
-            //// Draw footer line.
-            //drawLine(screenManager.SpriteBatch, new Vector2(x + 10, y + h - 20 + 10), new Vector2(x + w - 10, y + h - 20 + 10));
             // Draw user input comands.
             drawUserComands(screenManager.SpriteBatch, comandsFont, verticalValue + y);
         }
@@ -283,9 +280,9 @@ namespace ProyectoSimon
         {
             int marginUp = 45;
             // Draw labels and fields.
-            drawLabelAndField(spriteBatch, menuFont, posY + marginUp, "nombre", isFieldSelected[0], nameField.ToLower());
-            drawLabelAndField(spriteBatch, menuFont, posY + marginUp + 40, "apellido", isFieldSelected[1], surnameField.ToLower());
-            drawLabelAndField(spriteBatch, menuFont, posY + marginUp + 80, "edad", isFieldSelected[2], ageField.ToLower());
+            drawLabelAndField(spriteBatch, menuFont, posY + marginUp, CommonConstants.DEFAULT_USER_NAME, isFieldSelected[0], nameField.ToLower());
+            drawLabelAndField(spriteBatch, menuFont, posY + marginUp + 40, CommonConstants.DEFAULT_USER_LASTNAME, isFieldSelected[1], surnameField.ToLower());
+            drawLabelAndField(spriteBatch, menuFont, posY + marginUp + 80, CommonConstants.DEFAULT_USER_AGE_WORD, isFieldSelected[2], ageField.ToLower());
             // Draw capture photo module.
             drawCapturePhotoModule(spriteBatch, menuFont, posY + marginUp + 80, isFieldSelected[3]);
         }
@@ -301,7 +298,7 @@ namespace ProyectoSimon
 
             blankSpace = 50;
             frameSize = 80;
-            textLabel = "foto";
+            textLabel = CommonConstants.DEFAULT_USER_CAPTURE;
             wText = (int) menuFont.MeasureString(textLabel).X;
             posX = x + w / 2 - 60 - wText;
 
@@ -368,7 +365,7 @@ namespace ProyectoSimon
                 namefield = new ElementPolygon(posX + blankSpace + wText, posY, wField, hField, new Color(55, 55, 55), .8f, true);
                 edgeNamefield = new ElementPolygon(posX + blankSpace + wText, posY, wField, hField, new Color(227, 117, 64), .8f, false);
                 if (blink)
-                    textField = textField.Insert(cursorIndex, "|");
+                    textField = textField.Insert(cursorIndex, CommonConstants.DEFAULT_TEXT_CURSOR);
             }
             else
             {
@@ -390,21 +387,6 @@ namespace ProyectoSimon
         }
 
         /// <summary>
-        /// Draw a line between v1 and v2. ABSTRAERRRRRR  !!!!!!!
-        /// </summary>
-        //private void drawLine2(SpriteBatch spriteBatch, Vector2 v1, Vector2 v2)
-        //{
-        //    FixedArray8<Vector2> vertexs = new FixedArray8<Vector2>();
-        //    vertexs[0] = new Vector2(v1.X, v1.Y);
-        //    vertexs[1] = new Vector2(v2.X, v2.Y);
-
-        //    ElementPolygon line = new ElementPolygon(vertexs, Color.White * TransitionAlpha, .6f, false, 2);
-        //    line.drawPrimitive(screenManager);
-        //}
-
-
-
-        /// <summary>
         /// Draws the title for the frame.
         /// </summary>
         private void drawTitleFrame(string title, SpriteBatch spriteBatch, SpriteFont statisticsFont, int horizontalValue)
@@ -422,7 +404,7 @@ namespace ProyectoSimon
         {
             ElementPolygon frame = new ElementPolygon(x, hScreen / 4, w, hScreen / 4 * 2 + 10, userFrameColor * TransitionAlpha, 1, true);
             frame.draw(screenManager);
-            ElementPolygon titleFrame = new ElementPolygon(x, hScreen / 4, w, verticalValue + 12, panelColor * TransitionAlpha, 1, true);
+            ElementPolygon titleFrame = new ElementPolygon(x, hScreen / 4, w, verticalValue + 12, MenuPanelColor * TransitionAlpha, 1, true);
             titleFrame.draw(screenManager);
         }
     }

@@ -1,33 +1,24 @@
-﻿#region File Description
-//-----------------------------------------------------------------------------
-// OptionsMenuScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-#endregion
-
-#region Using Statements
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Box2D.XNA;
 using System;
-#endregion
+using ProyectoSimon.Utils;
 
 namespace ProyectoSimon
 {
     /// <summary>
-    /// The options screen is brought up over the top of the main menu
-    /// screen, and gives the user a chance to configure the game
-    /// in various hopefully useful ways.
+    /// This class allows display all statistical data stored in the system.
     /// </summary>
     class StatisticsMenuScreen : MenuScreen
     {
         private int availableAreaX0, availableAreaX1;
         private int x, y, w, h;
-        private int wScreen, hScreen;
-        MenuEntry salirEntry;
-        private Color statisticsFrameColor, statisticsDataColor, titleColor;
+        private int wScreen;
+        private int hScreen;
+        private MenuEntry salirEntry;
+        private Color statisticsFrameColor;
+        private Color statisticsDataColor;
+        private Color titleColor;
 
         /// <summary>
         /// Constructor.
@@ -46,7 +37,7 @@ namespace ProyectoSimon
             statisticsFrameColor = titleColor = Color.White;
             statisticsDataColor = new Color(64, 64, 64);
             // Create our menu entries.
-            salirEntry = new MenuEntry("Salir");
+            salirEntry = new MenuEntry(CommonConstants.MENU_ENTRY_EXIT);
             // Hook up menu event handlers.
             salirEntry.Selected += SalirEntrySelected;
             // Add entries to the menu.
@@ -59,8 +50,8 @@ namespace ProyectoSimon
         void SalirEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.setCurrentUser(screenManager.getUserIndex());
-            mainMenuScreen.setCurrentGame(screenManager.getIndexGame());
+            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
+            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
 
@@ -72,7 +63,7 @@ namespace ProyectoSimon
             base.Draw(gameTime);
             SpriteFont titleFont = screenManager.getFont(ScreenManager.GAME_INSTANCE_FONT);
             SpriteFont dataFont = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
-            string title = "estadísticas";
+            string title = CommonConstants.STATISTIC_SCREEN_TITLE;
             int horizontalValue = (int) titleFont.MeasureString(title).X;
             int verticalValue = (int) titleFont.MeasureString(title).Y;
             // Draw statistics frame.
@@ -90,6 +81,7 @@ namespace ProyectoSimon
         {
             int xIni, yIni, xFin;
             string name, value;
+            string[] currentInformation;
             xIni = x + 20;
             xFin = x + w - 30;
             yIni = y + verticalMeasure + 30;
@@ -97,8 +89,9 @@ namespace ProyectoSimon
 
             for (int i = 0; i < data.Length; i++)
             {
-                name = getNameStatistics(data[i].Split(' '));
-                value = getValueStatistics(data[i].Split(' '));
+                currentInformation = data[i].Split(CommonConstants.STATISTICAL_MEASURES_SEPARATOR);
+                name = CommonUtilMethods.GetStatisticsName(currentInformation);
+                value = CommonUtilMethods.GetStatisticsValue(currentInformation);
                 xFin -= (int) statisticsFont.MeasureString(value).X;
                 spriteBatch.DrawString(statisticsFont, name, new Vector2(xIni, yIni + i * 30), statisticsDataColor * TransitionAlpha);
                 spriteBatch.DrawString(statisticsFont, value, new Vector2(xFin, yIni + i * 30), statisticsDataColor * TransitionAlpha);
@@ -106,28 +99,6 @@ namespace ProyectoSimon
             }
 
             spriteBatch.End();
-        }
-
-        /// <summary>
-        /// Return the value of an attribute.
-        /// </summary>
-        private string getValueStatistics(string[] p)
-        {
-            return p[p.Length - 1];
-        }
-
-        /// <summary>
-        /// Return the name for an attribute.
-        /// </summary>
-        private string getNameStatistics(string[] p)
-        {
-            string name = p[0];
-
-            for (int i = 1; i < p.Length; i++)
-                if (i != p.Length - 1)
-                    name += " " + p[i];
-
-            return name;
         }
 
         /// <summary>
@@ -146,11 +117,9 @@ namespace ProyectoSimon
         /// </summary>
         private void drawStatisticsFrame(int verticalValue)
         {
-            //ElementPolygon frameShadow = new ElementPolygon(x + 5, hScreen / 4 + 5, w, hScreen / 4 + 50, new Color(33, 33, 33) * TransitionAlpha, .25f, true);
-            //frameShadow.drawPrimitive(screenManager);
             ElementPolygon frame = new ElementPolygon(x, hScreen / 4, w, hScreen / 4 + 50, statisticsFrameColor * TransitionAlpha, 1, true);
             frame.draw(screenManager);
-            ElementPolygon titleFrame = new ElementPolygon(x, hScreen / 4, w, verticalValue + 10, panelColor * TransitionAlpha, 1, true);
+            ElementPolygon titleFrame = new ElementPolygon(x, hScreen / 4, w, verticalValue + 10, MenuPanelColor * TransitionAlpha, 1, true);
             titleFrame.draw(screenManager);
         }
     }

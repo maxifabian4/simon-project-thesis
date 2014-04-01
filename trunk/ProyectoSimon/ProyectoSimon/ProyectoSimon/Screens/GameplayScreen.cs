@@ -184,8 +184,8 @@ namespace ProyectoSimon
         {
             //stage.stopSong();
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.setCurrentUser(screenManager.getUserIndex());
-            mainMenuScreen.setCurrentGame(screenManager.getIndexGame());
+            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
+            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
 
