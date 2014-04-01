@@ -1,10 +1,3 @@
-//-----------------------------------------------------------------------------
-// MenuScreen.cs
-//
-// XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -16,6 +9,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
 using Box2D.XNA;
+using ProyectoSimon.Utils;
 
 namespace ProyectoSimon
 {
@@ -25,31 +19,29 @@ namespace ProyectoSimon
     /// </summary>
     abstract class MenuScreen : GameScreen
     {
-        // Margins of menu panel.
-        protected const int MARGIN_LEFT_MENU_PANEL = 20;
-        private const int MARGIN_UP_MENU_PANEL = 10;
-        private const int MARGIN_DOWN_MENU_ENTRIES = 50;
-        private const int MARGIN_ALIGN_MENU_ENTRIES = 20;
-        private const int MARGIN_UP_GAME_INSTANCE = 30;
-        private const int MARGIN_RIGHT_ELEMENTS_MENU_PANEL = 10;
         // Menu entry list.
-        private List<MenuEntry> menuEntries = new List<MenuEntry>();
-        private int selectedEntry = 0;
+        private List<MenuEntry> menuEntries;
+        // Used to track the current entry in the menu.
+        private int selectedEntry;
         // Global positions for slide format.
         private float valueTransition;
         // Input parameters.
-        private InputAction menuUp, menuDown;
-        protected InputAction menuLeft, menuRight;
-        private InputAction menuSelect, menuCancel;
-        private InputAction menuCtrl, menuDel;
+        private InputAction menuLeft;
+        private InputAction menuRight;
+        private InputAction menuUp;
+        private InputAction menuDown;
+        private InputAction menuSelect;
+        private InputAction menuCancel;
+        private InputAction menuCtrl;
+        private InputAction menuDel;
         // Current game play instance.
-        protected int currentGame;
+        private int currentGame;
         // Current user.
-        protected int currentUser;
-        // Determine if we are in main menu screen.
-        protected bool mainMenuScreen;
-        // Design parameters.
-        protected Color panelColor;
+        private int currentUser;
+        // Determines if we are in main menu screen.
+        private bool mainMenuScreen;
+        // Determines the menu panel color.
+        private Color menuPanelColor;
 
         /// <summary>
         /// Gets the list of menu entries, so derived classes can add
@@ -57,7 +49,88 @@ namespace ProyectoSimon
         /// </summary>
         protected IList<MenuEntry> MenuEntries
         {
-            get { return menuEntries; }
+            get
+            {
+                return menuEntries;
+            }
+        }
+
+        /// <summary>
+        /// Gets the input action associated to the left key movement.
+        /// </summary>
+        protected InputAction MenuLeft
+        {
+            get
+            {
+                return menuLeft;
+            }
+        }
+
+        /// <summary>
+        /// Gets the input action associated to the right key movement.
+        /// </summary>
+        protected InputAction MenuRight
+        {
+            get
+            {
+                return menuRight;
+            }
+        }
+
+        /// <summary>
+        /// Gets the main menu value flag.
+        /// </summary>
+        protected bool MainMenuScreen
+        {
+            get
+            {
+                return mainMenuScreen;
+            }
+            set
+            {
+                mainMenuScreen = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the current user index.
+        /// </summary>
+        public int CurrentUser
+        {
+            get
+            {
+                return currentUser;
+            }
+            set
+            {
+                currentUser = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the current game index.
+        /// </summary>
+        public int CurrentGame
+        {
+            get
+            {
+                return currentGame;
+            }
+            set
+            {
+                currentGame = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the menu panel color.
+        /// </summary>
+        public Color MenuPanelColor
+        {
+            get
+            {
+                return menuPanelColor;
+            }
         }
 
         /// <summary>
@@ -65,6 +138,7 @@ namespace ProyectoSimon
         /// </summary>
         public MenuScreen()
         {
+            menuEntries = new List<MenuEntry>();
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
@@ -94,21 +168,23 @@ namespace ProyectoSimon
                 true);
             menuCtrl = new InputAction(
                 new Buttons[] { },
-                new Keys[] { Keys.LeftControl , Keys.RightControl},
+                new Keys[] { Keys.LeftControl, Keys.RightControl },
                 true);
             menuDel = new InputAction(
                 new Buttons[] { },
                 new Keys[] { Keys.Delete },
                 true);
 
+            // Initialize the first entry.
+            selectedEntry = 0;
             // Initialize the current user.
-            currentUser = 0;
+            CurrentUser = 0;
             // Initialize the current instance game.
-            currentGame = 0;
+            CurrentGame = 0;
             // We are in main menu screen.
             mainMenuScreen = true;
-            // Inicialize the panel color.
-            panelColor = new Color(201, 47, 15);
+            // Initialize the main color for the menu panel.
+            menuPanelColor = new Color(201, 47, 15);
         }
 
         /// <summary>
@@ -130,65 +206,78 @@ namespace ProyectoSimon
                 selectedEntry--;
 
                 if (selectedEntry < 0)
+                {
                     selectedEntry = menuEntries.Count - 1;
+                }
             }
+
             // Move to the next menu entry?
             if (menuDown.Evaluate(input, ControllingPlayer, out playerIndex))
             {
                 selectedEntry++;
 
                 if (selectedEntry >= menuEntries.Count)
+                {
                     selectedEntry = 0;
+                }
             }
 
+            // An specific entry has been selected? ...
             if (menuSelect.Evaluate(input, ControllingPlayer, out playerIndex))
             {
                 OnSelectEntry(selectedEntry, playerIndex);
             }
+            // ... or cancel the selection?
             else if (menuCancel.Evaluate(input, ControllingPlayer, out playerIndex))
             {
                 OnCancel(playerIndex);
             }
-            else if (mainMenuScreen && (input.IsKeyPressed(Keys.LeftControl, ControllingPlayer, out playerIndex) || input.IsKeyPressed(Keys.RightControl, ControllingPlayer, out playerIndex)))
+            else if (mainMenuScreen && (input.IsKeyPressed(Keys.LeftControl, ControllingPlayer, out playerIndex)
+                || input.IsKeyPressed(Keys.RightControl, ControllingPlayer, out playerIndex)))
             {
+                // has been (Ctrl + ->) combination pressed? If so, change to the next game.
                 if (menuRight.Evaluate(input, ControllingPlayer, out playerIndex))
                 {
-                    if (currentGame == screenManager.getGames().Length - 1)
-                        currentGame = 0;
+                    if (CurrentGame == screenManager.getGames().Length - 1)
+                        CurrentGame = 0;
                     else
-                        currentGame++;
-                    screenManager.setCurrentGame(currentGame);
+                        CurrentGame++;
+                    screenManager.setCurrentGame(CurrentGame);
                 }
+                // has been (Ctrl + <-) combination pressed? If so, change to the previous game.
                 else if (menuLeft.Evaluate(input, ControllingPlayer, out playerIndex))
                 {
-                    if (currentGame == 0)
-                        currentGame = screenManager.getGames().Length - 1;
+                    if (CurrentGame == 0)
+                        CurrentGame = screenManager.getGames().Length - 1;
                     else
-                        currentGame--;
-                    screenManager.setCurrentGame(currentGame);
+                        CurrentGame--;
+                    screenManager.setCurrentGame(CurrentGame);
                 }
             }
+            // if right arrow key has been pressed, change to the previous user.
             else if (mainMenuScreen && menuRight.Evaluate(input, ControllingPlayer, out playerIndex))
             {
-                if (currentUser == screenManager.getUsers().Count - 1)
-                    currentUser = 0;
+                if (CurrentUser == screenManager.getUsers().Count - 1)
+                    CurrentUser = 0;
                 else
-                    currentUser++;
-                screenManager.setUserIndex(currentUser);
+                    CurrentUser++;
+                screenManager.setUserIndex(CurrentUser);
             }
+            // if left arrow key has been pressed, change to the previous user.
             else if (mainMenuScreen && menuLeft.Evaluate(input, ControllingPlayer, out playerIndex))
             {
-                if (currentUser == 0)
-                    currentUser = screenManager.getUsersCount() - 1;
+                if (CurrentUser == 0)
+                    CurrentUser = screenManager.getUsersCount() - 1;
                 else
-                    currentUser--;
-                screenManager.setUserIndex(currentUser);
+                    CurrentUser--;
+                screenManager.setUserIndex(CurrentUser);
             }
+            // Remove a selected user from the system. We need to display a message in order to confirm the transaction.
             else if (mainMenuScreen && menuDel.Evaluate(input, ControllingPlayer, out playerIndex))
             {
-                screenManager.deleteUser(currentUser);
+                screenManager.deleteUser(CurrentUser);
                 screenManager.storeUsersToXml();
-                currentUser = 0;
+                CurrentUser = 0;
             }
         }
 
@@ -220,22 +309,22 @@ namespace ProyectoSimon
         /// Allows the screen the chance to position the menu entries. By default
         /// all menu entries are lined up in a vertical list, centered on the screen.
         /// </summary>
-        protected virtual void updateMenuEntryLocations(int widthScreen, int heightScreen)
+        protected virtual void UpdateMenuEntryLocations(int widthScreen, int heightScreen)
         {
             // Make the menu slide into place during transitions, using a
             // power curve to make things look more interesting (this makes
             // the movement slow down as it nears the end).
             SpriteFont sansSerif15 = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
             MenuEntry menuEntry;
-            Vector2 position = new Vector2(0, heightScreen - MARGIN_DOWN_MENU_ENTRIES);
-            float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
+            Vector2 position = new Vector2(0, heightScreen - CommonConstants.MARGIN_DOWN_MENU_ENTRIES);
+            float transitionOffset = (float) Math.Pow(TransitionPosition, 2);
 
             // Update each menu entry's location in turn
             for (int i = menuEntries.Count - 1; i >= 0; i--)
             {
                 menuEntry = menuEntries[i];
                 // Each entry is to be centered horizontally inside de panel menu.
-                position.X = (widthScreen / 8 - (int)sansSerif15.MeasureString(menuEntry.Text).X / 2) + MARGIN_LEFT_MENU_PANEL;
+                position.X = (widthScreen / 8 - (int) sansSerif15.MeasureString(menuEntry.Text).X / 2) + CommonConstants.MARGIN_LEFT_MENU_PANEL;
 
                 if (ScreenState == ScreenState.TransitionOn)
                 {
@@ -251,7 +340,7 @@ namespace ProyectoSimon
                 // Set the entry's position.
                 menuEntry.Position = position;
                 // Move up for the next entry the size of this entry.
-                position.Y -= (int)sansSerif15.MeasureString(menuEntry.Text).Y + MARGIN_ALIGN_MENU_ENTRIES;
+                position.Y -= (int) sansSerif15.MeasureString(menuEntry.Text).Y + CommonConstants.MARGIN_ALIGN_MENU_ENTRIES;
             }
         }
 
@@ -262,6 +351,7 @@ namespace ProyectoSimon
         {
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
             bool isSelected;
+
             // Update each nested MenuEntry object.
             for (int i = menuEntries.Count - 1; i >= 0; i--)
             {
@@ -287,38 +377,46 @@ namespace ProyectoSimon
             SpriteFont fontBeautiful = screenManager.getFont(ScreenManager.FONT_BEAUTIFULEVERYTIME);
             SpriteFont fontBeautifulProject = screenManager.getFont(ScreenManager.FONT_BEAUTIFULEVERYTIMEPROJECT);
             // Make sure our entries are in the right place before we draw them.
-            updateMenuEntryLocations(widthScreen, heightScreen);
+            UpdateMenuEntryLocations(widthScreen, heightScreen);
             // Draw background.
-            drawBackground(spriteBatch, widthScreen, heightScreen);
+            DrawBackground(spriteBatch, widthScreen, heightScreen);
             // Create an rectangle on the left.
-            drawMenuPanel(screenManager, widthScreen, heightScreen);
+            DrawMenuPanel(screenManager, widthScreen, heightScreen);
             // Draw game instance name.
-            drawGameInstanceModule(spriteBatch, gameInstanceFont, widthScreen);
+            DrawGameInstanceModule(spriteBatch, gameInstanceFont, widthScreen);
             // Draw user module.
-            drawUserModule(spriteBatch, userModuleFont, heightScreen);
+            DrawUserModule(spriteBatch, userModuleFont, heightScreen);
             // Draw each menu entry in turn.
-            drawMenuEntries(spriteBatch, gameTime, widthScreen, userModuleFont);
+            DrawMenuEntries(spriteBatch, gameTime, widthScreen, userModuleFont);
             // Draw proyect name.
-            drawProjectName(spriteBatch, fontBeautiful, fontBeautifulProject, widthScreen);
+            DrawProjectName(spriteBatch, fontBeautiful, fontBeautifulProject, widthScreen);
         }
 
         /// <summary>
         /// Draws the menu entries.
         /// </summary>
-        private void drawMenuEntries(SpriteBatch spriteBatch, GameTime gameTime, int widthScreen, SpriteFont font)
+        private void DrawMenuEntries(SpriteBatch spriteBatch, GameTime gameTime, int widthScreen, SpriteFont font)
         {
             MenuEntry menuEntry;
+
             for (int i = menuEntries.Count - 1; i >= 0; i--)
             {
                 menuEntry = menuEntries[i];
-                menuEntry.Draw(this, IsActive && (i == selectedEntry), gameTime, font, MARGIN_LEFT_MENU_PANEL, widthScreen / 4, valueTransition);
+                menuEntry.Draw(
+                    this,
+                    IsActive && (i == selectedEntry),
+                    gameTime,
+                    font,
+                    CommonConstants.MARGIN_LEFT_MENU_PANEL,
+                    widthScreen / 4,
+                    valueTransition);
             }
         }
 
         /// <summary>
         /// Draws a background drawing a picture from the Content. We use the spriteBatch to draw the background because, we want it remain in all screens.
         /// </summary>
-        private void drawBackground(SpriteBatch spriteBatch, int widthScreen, int heightScreen)
+        private void DrawBackground(SpriteBatch spriteBatch, int widthScreen, int heightScreen)
         {
             // Create an background rectangle.
             Rectangle backgroundRectangleBack = new Rectangle(0, 0, widthScreen, heightScreen);
@@ -332,92 +430,97 @@ namespace ProyectoSimon
         /// <summary>
         /// Draws a rectangle on the left to show the main menu.
         /// </summary>
-        private void drawMenuPanel(ScreenManager screenManager, int widthScreen, int heightScreen)
+        private void DrawMenuPanel(ScreenManager screenManager, int widthScreen, int heightScreen)
         {
-            ElementPolygon panel = new ElementPolygon(MARGIN_LEFT_MENU_PANEL, MARGIN_UP_MENU_PANEL, widthScreen / 4, heightScreen - 2 * MARGIN_UP_MENU_PANEL, panelColor * TransitionAlpha, 1, true);
+            ElementPolygon panel = new ElementPolygon(
+                CommonConstants.MARGIN_LEFT_MENU_PANEL,
+                CommonConstants.MARGIN_UP_MENU_PANEL,
+                widthScreen / 4,
+                heightScreen - 2 * CommonConstants.MARGIN_UP_MENU_PANEL,
+                MenuPanelColor * TransitionAlpha,
+                1,
+                true);
             panel.draw(screenManager);
-            //ElementPolygon edgePanel = new ElementPolygon(MARGIN_LEFT_MENU_PANEL, MARGIN_UP_MENU_PANEL, widthScreen / 4, heightScreen - 2 * MARGIN_UP_MENU_PANEL, new Color(33, 33, 33), 1, false);
-            //edgePanel.drawPrimitive(screenManager);
         }
 
         /// <summary>
         /// Draws the user module on the main menu.
         /// </summary>
-        private void drawUserModule(SpriteBatch spriteBatch, SpriteFont userModuleFont, int heightScreen)
+        private void DrawUserModule(SpriteBatch spriteBatch, SpriteFont userModuleFont, int heightScreen)
         {
-            String currentUserName, currentUserSurname;
+            String CurrentUserName, CurrentUserSurname;
             Texture2D image;
             int age;
 
-            if (currentUser == -1)
+            if (CurrentUser.Equals(CommonConstants.NEW_USER_INDEX))
             {
-                currentUserName = "nombre";
-                currentUserSurname = "apellido";
-                age = 0;
+                // Draw the user information regarding to the default information.
+                CurrentUserName = CommonConstants.DEFAULT_USER_NAME;
+                CurrentUserSurname = CommonConstants.DEFAULT_USER_LASTNAME;
+                age = CommonConstants.DEFAULT_USER_AGE_VALUE;
                 image = screenManager.getTexture(ScreenManager.TEXTURE_USER_TEMPLATE);
-                drawUserInfo(spriteBatch, userModuleFont, heightScreen, currentUserName, currentUserSurname, age, image);
+                DrawUserInfo(spriteBatch, userModuleFont, heightScreen, CurrentUserName, CurrentUserSurname, age, image);
             }
             else
             {
-                currentUserName = screenManager.getUsers()[currentUser].getName();
-                currentUserSurname = screenManager.getUsers()[currentUser].getSurname();
-                age = screenManager.getUsers()[currentUser].getAge();
-                //age = 8;
-                image = screenManager.getUsers()[currentUser].getPicture();
-                drawUserInfo(spriteBatch, userModuleFont, heightScreen, currentUserName, currentUserSurname, age, image);
+                // Draw the user information regarding to the current selection.
+                CurrentUserName = screenManager.getUsers()[CurrentUser].getName();
+                CurrentUserSurname = screenManager.getUsers()[CurrentUser].getSurname();
+                age = screenManager.getUsers()[CurrentUser].getAge();
+                image = screenManager.getUsers()[CurrentUser].getPicture();
+                DrawUserInfo(spriteBatch, userModuleFont, heightScreen, CurrentUserName, CurrentUserSurname, age, image);
             }
         }
 
         /// <summary>
         /// Draws the user information in the user module.
         /// </summary>
-        private void drawUserInfo(SpriteBatch spriteBatch, SpriteFont userModuleFont, int heightScreen, string currentUserName, string currentUserSurname,
+        private void DrawUserInfo(SpriteBatch spriteBatch, SpriteFont userModuleFont, int heightScreen, string CurrentUserName, string CurrentUserSurname,
             int age, Texture2D image)
         {
             // Create an rectangle for user avatar.
-            int xAvatarRect = MARGIN_LEFT_MENU_PANEL + 20, xTextsUser;
-            xAvatarRect += (int)valueTransition;
+            int xAvatarRect = CommonConstants.MARGIN_LEFT_MENU_PANEL + 20, xTextsUser;
+            xAvatarRect += (int) valueTransition;
             Rectangle avatarRectangle = new Rectangle(xAvatarRect, heightScreen / 2 - 10, 70, 70);
             Rectangle originRectangle = new Rectangle(image.Bounds.Width / 2 - image.Bounds.Height / 2, 0, image.Bounds.Height, image.Bounds.Height);
-            //ElementPolygon avatarEdge = new ElementPolygon(xAvatarRect, heightScreen / 2 - 10, 70, 70, new Color(150, 150, 150), TransitionAlpha, false);
 
             spriteBatch.Begin();
             spriteBatch.Draw(image, avatarRectangle, originRectangle, Color.White * TransitionAlpha);
             // Draw user data.
             xTextsUser = xAvatarRect + 70;
-            xTextsUser += (int)valueTransition;
-            drawUserData(spriteBatch, userModuleFont, xTextsUser, heightScreen / 2 - 10, currentUserName, currentUserSurname, age);
+            xTextsUser += (int) valueTransition;
+            DrawUserData(spriteBatch, userModuleFont, xTextsUser, heightScreen / 2 - 10, CurrentUserName, CurrentUserSurname, age);
             spriteBatch.End();
-
-            // Draw edge primitive for the image.
-            //avatarEdge.drawPrimitive(screenManager);
         }
 
         /// <summary>
         /// Draws the name, surname and age for an specific user.
         /// </summary>
-        private void drawUserData(SpriteBatch spriteBatch, SpriteFont userModuleFont, int initialPosX, int initialPosY,
+        private void DrawUserData(SpriteBatch spriteBatch, SpriteFont userModuleFont, int initialPosX, int initialPosY,
                                     string name, string surname, int age)
         {
             // Draw name and surname.
             spriteBatch.DrawString(userModuleFont, name, new Vector2(initialPosX + 10, initialPosY), Color.White * TransitionAlpha);
             spriteBatch.DrawString(userModuleFont, surname, new Vector2(initialPosX + 10, initialPosY + 20), Color.White * TransitionAlpha);
             // Draw age.
-            spriteBatch.DrawString(userModuleFont, age + " años", new Vector2(initialPosX + 10, initialPosY + 45), Color.White * TransitionAlpha);
+            spriteBatch.DrawString(
+                userModuleFont,
+                String.Format(CommonConstants.DEFAULT_USER_AGE_STRING, age),
+                new Vector2(initialPosX + 10, initialPosY + 45),
+                Color.White * TransitionAlpha);
         }
 
         /// <summary>
         /// Draws the current game name at the top of the main menu.
         /// </summary>
-        private void drawGameInstanceModule(SpriteBatch spriteBatch, SpriteFont font, int widthScreen)
+        private void DrawGameInstanceModule(SpriteBatch spriteBatch, SpriteFont font, int widthScreen)
         {
             String textToDisplay;
             float gameAndNumberY, gameAndNumberX;
 
-            //textToDisplay = screenManager.getCurrentGame().getName() + " | " + (currentGame + 1);
             textToDisplay = screenManager.getCurrentGame().getName();
-            gameAndNumberY = MARGIN_UP_GAME_INSTANCE;
-            gameAndNumberX = gameAndNumberX = (widthScreen / 4) - (int)font.MeasureString(textToDisplay).X - MARGIN_RIGHT_ELEMENTS_MENU_PANEL;
+            gameAndNumberY = CommonConstants.MARGIN_UP_GAME_INSTANCE;
+            gameAndNumberX = gameAndNumberX = (widthScreen / 4) - (int) font.MeasureString(textToDisplay).X - CommonConstants.MARGIN_RIGHT_ELEMENTS_MENU_PANEL;
             gameAndNumberX += valueTransition;
 
             spriteBatch.Begin();
@@ -428,36 +531,16 @@ namespace ProyectoSimon
         /// <summary>
         /// Draws the project name at the right top.
         /// </summary>
-        private void drawProjectName(SpriteBatch spriteBatch, SpriteFont fontS, SpriteFont fontP, int widthScreen)
+        private void DrawProjectName(SpriteBatch spriteBatch, SpriteFont fontS, SpriteFont fontP, int widthScreen)
         {
-            int simonXPos = widthScreen - (int)fontS.MeasureString("simon").X - 10;
+            int simonXPos = widthScreen - (int) fontS.MeasureString(CommonConstants.PROJECT_NAME).X - 10;
             int simonYPos = -5;
-
-            //ElementCircle circleFill = new ElementCircle(75, new Vector2(widthScreen-50, 10), Color.Black, .5f, true);
-            //circleFill.drawPrimitive(screenManager);
-            //ElementCircle circleEdge = new ElementCircle(75, new Vector2(widthScreen-50, 10), new Color(33, 33, 33), 1, false);
-            //circleEdge.drawPrimitive(screenManager);
-
             spriteBatch.Begin();
-            spriteBatch.DrawString(fontS, "simon", new Vector2(simonXPos, simonYPos), Color.White * TransitionAlpha);
-            spriteBatch.DrawString(fontP, "PROYECTO ACADEMICO", new Vector2(simonXPos, simonYPos + 48), Color.White * TransitionAlpha);
+            spriteBatch.DrawString(fontS, CommonConstants.PROJECT_NAME, new Vector2(simonXPos, simonYPos), Color.White * TransitionAlpha);
+            spriteBatch.DrawString(fontP, CommonConstants.PROJECT_DESCRIPTION, new Vector2(simonXPos, simonYPos + 48), Color.White * TransitionAlpha);
             spriteBatch.End();
         }
 
-        /// <summary>
-        /// Set the current user in memory.
-        /// </summary>
-        public void setCurrentUser(int ind)
-        {
-            currentUser = ind;
-        }
-
-        /// <summary>
-        /// Set the current game in memory.
-        /// </summary>
-        public void setCurrentGame(int ind)
-        {
-            currentGame = ind;
-        }
     }
+
 }

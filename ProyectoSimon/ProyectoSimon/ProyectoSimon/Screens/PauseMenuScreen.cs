@@ -1,11 +1,5 @@
-//-----------------------------------------------------------------------------
-// PauseMenuScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-
 using Microsoft.Xna.Framework;
+using ProyectoSimon.Utils;
 
 namespace ProyectoSimon
 {
@@ -22,8 +16,8 @@ namespace ProyectoSimon
             : base()
         {
             // Create our menu entries.
-            MenuEntry resumeGameMenuEntry = new MenuEntry("reanudar");
-            MenuEntry quitGameMenuEntry = new MenuEntry("salir del juego");
+            MenuEntry resumeGameMenuEntry = new MenuEntry(CommonConstants.MENU_ENTRY_RESUME);
+            MenuEntry quitGameMenuEntry = new MenuEntry(CommonConstants.MENU_ENTRY_EXIT_GAME);
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
@@ -37,7 +31,7 @@ namespace ProyectoSimon
         /// </summary>
         public override void HandleInput(GameTime gameTime, InputState input)
         {
-            mainMenuScreen = false;
+            MainMenuScreen = false;
             base.HandleInput(gameTime, input);
         }
 
@@ -46,8 +40,8 @@ namespace ProyectoSimon
         /// </summary>
         void QuitGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            string question = "Desea salir del juego?";
-            string message = "ACEPTAR = enter CANCELAR = esc";
+            string question = CommonConstants.EXIT_GAME_QUESTION;
+            string message = CommonConstants.EXIT_GAME_ANSWER_OPTIONS;
             MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen(question, message);
             confirmQuitMessageBox.Accepted += ConfirmQuitMessageBoxAccepted;
             screenManager.AddScreen(confirmQuitMessageBox, ControllingPlayer);
@@ -61,8 +55,8 @@ namespace ProyectoSimon
         void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.setCurrentUser(screenManager.getUserIndex());
-            mainMenuScreen.setCurrentGame(screenManager.getIndexGame());
+            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
+            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
     }
