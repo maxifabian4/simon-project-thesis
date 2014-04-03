@@ -142,7 +142,7 @@ namespace ProyectoSimon
         /// </summary>
         public virtual int GetHeight(MenuScreen screen)
         {
-            return screen.getScreenManager().getFont(ScreenManager.USER_MODULE_FONT).LineSpacing;
+            return GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT).LineSpacing;
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace ProyectoSimon
         /// </summary>
         public virtual int GetWidth(MenuScreen screen)
         {
-            return (int)screen.getScreenManager().getFont(ScreenManager.USER_MODULE_FONT).MeasureString(Text).X;
+            return (int) GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT).MeasureString(Text).X;
         }
     }
 }

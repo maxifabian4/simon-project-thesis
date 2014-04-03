@@ -238,45 +238,45 @@ namespace ProyectoSimon
                 // has been (Ctrl + ->) combination pressed? If so, change to the next game.
                 if (menuRight.Evaluate(input, ControllingPlayer, out playerIndex))
                 {
-                    if (CurrentGame == screenManager.getGames().Length - 1)
+                    if (CurrentGame == DataManager.Instance.getGames().Length - 1)
                         CurrentGame = 0;
                     else
                         CurrentGame++;
-                    screenManager.setCurrentGame(CurrentGame);
+                    DataManager.Instance.setCurrentGame(CurrentGame);
                 }
                 // has been (Ctrl + <-) combination pressed? If so, change to the previous game.
                 else if (menuLeft.Evaluate(input, ControllingPlayer, out playerIndex))
                 {
                     if (CurrentGame == 0)
-                        CurrentGame = screenManager.getGames().Length - 1;
+                        CurrentGame = DataManager.Instance.getGames().Length - 1;
                     else
                         CurrentGame--;
-                    screenManager.setCurrentGame(CurrentGame);
+                    DataManager.Instance.setCurrentGame(CurrentGame);
                 }
             }
             // if right arrow key has been pressed, change to the previous user.
             else if (mainMenuScreen && menuRight.Evaluate(input, ControllingPlayer, out playerIndex))
             {
-                if (CurrentUser == screenManager.getUsers().Count - 1)
+                if (CurrentUser == DataManager.Instance.getUsers().Count - 1)
                     CurrentUser = 0;
                 else
                     CurrentUser++;
-                screenManager.setUserIndex(CurrentUser);
+                DataManager.Instance.setUserIndex(CurrentUser);
             }
             // if left arrow key has been pressed, change to the previous user.
             else if (mainMenuScreen && menuLeft.Evaluate(input, ControllingPlayer, out playerIndex))
             {
                 if (CurrentUser == 0)
-                    CurrentUser = screenManager.getUsersCount() - 1;
+                    CurrentUser = DataManager.Instance.getUsersCount() - 1;
                 else
                     CurrentUser--;
-                screenManager.setUserIndex(CurrentUser);
+                DataManager.Instance.setUserIndex(CurrentUser);
             }
             // Remove a selected user from the system. We need to display a message in order to confirm the transaction.
             else if (mainMenuScreen && menuDel.Evaluate(input, ControllingPlayer, out playerIndex))
             {
-                screenManager.deleteUser(CurrentUser);
-                screenManager.storeUsersToXml();
+                DataManager.Instance.deleteUser(CurrentUser);
+                DataManager.Instance.storeUsersToXml();
                 CurrentUser = 0;
             }
         }
@@ -314,7 +314,7 @@ namespace ProyectoSimon
             // Make the menu slide into place during transitions, using a
             // power curve to make things look more interesting (this makes
             // the movement slow down as it nears the end).
-            SpriteFont sansSerif15 = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
+            SpriteFont sansSerif15 = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
             MenuEntry menuEntry;
             Vector2 position = new Vector2(0, heightScreen - CommonConstants.MARGIN_DOWN_MENU_ENTRIES);
             float transitionOffset = (float) Math.Pow(TransitionPosition, 2);
@@ -372,10 +372,10 @@ namespace ProyectoSimon
             GraphicsDevice graphics = screenManager.GraphicsDevice;
             SpriteBatch spriteBatch = screenManager.SpriteBatch;
             // Gets fonts.
-            SpriteFont gameInstanceFont = screenManager.getFont(ScreenManager.GAME_INSTANCE_FONT);
-            SpriteFont userModuleFont = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
-            SpriteFont fontBeautiful = screenManager.getFont(ScreenManager.FONT_BEAUTIFULEVERYTIME);
-            SpriteFont fontBeautifulProject = screenManager.getFont(ScreenManager.FONT_BEAUTIFULEVERYTIMEPROJECT);
+            SpriteFont gameInstanceFont = GameContentManager.Instance.getFont(GameContentManager.GAME_INSTANCE_FONT);
+            SpriteFont userModuleFont = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
+            SpriteFont fontBeautiful = GameContentManager.Instance.getFont(GameContentManager.FONT_BEAUTIFULEVERYTIME);
+            SpriteFont fontBeautifulProject = GameContentManager.Instance.getFont(GameContentManager.FONT_BEAUTIFULEVERYTIMEPROJECT);
             // Make sure our entries are in the right place before we draw them.
             UpdateMenuEntryLocations(widthScreen, heightScreen);
             // Draw background.
@@ -423,7 +423,7 @@ namespace ProyectoSimon
 
             spriteBatch.Begin();
             // Draw rectangle on the background.
-            spriteBatch.Draw(screenManager.getTexture(ScreenManager.TEXTURE_MAIN_MENU), backgroundRectangleBack, Color.White * TransitionAlpha);
+            spriteBatch.Draw(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_MAIN_MENU), backgroundRectangleBack, Color.White * TransitionAlpha);
             spriteBatch.End();
         }
 
@@ -458,16 +458,16 @@ namespace ProyectoSimon
                 CurrentUserName = CommonConstants.DEFAULT_USER_NAME;
                 CurrentUserSurname = CommonConstants.DEFAULT_USER_LASTNAME;
                 age = CommonConstants.DEFAULT_USER_AGE_VALUE;
-                image = screenManager.getTexture(ScreenManager.TEXTURE_USER_TEMPLATE);
+                image = GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_USER_TEMPLATE);
                 DrawUserInfo(spriteBatch, userModuleFont, heightScreen, CurrentUserName, CurrentUserSurname, age, image);
             }
             else
             {
                 // Draw the user information regarding to the current selection.
-                CurrentUserName = screenManager.getUsers()[CurrentUser].getName();
-                CurrentUserSurname = screenManager.getUsers()[CurrentUser].getSurname();
-                age = screenManager.getUsers()[CurrentUser].getAge();
-                image = screenManager.getUsers()[CurrentUser].getPicture();
+                CurrentUserName = DataManager.Instance.getUsers()[CurrentUser].getName();
+                CurrentUserSurname = DataManager.Instance.getUsers()[CurrentUser].getSurname();
+                age = DataManager.Instance.getUsers()[CurrentUser].getAge();
+                image = DataManager.Instance.getUsers()[CurrentUser].getPicture();
                 DrawUserInfo(spriteBatch, userModuleFont, heightScreen, CurrentUserName, CurrentUserSurname, age, image);
             }
         }
@@ -518,7 +518,7 @@ namespace ProyectoSimon
             String textToDisplay;
             float gameAndNumberY, gameAndNumberX;
 
-            textToDisplay = screenManager.getCurrentGame().getName();
+            textToDisplay = DataManager.Instance.getCurrentGame().getName();
             gameAndNumberY = CommonConstants.MARGIN_UP_GAME_INSTANCE;
             gameAndNumberX = gameAndNumberX = (widthScreen / 4) - (int) font.MeasureString(textToDisplay).X - CommonConstants.MARGIN_RIGHT_ELEMENTS_MENU_PANEL;
             gameAndNumberX += valueTransition;

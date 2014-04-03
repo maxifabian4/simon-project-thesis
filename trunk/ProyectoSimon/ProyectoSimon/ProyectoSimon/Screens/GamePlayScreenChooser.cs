@@ -388,8 +388,8 @@ namespace ProyectoSimon
                 // pauseScreen = new PauseMenuScreen(content, stage);
                 //ScreenManager.AddScreen(pauseScreen, ControllingPlayer);
                 PauseMenuScreen pauseMenuScreen = new PauseMenuScreen();
-                pauseMenuScreen.CurrentUser = screenManager.getUserIndex();
-                pauseMenuScreen.CurrentGame = screenManager.getIndexGame();
+                pauseMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
+                pauseMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
                 screenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
             }
             else
@@ -560,8 +560,8 @@ namespace ProyectoSimon
             //boxRight.drawPrimitive(screenManager);
             //screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX);            
             spriteBatch.Begin();
-            spriteBatch.Draw(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX), new Vector2(boxL.X, boxL.Y), null, Color.Green, 0, new Vector2(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Width / 3 + 100, screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX), new Vector2(boxR.X, boxR.Y), null, Color.Yellow, 0, new Vector2(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Width / 3 + 100, screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX), new Vector2(boxL.X, boxL.Y), null, Color.Green, 0, new Vector2(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Width / 3 + 100, GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX), new Vector2(boxR.X, boxR.Y), null, Color.Yellow, 0, new Vector2(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Width / 3 + 100, GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
             spriteBatch.End();
             
             base.Draw(gameTime);

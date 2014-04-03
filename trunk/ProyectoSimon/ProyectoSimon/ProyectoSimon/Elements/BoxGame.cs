@@ -47,9 +47,9 @@ namespace ProyectoSimon
         public override void change(Color mColor, Color sColor) { }
 
         public override void display(ScreenManager screenManager) {
-            TextureElement element = new TextureElement(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX),new Vector2(rec.X, rec.Y),
-                                        new Vector2(screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Width / 3 + 100, 
-                                        screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX).Height / 2),color);
+            TextureElement element = new TextureElement(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX), new Vector2(rec.X, rec.Y),
+                                        new Vector2(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Width / 3 + 100,
+                                        GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Height / 2), color);
             element.draw(screenManager);            
         }
        

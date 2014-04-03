@@ -113,17 +113,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\StoredData.cs" />
     <Compile Include="Data\StoredDataXML.cs" />
     <Compile Include="Elements\BoxGame.cs" />
     <Compile Include="Elements\Circle.cs" />
     <Compile Include="Elements\CirclesContactListener.cs" />
-    <Compile Include="Elements\ElementPhysic.cs" />
+    <Compile Include="Elements\DrawableElement.cs" />
     <Compile Include="Elements\ElementCircle.cs" />
     <Compile Include="Elements\ElementPolygon.cs" />
     <Compile Include="Elements\ElementShape.cs" />
+    <Compile Include="Elements\GameElement.cs" />
     <Compile Include="Elements\Ground.cs" />
     <Compile Include="Elements\Skeleton.cs" />
+    <Compile Include="Elements\TextureElement.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="InputAction.cs" />
     <Compile Include="InputState.cs" />
@@ -133,18 +134,20 @@
     <Compile Include="LogicalGame\Level.cs" />
     <Compile Include="LogicalGame\Statistics.cs" />
     <Compile Include="LogicalGame\User.cs" />
+    <Compile Include="Managers\DataManager.cs" />
+    <Compile Include="Managers\GameContentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="ScreenFactory.cs" />
     <Compile Include="ScreenManager.cs" />
     <Compile Include="Screens\BackgroundScreen.cs" />
-    <Compile Include="Screens\GamePlayScreenFlechas.cs" />
-    <Compile Include="Screens\GamePlayScreenLibre.cs" />
+    <Compile Include="Screens\GamePlayScreenArrows.cs" />
+    <Compile Include="Screens\GamePlayScreenChooser.cs" />
+    <Compile Include="Screens\GamePlayScreenCircles.cs" />
+    <Compile Include="Screens\GamePlayScreenFree.cs" />
     <Compile Include="Screens\MessageStateScreen.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
-    <Compile Include="Screens\GamePlayScreenSeleccionador.cs" />
-    <Compile Include="Screens\GamePlayScreenCirculos.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\MenuEntry.cs" />
@@ -155,6 +158,8 @@
     <Compile Include="Screens\PlayerIndexEventArgs.cs" />
     <Compile Include="Screens\StatisticsMenuScreen.cs" />
     <Compile Include="Screens\UserFormMenuScreen.cs" />
+    <Compile Include="Utils\CommonConstants.cs" />
+    <Compile Include="Utils\CommonUtilMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
