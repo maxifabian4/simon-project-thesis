@@ -184,8 +184,8 @@ namespace ProyectoSimon
         {
             //stage.stopSong();
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
-            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
+            mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
+            mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
 
@@ -232,7 +232,7 @@ namespace ProyectoSimon
                 }
 
             if (state != 0)
-                screenManager.AddStatistic(currentStatistics);
+                DataManager.Instance.AddStatistic(currentStatistics);
         }
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace ProyectoSimon
         /// </summary>
         protected void drawStatisticsPanel(SpriteBatch spriteBatch, String[] items) { 
             // Load font to draw.
-            SpriteFont statisticsFont = screenManager.getFont(ScreenManager.FONT_STATISTICSFONT);
+            SpriteFont statisticsFont = GameContentManager.Instance.getFont(GameContentManager.FONT_STATISTICSFONT);
             Vector2 generalPosition = new Vector2(15, 10);
             // Draw panel.
             //quad = new ElementPolygon(5, 10, 170, 110, Color.Black, 0.5f, true);

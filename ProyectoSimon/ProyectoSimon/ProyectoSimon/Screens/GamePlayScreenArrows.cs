@@ -243,8 +243,8 @@ namespace ProyectoSimon
             if (pauseAction.Evaluate(input, ControllingPlayer, out player))
             {
                 PauseMenuScreen pauseMenuScreen = new PauseMenuScreen();
-                pauseMenuScreen.CurrentUser = screenManager.getUserIndex();
-                pauseMenuScreen.CurrentGame = screenManager.getIndexGame();
+                pauseMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
+                pauseMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
                 screenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
             }
             else
@@ -297,7 +297,7 @@ namespace ProyectoSimon
 
             if (arrowsIndex < elements)
             {
-                Texture2D texture = screenManager.getTexture(ScreenManager.TEXTURE_ALGO);
+                Texture2D texture = GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_ALGO);
                 Rectangle rect = new Rectangle(0, 0, texture.Width, texture.Height);
                 Vector2 vector = new Vector2(texture.Width, texture.Height) / 2;
 

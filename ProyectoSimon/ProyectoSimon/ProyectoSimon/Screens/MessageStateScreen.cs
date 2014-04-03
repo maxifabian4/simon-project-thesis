@@ -119,7 +119,7 @@ namespace ProyectoSimon
             int x = (screenManager.getWidthScreen() - wBox) / 2;
             int y = (screenManager.getHeightScreen() - hBox) / 2;
             SpriteBatch spriteBatch = screenManager.SpriteBatch;
-            SpriteFont menuFont = screenManager.getFont(ScreenManager.FONT_STATISTICSFONT);
+            SpriteFont menuFont = GameContentManager.Instance.getFont(GameContentManager.FONT_STATISTICSFONT);
             string titleText = "Resultados del juego";
             int verticalValue = (int)menuFont.MeasureString(titleText).Y;
             

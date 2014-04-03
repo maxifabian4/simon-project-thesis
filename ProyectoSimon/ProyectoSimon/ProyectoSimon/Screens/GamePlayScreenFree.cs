@@ -233,8 +233,8 @@ namespace ProyectoSimon
             if (pauseAction.Evaluate(input, ControllingPlayer, out player))
             {
                 PauseMenuScreen pauseMenuScreen = new PauseMenuScreen();
-                pauseMenuScreen.CurrentUser = screenManager.getUserIndex();
-                pauseMenuScreen.CurrentGame = screenManager.getIndexGame();
+                pauseMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
+                pauseMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
                 screenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
             }
             else

@@ -50,8 +50,8 @@ namespace ProyectoSimon
         void SalirEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
-            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
+            mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
+            mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
 
@@ -61,8 +61,8 @@ namespace ProyectoSimon
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            SpriteFont titleFont = screenManager.getFont(ScreenManager.GAME_INSTANCE_FONT);
-            SpriteFont dataFont = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
+            SpriteFont titleFont = GameContentManager.Instance.getFont(GameContentManager.GAME_INSTANCE_FONT);
+            SpriteFont dataFont = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
             string title = CommonConstants.STATISTIC_SCREEN_TITLE;
             int horizontalValue = (int) titleFont.MeasureString(title).X;
             int verticalValue = (int) titleFont.MeasureString(title).Y;
@@ -71,7 +71,7 @@ namespace ProyectoSimon
             // Draw tittle.
             drawTitleFrame(title, screenManager.SpriteBatch, titleFont, horizontalValue);
             // Draw statistics data.
-            drawStatisticsData(screenManager.SpriteBatch, dataFont, verticalValue, screenManager.getCurrentStatisticsItems());
+            drawStatisticsData(screenManager.SpriteBatch, dataFont, verticalValue, DataManager.Instance.getCurrentStatisticsItems());
         }
 
         /// <summary>

@@ -60,7 +60,7 @@ namespace ProyectoSimon
             SpriteBatch spriteBatch = screenManager.SpriteBatch;
             Viewport viewport = screenManager.GraphicsDevice.Viewport;
             Rectangle fullscreen = new Rectangle(0, 0, viewport.Width, viewport.Height);
-            Texture2D backgroundTexture = screenManager.getTexture(textureBackground);
+            Texture2D backgroundTexture = GameContentManager.Instance.getTexture(textureBackground);
 
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundTexture, fullscreen,

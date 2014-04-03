@@ -118,7 +118,7 @@ namespace ProyectoSimon
             if (loadingIsSlow)
             {
                 SpriteBatch spriteBatch = screenManager.SpriteBatch;
-                SpriteFont menuFont = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
+                SpriteFont menuFont = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
 
                 string message = "cargando...";
 
@@ -130,7 +130,7 @@ namespace ProyectoSimon
                 Color cText = colorText * TransitionAlpha;
                 // Add a background.
                 Rectangle fullscreen = new Rectangle(0, 0, viewport.Width, viewport.Height);
-                Texture2D backgroundTexture = screenManager.getTexture(ScreenManager.TEXTURE_MAIN_MENU);
+                Texture2D backgroundTexture = GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_MAIN_MENU);
 
                 spriteBatch.Begin();
                 // Draw the background.

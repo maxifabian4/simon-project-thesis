@@ -55,8 +55,8 @@ namespace ProyectoSimon
         void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
-            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
+            mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
+            mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
     }

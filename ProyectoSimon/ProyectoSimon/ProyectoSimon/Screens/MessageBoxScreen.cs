@@ -113,7 +113,7 @@ namespace ProyectoSimon
             int x = 0;
             int y = 0;
             SpriteBatch spriteBatch = screenManager.SpriteBatch;
-            SpriteFont menuFont = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
+            SpriteFont menuFont = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
 
             // Make a background.
             drawMessageBox(spriteBatch, x, y, wBox, hBox);

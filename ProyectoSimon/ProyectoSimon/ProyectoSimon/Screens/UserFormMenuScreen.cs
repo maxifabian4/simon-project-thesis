@@ -217,8 +217,8 @@ namespace ProyectoSimon
         void CancelEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
-            mainMenuScreen.CurrentUser = screenManager.getUserIndex();
-            mainMenuScreen.CurrentGame = screenManager.getIndexGame();
+            mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
+            mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
             LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
         }
 
@@ -241,14 +241,14 @@ namespace ProyectoSimon
                 user.addStatistic(1, chooserGame);
                 Statistics arrowsGame = new Statistics(CommonConstants.ARROWS_GAME_NAME);
                 user.addStatistic(2, arrowsGame);
-                screenManager.addNewUser(user);
+                DataManager.Instance.addNewUser(user);
                 // Store users in a XML file
-                screenManager.storeUsersToXml();
+                DataManager.Instance.storeUsersToXml();
 
                 // Modularizar!!!!!!!!!
                 MainMenuScreen mainMenuScreen = new MainMenuScreen();
-                mainMenuScreen.CurrentUser = screenManager.getUsersCount() - 1;
-                mainMenuScreen.CurrentGame = screenManager.getIndexGame();
+                mainMenuScreen.CurrentUser = DataManager.Instance.getUsersCount() - 1;
+                mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
                 LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
             }
         }
@@ -259,8 +259,8 @@ namespace ProyectoSimon
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            SpriteFont comandsFont = screenManager.getFont(ScreenManager.USER_MODULE_FONT);
-            SpriteFont titleFont = screenManager.getFont(ScreenManager.GAME_INSTANCE_FONT);
+            SpriteFont comandsFont = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
+            SpriteFont titleFont = GameContentManager.Instance.getFont(GameContentManager.GAME_INSTANCE_FONT);
             string title = CommonConstants.NEWFORM_SCREEN_TITLE;
             int horizontalValue = (int) comandsFont.MeasureString(title).X;
             int verticalValue = (int) comandsFont.MeasureString(title).Y;
