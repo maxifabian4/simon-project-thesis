@@ -12,6 +12,7 @@ namespace ProyectoSimon
 {
     public class KinectSDK
     {
+        private static KinectSDK instance;
         // Kinect parameters.
         private IDictionary<JointType, Vector2> jointTypes;
         private KinectSensor kinectSensor;
@@ -23,21 +24,42 @@ namespace ProyectoSimon
         string connectedStatus = "Not connected";
         GraphicsDevice graphics;
 
-        public KinectSDK(GraphicsDevice g, int w, int h)
+        /// <summary>
+        /// Constructor.
+        /// </summary>        
+        private KinectSDK()
         {
-            bbwidth = w;
-            bbheight = h;
-            graphics = g;
-
             KinectSensor.KinectSensors.StatusChanged += new EventHandler<StatusChangedEventArgs>(KinectSensors_StatusChanged);
             DiscoverKinectSensor();
         }
-
-        /*
-         * This is a part of the KinectSensor library – making it possible to go through
-         * all connected Kinect-devices and check their status. By listening to this event 
-         * handler, you can run code once the status changes on any of the connected devices.
-         */
+        /// <summary>
+        /// Return an KinectSDK Instance.
+        /// </summary>  
+        public static KinectSDK Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new KinectSDK();
+                }
+                return instance;
+            }
+        }
+        /// <summary>
+        /// Sets hight, wide sizes and Graphic Device.
+        /// </summary>  
+        public void setGraphicDevice(GraphicsDevice gd, int w, int h)
+        {
+            bbwidth = w;
+            bbheight = h;
+            graphics = gd;
+        }
+        /// <summary>
+        /// This is a part of the KinectSensor library – making it possible to go through
+        /// all connected Kinect-devices and check their status. By listening to this event
+        /// handler, you can run code once the status changes on any of the connected devices.
+        /// </summary>        
         void KinectSensors_StatusChanged(object sender, StatusChangedEventArgs e)
         {
             if (this.kinectSensor == e.Sensor)
@@ -51,11 +73,11 @@ namespace ProyectoSimon
             }
         }
 
-        /*
-         * This function will go through all connected Kinect-devices and when found a device, 
-         * use it to set our kinectSensor instance, update a message the user can read and in
-         * the end Initialize it if connected.
-         */
+        /// <summary>
+        /// This function will go through all connected Kinect-devices and when found a device, 
+        /// use it to set our kinectSensor instance, update a message the user can read and in
+        /// the end Initialize it if connected.
+        /// </summary>       
         private void DiscoverKinectSensor()
         {
             foreach (KinectSensor sensor in KinectSensor.KinectSensors)
@@ -107,12 +129,12 @@ namespace ProyectoSimon
             }
         }
 
-        /*
-         * We want out application to simply render what the Kinect can see (images from the RGB Camera).
-         * To do this, we tell the kinectSensor that we should enable the ColorStream, and what Format we 
-         * want out. We also listen for the ColorFrameReady event whom will notify us if the Kinect got a
-         * new image ready for us and render a cursor/ball in the hands of the player.
-         */
+        /// <summary>
+        /// We want out application to simply render what the Kinect can see (images from the RGB Camera).
+        /// To do this, we tell the kinectSensor that we should enable the ColorStream, and what Format we 
+        /// want out. We also listen for the ColorFrameReady event whom will notify us if the Kinect got a
+        /// new image ready for us and render a cursor/ball in the hands of the player.
+        /// </summary>
         private bool InitializeKinect()
         {
             // Color stream
@@ -132,7 +154,7 @@ namespace ProyectoSimon
 
             try
             {
-                kinectSensor.Start();                
+                kinectSensor.Start();
             }
             catch
             {
@@ -142,26 +164,28 @@ namespace ProyectoSimon
             return true;
         }
 
-        /*
-         * First you get all the skeletons in the returned collection. Then we find all the skeletons that belong
-         * to the player currently being tracked (this is automatic), and find the joint of the Right Hand. This 
-         * joint includes a position that you simply can use to render your object at.
-         * The formula I created when rendering the object is not very accurate but it get’s the job done. This is 
-         * because I simply just use the X and Y of a 3D point, leaving the Z. This means that we bypass the depth 
-         * of the scene so at point’s it will be wrong as we didn’t implement depth.
-         * The Kinect returns a position between –1 (left) and 1 (right). I use this to convert the number to the 
-         * range is 0 to 1 since the resolution of the scene is from 0 to 640 and 0 to 480. I then multiply the 
-         * position with the resolution so the cursor can move around on the entire scene.
-         */
+        /// <summary>
+        /// First you get all the skeletons in the returned collection. Then we find all the skeletons that belong
+        /// to the player currently being tracked (this is automatic), and find the joint of the Right Hand. This 
+        /// joint includes a position that you simply can use to render your object at.
+        /// The formula I created when rendering the object is not very accurate but it get’s the job done. This is 
+        /// because I simply just use the X and Y of a 3D point, leaving the Z. This means that we bypass the depth 
+        /// of the scene so at point’s it will be wrong as we didn’t implement depth.
+        /// The Kinect returns a position between –1 (left) and 1 (right). I use this to convert the number to the 
+        /// range is 0 to 1 since the resolution of the scene is from 0 to 640 and 0 to 480. I then multiply the 
+        /// position with the resolution so the cursor can move around on the entire scene.
+        /// </summary>
         void kinectSensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
-            {                                
+            {
                 if (skeletonFrame != null)
                 {
                     Skeleton[] skeletonData = new Skeleton[skeletonFrame.SkeletonArrayLength];
                     skeletonFrame.CopySkeletonDataTo(skeletonData);
-                    Skeleton playerSkeleton = (from s in skeletonData where s.TrackingState == SkeletonTrackingState.Tracked select s).FirstOrDefault();
+                    Skeleton playerSkeleton = (from s in skeletonData
+                                               where s.TrackingState == SkeletonTrackingState.Tracked
+                                               select s).FirstOrDefault();
 
                     if (playerSkeleton != null)
                     {
@@ -173,19 +197,19 @@ namespace ProyectoSimon
                             jointTypes.Add(joint.JointType, new Vector2(
                                 //joint.Position.X * bbwidth * 0.5f + (0.75f * bbwidth),
                                 //joint.Position.Y * bbheight * -1 * 0.65f + (0.9f * bbheight)));                                
-                              
-                            scaledJoint.Position.X ,scaledJoint.Position.Y));
-                            
+
+                            scaledJoint.Position.X, scaledJoint.Position.Y));
+
                         }
                     }
                 }
             }
         }
 
-        /*
-         * It captures the image from the Kinect sensor, creates a Color array, fills it with the
-         * data from the captures image for each pixel, and then finally stores it in a Texture2d object.
-         */
+        /// <summary>
+        /// It captures the image from the Kinect sensor, creates a Color array, fills it with the
+        /// data from the captures image for each pixel, and then finally stores it in a Texture2d object.
+        /// </summary>
         void kinectSensor_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
         {
             using (ColorImageFrame colorImageFrame = e.OpenColorImageFrame())
@@ -215,14 +239,16 @@ namespace ProyectoSimon
                 }
             }
         }
-
-        // Return the joint types with their 2D positions.
+        /// <summary>
+        /// Returns the joint types with their 2D positions.
+        /// </summary>
         public IDictionary<JointType, Vector2> getJoints()
         {
             return jointTypes;
         }
-
-        // Return the 2D position for an specific joint type.
+        /// <summary>
+        /// Returns the 2D position for an specific joint type.
+        /// </summary>
         public Vector2 getJointPosition(JointType id)
         {
             if (jointTypes != null)
@@ -230,7 +256,9 @@ namespace ProyectoSimon
             else
                 return Vector2.Zero;
         }
-
+        /// <summary>
+        /// Returns a boolean, It is true if a player is an enought distance. 
+        /// </summary>
         public bool isInRange()
         {
             if (jointTypes != null)
@@ -238,71 +266,89 @@ namespace ProyectoSimon
                 Vector2 posResult = jointTypes[Microsoft.Kinect.JointType.Head] - jointTypes[Microsoft.Kinect.JointType.ShoulderCenter];
                 return !(posResult.LengthSquared() > 10000 || posResult.LengthSquared() < 2500);
             }
-            else return false;
+            else
+                return false;
         }
-
-        // Deberian ser uno solo?
+        /// <summary>
+        /// It draws a color video detected from Kinect.
+        /// </summary>        
         public void DrawVideoCam(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Rectangle area)
         {
             spriteBatch.Draw(kinectRGBVideo, area, Color.White);
         }
-
+        /// <summary>
+        /// It takes a picture from a color video.
+        /// </summary>    
         public Texture2D getCapture()
         {
             return kinectRGBVideo;
         }
-
+        /// <summary>
+        /// It checks Kinect status. 
+        /// </summary>    
         public bool isConected()
         {
             return connectedStatus.Equals("Status: Connected");
         }
-
+        /// <summary>
+        /// It enables Kinect seated mode.
+        /// </summary>   
         public void setSeatedMode()
         {
-            kinectSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Seated;            
+            kinectSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Seated;
         }
-
+        /// <summary>
+        /// It enables Kinect default mode.
+        /// </summary>  
         public void setDefaultMode()
         {
             kinectSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default;
         }
-
+        /// <summary>
+        /// It returns Kinect mode (default or seated).
+        /// </summary>  
         public string getTrackingMode()
         {
             return kinectSensor.SkeletonStream.TrackingMode.ToString();
         }
-
-        //This was agregate to scale skeleton joints from real world to screen.
+        /// <summary>
+        /// It scales skeleton joints from real world to screen using scaleTo(Joint, int, int, float, float).
+        /// </summary>          
         private Joint scaleTo(Joint joint, int width, int height)
         {
             return scaleTo(joint, width, height, 1.0f, 1.0f);
         }
-
+        /// <summary>
+        /// It scales skeleton joints from real world to screen using scale(int, float , float).
+        /// </summary> 
         private Joint scaleTo(Joint joint, int width, int height, float skeletonMaxX, float skeletonMaxY)
-		{
+        {
             Microsoft.Kinect.SkeletonPoint pos = new SkeletonPoint()
-			{
-				X = scale(width, skeletonMaxX, joint.Position.X),
-				Y = scale(height, skeletonMaxY, -joint.Position.Y),
-				Z = joint.Position.Z			
-			};           
+            {
+                X = scale(width, skeletonMaxX, joint.Position.X),
+                Y = scale(height, skeletonMaxY, -joint.Position.Y),
+                Z = joint.Position.Z
+            };
 
             joint.Position = pos;
 
-            return joint; 
-		}
-
-		private float scale(int maxPixel, float maxSkeleton, float position)
-		{
-			float value = ((((maxPixel / maxSkeleton) / 2) * position) + (maxPixel/2));
-			if(value > maxPixel)
-				return maxPixel;
-			if(value < 0)
-				return 0;
-			return value;
-		}
-
-
+            return joint;
+        }
+        /// <summary>
+        /// It scales skeleton joints from real world to screen.
+        /// </summary> 
+        private float scale(int maxPixel, float maxSkeleton, float position)
+        {
+            float value = ((((maxPixel / maxSkeleton) / 2) * position) + (maxPixel / 2));
+            if (value > maxPixel)
+                return maxPixel;
+            if (value < 0)
+                return 0;
+            return value;
+        }
+        /// <summary>
+        /// It draws skeleton joints on screen.
+        /// </summary> 
         public void display(ScreenManager screenManager)
         {
             float radius = 10;
@@ -336,7 +382,7 @@ namespace ProyectoSimon
                 drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.HandRight], radius, alpha);
                 drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipCenter], jointTypes[Microsoft.Kinect.JointType.HipLeft]);
 
-                if (screenManager.Kinect.getTrackingMode().Equals(SkeletonTrackingMode.Default.ToString()))
+                if (KinectSDK.Instance.getTrackingMode().Equals(SkeletonTrackingMode.Default.ToString()))
                 {
                     drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.HipCenter], radius, alpha);
                     drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipCenter], jointTypes[Microsoft.Kinect.JointType.Spine]);
@@ -363,8 +409,9 @@ namespace ProyectoSimon
                 }
             }
         }
-
-        // Draw a simple circle primitive.
+        /// <summary>
+        /// Draw a simple circle primitive.
+        /// </summary>         
         private void drawCircleJoint(ScreenManager screenManager, Vector2 vector2, float radius, float alpha)
         {
             Color colorSkeleton = new Color(206, 103, 0); // Change!!
@@ -372,17 +419,11 @@ namespace ProyectoSimon
             circle.drawBorderWeigth(screenManager, new Color(64, 64, 64), 1);
             circle.draw(screenManager);
         }
-
-        // Draw a simple line primitive.
+        /// <summary>
+        /// Draw a simple line primitive.
+        /// </summary>           
         private void drawLine(ScreenManager screenManager, Color colorLine, float alpha, Vector2 begin, Vector2 end)
         {
-            //Box2D.XNA.FixedArray8<Vector2> vertexs = new Box2D.XNA.FixedArray8<Vector2>();
-            //vertexs[0] = new Vector2(begin.X, begin.Y);
-            //vertexs[1] = new Vector2(end.X, end.Y);
-
-            //ElementPolygon line = new ElementPolygon(vertexs, PrimitiveType.LineList, colorLine, alpha, 2);
-            //line.drawPrimitive(screenManager);
-            //line.drawBorderWeigth(screenManager, colorLine, 0.5f);
             screenManager.SpriteBatch.DrawLine(begin, end, colorLine, 9, 0.5f);
         }
     }

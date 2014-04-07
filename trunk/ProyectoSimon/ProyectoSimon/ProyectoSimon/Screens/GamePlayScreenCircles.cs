@@ -215,7 +215,7 @@ namespace ProyectoSimon
                 simulate = true;
                 this.gameTime = gameTime;
 
-                if (screenManager.Kinect.isInRange())
+                if (KinectSDK.Instance.isInRange())
                 {
                     timeSpan -= gameTime.ElapsedGameTime;
                     verifyGameStatus();
@@ -263,11 +263,11 @@ namespace ProyectoSimon
             }
             else
             {
-                skeleton.update(screenManager.Kinect.getJoints());
+                skeleton.update(KinectSDK.Instance.getJoints());
                 if (seatedMode.Evaluate(input, ControllingPlayer, out player))
-                    screenManager.Kinect.setSeatedMode();
+                    KinectSDK.Instance.setSeatedMode();
                 if (defaultMode.Evaluate(input, ControllingPlayer, out player))
-                    screenManager.Kinect.setDefaultMode();
+                    KinectSDK.Instance.setDefaultMode();
                 if (!camera && cameraKey.Evaluate(input, ControllingPlayer, out player))
                     camera = true;
                 else
@@ -290,7 +290,7 @@ namespace ProyectoSimon
                 // Draw each physics elements in the world.
                 drawElementsInTheWorld(physicsElements);
                 // Draw skeleton if it isn't hidden.
-                if (screenManager.Kinect.isInRange())
+                if (KinectSDK.Instance.isInRange())
                     skeleton.display(screenManager);
             }
             
@@ -303,7 +303,7 @@ namespace ProyectoSimon
             if (camera && video)
             {
                 spriteBatch.Begin();
-                screenManager.Kinect.DrawVideoCam(spriteBatch, new Rectangle(bwidth - 323, 3, 320, 240));
+                KinectSDK.Instance.DrawVideoCam(spriteBatch, new Rectangle(bwidth - 323, 3, 320, 240));
                 spriteBatch.End();
             }
         }
