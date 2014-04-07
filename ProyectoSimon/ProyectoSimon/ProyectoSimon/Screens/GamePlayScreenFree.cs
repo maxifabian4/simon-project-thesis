@@ -239,11 +239,11 @@ namespace ProyectoSimon
             }
             else
             {
-                skeleton.update(screenManager.Kinect.getJoints());
+                skeleton.update(KinectSDK.Instance.getJoints());
                 if (seatedMode.Evaluate(input, ControllingPlayer, out player))
-                    screenManager.Kinect.setSeatedMode();
+                    KinectSDK.Instance.setSeatedMode();
                 if (defaultMode.Evaluate(input, ControllingPlayer, out player))
-                    screenManager.Kinect.setDefaultMode();
+                    KinectSDK.Instance.setDefaultMode();
 
                 if (!camera && cameraKey.Evaluate(input, ControllingPlayer, out player))
                     camera = true;
@@ -274,7 +274,7 @@ namespace ProyectoSimon
             if (camera && video)
             {
                 spriteBatch.Begin();
-                screenManager.Kinect.DrawVideoCam(spriteBatch, new Rectangle(4, 4, bwidth-10, bheight-10));
+                KinectSDK.Instance.DrawVideoCam(spriteBatch, new Rectangle(4, 4, bwidth - 10, bheight - 10));
                 spriteBatch.End();
             }
             if (getPlayerState() == 0)
@@ -283,7 +283,7 @@ namespace ProyectoSimon
                 // Draw each physics elements in the world.
                 drawElementsInTheWorld(physicsElements);
                 // Draw skeleton if it isn't hidden.
-                if (screenManager.Kinect.isInRange())
+                if (KinectSDK.Instance.isInRange())
                     skeleton.display(screenManager);
             }
 

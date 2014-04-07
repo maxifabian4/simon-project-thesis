@@ -397,14 +397,14 @@ namespace ProyectoSimon
                 //updateBodyJoints(screenManager.Kinect.getJoints());
 
                 //jointsIDs = screenManager.Kinect.getJoints();               
-                updateJoints(screenManager.Kinect.getJoints());
+                updateJoints(KinectSDK.Instance.getJoints());
 
                 //if (keyboardState.IsKeyDown(Keys.LeftControl))
                 //    simulate = !simulate;
                 if (seatedMode.Evaluate(input, ControllingPlayer, out player))
-                    screenManager.Kinect.setSeatedMode();
+                    KinectSDK.Instance.setSeatedMode();
                 if (defaultMode.Evaluate(input, ControllingPlayer, out player))
-                    screenManager.Kinect.setDefaultMode();
+                    KinectSDK.Instance.setDefaultMode();
                 if (!camera && cameraKey.Evaluate(input, ControllingPlayer, out player))
                     camera = true;
                 else
@@ -528,7 +528,7 @@ namespace ProyectoSimon
             if (!hideBody)
             {
                 // Draw lines.
-                screenManager.Kinect.display(screenManager);
+                KinectSDK.Instance.display(screenManager);
             }
             // Draw ground.
             //drawGroundPrimitive(spriteBatch);            
@@ -541,7 +541,7 @@ namespace ProyectoSimon
             if (camera && video)
             {
                 spriteBatch.Begin();
-                screenManager.Kinect.DrawVideoCam(spriteBatch, new Rectangle(bwidth - 323, 3, 320, 240));
+                KinectSDK.Instance.DrawVideoCam(spriteBatch, new Rectangle(bwidth - 323, 3, 320, 240));
                 spriteBatch.End();
             }
             //draw zones

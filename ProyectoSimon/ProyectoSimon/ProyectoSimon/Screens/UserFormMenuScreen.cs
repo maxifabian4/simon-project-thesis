@@ -190,8 +190,8 @@ namespace ProyectoSimon
                 if (cursorIndex > 0)
                     cursorIndex--;
             }
-            else if (isFieldSelected[3] && captureKinect.Evaluate(input, ControllingPlayer, out playerIndex) && screenManager.Kinect.isConected())
-                video = screenManager.Kinect.getCapture();
+            else if (isFieldSelected[3] && captureKinect.Evaluate(input, ControllingPlayer, out playerIndex) && KinectSDK.Instance.isConected())
+                video = KinectSDK.Instance.getCapture();
         }
 
         /// <summary>
@@ -309,10 +309,10 @@ namespace ProyectoSimon
                 captureFrame = new ElementPolygon(posX + blankSpace + wText + frameSize + 40, posY + 80, frameSize, frameSize, new Color(55, 55, 55), .8f, true);
                 edgeCaptureFrame = new ElementPolygon(posX + blankSpace + wText + frameSize + 40, posY + 80, frameSize, frameSize, new Color(227, 117, 64), .8f, false);
 
-                if (screenManager.Kinect.isConected())
+                if (KinectSDK.Instance.isConected())
                 {
                     spriteBatch.Begin();
-                    screenManager.Kinect.DrawVideoCam(spriteBatch, new Rectangle(posX + blankSpace + wText, posY + 80, frameSize, frameSize));
+                   KinectSDK.Instance.DrawVideoCam(spriteBatch, new Rectangle(posX + blankSpace + wText, posY + 80, frameSize, frameSize));
                     spriteBatch.End();
                 }
             }

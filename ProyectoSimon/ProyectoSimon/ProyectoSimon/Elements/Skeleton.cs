@@ -67,7 +67,7 @@ namespace ProyectoSimon.Elements
         }
         public override void display(ScreenManager screenManager)
         {
-            screenManager.Kinect.display(screenManager);
+            KinectSDK.Instance.display(screenManager);
         }
         //public override void display(ScreenManager screenManager)
         //{

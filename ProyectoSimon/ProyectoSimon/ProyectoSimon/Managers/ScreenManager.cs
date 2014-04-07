@@ -34,12 +34,9 @@ namespace ProyectoSimon
         private InputState input = new InputState();
         private SpriteBatch spriteBatch;
         private ContentManager contentManager;
-        //private IDictionary<String, SpriteFont> fonts;
-        //private IDictionary<String, Texture2D> textures;
         private bool isInitialized;
         // BasicEffect.
         private BasicEffect basicEffect;
-        private KinectSDK kinect;
 
         /// <summary>
         /// A default SpriteBatch shared by all the screens. This saves
@@ -71,10 +68,7 @@ namespace ProyectoSimon
             // Load the SpriteBatch.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // Create a BasicEffect to draw primitives.
-            inicializeBasicEffect();
-            // Create an instance for the Kinect.
-            //kinect = new KinectSDK(GraphicsDevice, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight);
-            kinect = new KinectSDK(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            inicializeBasicEffect();           
         }
 
         /// <summary>
@@ -93,6 +87,8 @@ namespace ProyectoSimon
             GameContentManager cm = GameContentManager.Instance;
             cm.setContent(this.contentManager);
             cm.initialize();
+            KinectSDK kinect = KinectSDK.Instance;
+            kinect.setGraphicDevice(this.GraphicsDevice, this.GraphicsDevice.Viewport.Width, this.GraphicsDevice.Viewport.Height);
         }
 
         /// <summary>
@@ -104,38 +100,7 @@ namespace ProyectoSimon
             basicEffect.VertexColorEnabled = true;
             basicEffect.Projection = Matrix.CreateOrthographicOffCenter(0, spriteBatch.GraphicsDevice.Viewport.Width, spriteBatch.GraphicsDevice.Viewport.Height, 0, 0, 1);
         }
-
-        ///// <summary>
-        ///// Returns the users stored in memory.
-        ///// </summary>
-        //public List<User> getUsers()
-        //{
-        //    return users;
-        //}
-
-        ///// <summary>
-        ///// Returns the count of users stored in memory.
-        ///// </summary>
-        //public int getUsersCount()
-        //{
-        //    return users.Count;
-        //}
-
-        ///// <summary>
-        ///// Returns the games stored in memory.
-        ///// </summary>
-        //public GameInstance[] getGames()
-        //{
-        //    return games;
-        //}
-
-        ///// <summary>
-        ///// Returns the count of games stored in memory.
-        ///// </summary>
-        //public int getGamesCount()
-        //{
-        //    return games.Length;
-        //}
+        
         /// <summary>
         /// Unload your graphics content.
         /// </summary>
@@ -269,22 +234,6 @@ namespace ProyectoSimon
         }
 
         /// <summary>
-        /// Gets a specific font.
-        /// </summary>
-        //public SpriteFont getFont(String typeFont)
-        //{
-        //    return fonts[typeFont];
-        //}
-
-        /// <summary>
-        /// Gets a specific texture.
-        /// </summary>
-        //public Texture2D getTexture(String nameTexture)
-        //{
-        //    return textures[nameTexture];
-        //}
-
-        /// <summary>
         /// Gets width screen.
         /// </summary>
         public int getWidthScreen()
@@ -301,21 +250,11 @@ namespace ProyectoSimon
         }
 
         /// <summary>
-        // Return the basicEffect asociated.
+        /// Return the basicEffect asociated.
+        /// </summary>
         public BasicEffect getBasicEffect()
         {
             return basicEffect;
-        }
-
-        /// <summary>
-        /// Return the kinect instance.
-        /// </summary>
-        public KinectSDK Kinect
-        {
-            get
-            {
-                return kinect;
-            }
         }
     }
 }

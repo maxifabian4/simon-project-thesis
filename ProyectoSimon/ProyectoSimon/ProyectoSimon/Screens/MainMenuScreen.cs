@@ -44,7 +44,7 @@ namespace ProyectoSimon
         /// </summary>
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (screenManager.Kinect.isConected())
+            if (KinectSDK.Instance.isConected())
             {
                 if (DataManager.Instance.getIndexGame() == 0)
                 {
