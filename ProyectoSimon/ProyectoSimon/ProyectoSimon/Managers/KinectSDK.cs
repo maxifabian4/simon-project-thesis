@@ -33,7 +33,7 @@ namespace ProyectoSimon
             DiscoverKinectSensor();
         }
         /// <summary>
-        /// Return an KinectSDK Instance.
+        /// Returns an KinectSDK Instance.
         /// </summary>  
         public static KinectSDK Instance
         {

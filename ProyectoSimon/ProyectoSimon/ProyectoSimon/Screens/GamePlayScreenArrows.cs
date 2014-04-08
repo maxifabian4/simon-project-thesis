@@ -310,7 +310,7 @@ namespace ProyectoSimon
 
             //if (screenManager.Kinect.isInRange())
             //{
-                skeleton.traslateSkeleton(new Vector2(-200, 0));
+                //skeleton.traslateSkeleton(new Vector2(-200, 0));
                 skeleton.display(screenManager);
             //}
             //drawMouseCursor();

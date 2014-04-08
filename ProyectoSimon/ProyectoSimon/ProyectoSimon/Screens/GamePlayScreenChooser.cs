@@ -136,7 +136,7 @@ namespace ProyectoSimon
                 Circle element = new Circle(physicsWorld, body.GetPosition(), CIRCLERADIUS, false);
                 element.setLinearVelocity(Vector2.Zero);
 
-                element.setKind(movements[currentElement]);
+                element.setProperty(movements[currentElement]);
 
                 if (movements[currentElement].Equals("left"))
                     element.change(Color.Green, Color.Green);
@@ -275,7 +275,7 @@ namespace ProyectoSimon
             else
             {
                 Console.WriteLine(" entro" + ((Circle)physicsElments[0]).getBody().Position.Y + " " + bheight);
-                if (leftBox.inside(((Circle)physicsElments[0]).getBody().Position) && leftBox.isStorable(physicsElments[0]))
+                if (leftBox.inside(((Circle) physicsElments[0]).getBody().Position) && leftBox.isStorable((Circle) physicsElments[0]))
                 {
                     hits++;
                     physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
@@ -283,7 +283,7 @@ namespace ProyectoSimon
                     loadElements();
                 }
                 else
-                    if (leftBox.inside(((Circle)physicsElments[0]).getBody().Position) && !leftBox.isStorable(physicsElments[0]))
+                    if (leftBox.inside(((Circle) physicsElments[0]).getBody().Position) && !leftBox.isStorable((Circle) physicsElments[0]))
                     {
                         faults++;
                         physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
@@ -291,7 +291,7 @@ namespace ProyectoSimon
                         loadElements();
                     }
                     else
-                        if (rightBox.inside(((Circle)physicsElments[0]).getBody().Position) && rightBox.isStorable(physicsElments[0]))
+                        if (rightBox.inside(((Circle) physicsElments[0]).getBody().Position) && rightBox.isStorable((Circle) physicsElments[0]))
                         {
                             hits++;
                             physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
@@ -299,7 +299,7 @@ namespace ProyectoSimon
                             loadElements();
                         }
                         else
-                            if (rightBox.inside(((Circle)physicsElments[0]).getBody().Position) && !rightBox.isStorable(physicsElments[0]))
+                            if (rightBox.inside(((Circle) physicsElments[0]).getBody().Position) && !rightBox.isStorable((Circle) physicsElments[0]))
                             {
                                 faults++;
                                 physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
