@@ -7,42 +7,67 @@ using Box2D.XNA;
 
 namespace ProyectoSimon.Elements
 {
-    class Circle : GameElement
+
+    /// <summary>
+    /// Represents a physics circle in Box2D.
+    /// </summary>
+    public class Circle : GameElement
     {
-        private Body body;
-        private Color mainColor, secondColor, edgeColor;
-        private Boolean kicked;
-        private float radius;
-        private Vector2 position;
+        // Main and second color are used to simulate a gradient color effect.
+        // EdgeColor used for the edge effect.
+        private Color mainColor;
+        private Color secondColor;
+        private Color edgeColor;
+
+        // Transparency effect.
         private float alpha;
+
+        // Box2D base objects.
+        private Body body;
+        private Vector2 position;
+        private float radius;
+
+        // Game-logic properties.
+        private Boolean kicked;
+        private string property;
+
+        // Physics world associated.
         private World physicsWorld;
-        private string kind;
 
-        public Circle(World physicsWorld, Vector2 p, float r, Boolean skeleton)
+
+        public Circle(World physicsWorld, Vector2 position, float radius, Boolean skeleton)
         {
-            position = p;
-            radius = r;
-            alpha = 1;
-            kicked = false;
-            mainColor = new Color(193, 82, 28); 
-            secondColor = new Color(227, 117, 64);
-
-            //mainColor = ;
-
-            edgeColor = new Color(84, 84, 84);
+            // Initialize local parameters by default.
+            this.position = position;
+            this.radius = radius;
+            this.alpha = 1.0f;
+            this.kicked = false;
+            this.mainColor = new Color(193, 82, 28);
+            this.secondColor = new Color(227, 117, 64);
+            this.edgeColor = new Color(84, 84, 84);
             this.physicsWorld = physicsWorld;
 
-            if(skeleton)
+            // Apply physic properties depending on the usage.
+            if (skeleton)
+            {
                 makeCircleBodySkeleton(physicsWorld);
+            }
             else
+            {
                 makeCircleBody(physicsWorld);
+            }
         }
 
-        public void destroy() {
+        /// <summary>
+        /// Kill Body instance from Box2D world.
+        /// </summary>
+        public void destroy()
+        {
             physicsWorld.DestroyBody(body);
         }
 
-        public void changeMainColor(Color c) 
+        // ---- Change local properties externally ----
+        public void changeMainColor(Color c)
         {
             mainColor = c;
         }
@@ -57,20 +82,18 @@ namespace ProyectoSimon.Elements
             edgeColor = c;
         }
 
-        public Boolean isKicked() {
-            return kicked;
-        }
-
         public void setLinearVelocity(Vector2 v)
         {
             body.SetLinearVelocity(v);
         }
 
-        public void setType(BodyType bt) {
+        public void setBodyType(BodyType bt)
+        {
             body.SetType(bt);
         }
 
-        public void setUserData(Object obj) {
+        public void setUserData(Object obj)
+        {
             body.SetUserData(obj);
         }
 
@@ -81,33 +104,60 @@ namespace ProyectoSimon.Elements
             body.GetFixtureList().SetDensity(0);
         }
 
-        private void makeCircleBody(World physicsWorld)
+        public void setProperty(string property)
         {
-            BodyDef bodyDef = new BodyDef();
-            bodyDef.type = BodyType.Dynamic;
-            bodyDef.position = position / PIXELS_TO_METERS;
+            this.property = property;
+        }
+        // ----  ----
 
-            body = physicsWorld.CreateBody(bodyDef);
-
-            CircleShape dynamicCircle = new CircleShape();
-            dynamicCircle._radius = radius / PIXELS_TO_METERS;
-
-            FixtureDef fixtureDef = new FixtureDef();
-            fixtureDef.shape = dynamicCircle;
-            fixtureDef.restitution = 1.0f;
-            fixtureDef.friction = .3f;
-            fixtureDef.density = 1.0f;
-            //fixtureDef.restitution = .8f;
-            //fixtureDef.friction = .5f;
-            //fixtureDef.density = 1.0f;
-            body.CreateFixture(fixtureDef);
-
-            Random r = new Random();
-            body.SetAngularVelocity((float)r.Next(-5, 0));
-            body.SetLinearVelocity(new Vector2(0, 10));
-            body.SetUserData(this);
+        // ---- Retrieves local properties ----
+        public Body getBody()
+        {
+            return body;
         }
 
+        public string getProperty()
+        {
+            return property;
+        }
+        // ----  ----
+
+        /// <summary>
+        /// Asks is the body has been kicked or not.
+        /// </summary>
+        /// <returns>Boolean</returns>
+        public Boolean isKicked()
+        {
+            return kicked;
+        }
+
+        /// <summary>
+        /// Changes its own properties after external events.
+        /// </summary>
+        /// <param name="mainColor">Main color.</param>
+        /// <param name="secondColor">Second color.</param>
+        public override void change(Color mainColor, Color secondColor)
+        {
+            this.mainColor = mainColor;
+            this.secondColor = secondColor;
+            this.kicked = true;
+        }
+
+        /// <summary>
+        /// Displays the circle object using primitives.
+        /// </summary>
+        /// <param name="screenManager">Main manager system.</param>
+        public override void display(ScreenManager screenManager)
+        {
+            ElementCircle solidCircle = new ElementCircle(radius, body.Position * PIXELS_TO_METERS, mainColor, secondColor, alpha);
+            solidCircle.draw(screenManager);
+            solidCircle.drawBorderWeigth(screenManager, edgeColor, 1.5f);
+        }
+
+        /// <summary>
+        /// Makes a physics circle used in the skeleton set.
+        /// </summary>
+        /// <param name="physicsWorld">Box2D world</param>
         private void makeCircleBodySkeleton(World physicsWorld)
         {
             BodyDef bodyDef = new BodyDef();
@@ -128,36 +178,40 @@ namespace ProyectoSimon.Elements
             body.CreateFixture(fixtureDef);
 
             Random r = new Random();
-            body.SetAngularVelocity((float)r.Next(-10, 10));
+            body.SetAngularVelocity((float) r.Next(-10, 10));
 
             body.SetUserData(this);
         }
 
-        public override void change(Color mColor, Color sColor) {
-            mainColor = mColor;
-            secondColor = sColor;
-            kicked = true;
-        }
-
-        public override void display(ScreenManager screenManager)
+        /// <summary>
+        /// Makes a simple physics.
+        /// </summary>
+        /// <param name="physicsWorld">Box2D world</param>
+        private void makeCircleBody(World physicsWorld)
         {
-            ElementCircle solidCircle = new ElementCircle(radius, body.Position * PIXELS_TO_METERS, mainColor, secondColor, alpha);
-            solidCircle.draw(screenManager);
-            solidCircle.drawBorderWeigth(screenManager, edgeColor, 1.5f);
+            BodyDef bodyDef = new BodyDef();
+            bodyDef.type = BodyType.Dynamic;
+            bodyDef.position = position / PIXELS_TO_METERS;
+
+            body = physicsWorld.CreateBody(bodyDef);
+
+            CircleShape dynamicCircle = new CircleShape();
+            dynamicCircle._radius = radius / PIXELS_TO_METERS;
+
+            FixtureDef fixtureDef = new FixtureDef();
+            fixtureDef.shape = dynamicCircle;
+            fixtureDef.restitution = 1.0f;
+            fixtureDef.friction = .3f;
+            fixtureDef.density = 1.0f;
+
+            body.CreateFixture(fixtureDef);
+
+            Random r = new Random();
+            body.SetAngularVelocity((float) r.Next(-5, 0));
+            body.SetLinearVelocity(new Vector2(0, 10));
+            body.SetUserData(this);
         }
 
-        public Body getBody() {
-            return body;
-        }
-
-        public void setKind(string p)
-        {
-            kind = p;
-        }
-
-        public string getKind()
-        {
-            return kind;
-        }
     }
+
 }
