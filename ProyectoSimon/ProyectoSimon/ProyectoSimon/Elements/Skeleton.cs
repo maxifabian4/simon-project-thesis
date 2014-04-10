@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Box2D.XNA;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ProyectoSimon.Elements
 {
@@ -90,9 +91,9 @@ namespace ProyectoSimon.Elements
         /// Displays the Kinect skeleton.
         /// </summary>
         /// <param name="screenManager">Main manager system.</param>
-        public override void display(ScreenManager screenManager)
+        public override void display(SpriteBatch spriteBatch, BasicEffect basicEffect)
         {
-            KinectSDK.Instance.display(screenManager);
+            KinectSDK.Instance.display(spriteBatch, basicEffect);
         }
 
         /// <summary>

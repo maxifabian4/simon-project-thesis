@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ProyectoSimon
 {
@@ -14,7 +15,7 @@ namespace ProyectoSimon
         /// <summary>
         /// Ability to draw itself.
         /// </summary>
-        public abstract void draw(ScreenManager screenManager);
+        public abstract void draw(SpriteBatch spriteBatch, BasicEffect basicEffect);
     }
 
 }

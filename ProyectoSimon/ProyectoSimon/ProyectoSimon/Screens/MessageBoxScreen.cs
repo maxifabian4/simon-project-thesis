@@ -108,32 +108,32 @@ namespace ProyectoSimon
         public override void Draw(GameTime gameTime)
         {
             // Initialize parameters.
-            int wBox = screenManager.getWidthScreen();
-            int hBox = screenManager.getHeightScreen();
+            int wBox = ScreenManager.getWidthScreen();
+            int hBox = ScreenManager.getHeightScreen();
             int x = 0;
             int y = 0;
-            SpriteBatch spriteBatch = screenManager.SpriteBatch;
+
             SpriteFont menuFont = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
 
             // Make a background.
-            drawMessageBox(spriteBatch, x, y, wBox, hBox);
+            drawMessageBox(ScreenManager.SpriteBatch, ScreenManager.BasicEffect, x, y, wBox, hBox);
             // Draw title.
-            drawTextInBox(spriteBatch, menuFont, titleText, colorMessageText, x, wBox, hBox / 2 + 10);
+            drawTextInBox(ScreenManager.SpriteBatch, menuFont, titleText, colorMessageText, x, wBox, hBox / 2 + 10);
             // Draw message.
-            drawTextInBox(spriteBatch, menuFont, messageText, colorMessageText, x, wBox, hBox / 2 + (int)menuFont.MeasureString(titleText).Y + 20);
+            drawTextInBox(ScreenManager.SpriteBatch, menuFont, messageText, colorMessageText, x, wBox, hBox / 2 + (int) menuFont.MeasureString(titleText).Y + 20);
             base.Draw(gameTime);
         }
 
         /// <summary>
         /// Draws a rectagle to simulate a window.
         /// </summary>
-        private void drawMessageBox(SpriteBatch spriteBatch, int x, int y, int wBox, int hBox)
+        private void drawMessageBox(SpriteBatch spriteBatch, BasicEffect basicEffect, int x, int y, int wBox, int hBox)
         {
             Rectangle backgroundRectangle = new Rectangle(x, y, wBox, hBox);
             // Darken down any other screens that were drawn beneath the popup.
-            screenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3, backgroundRectangle);
+            ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3, backgroundRectangle);
             ElementPolygon frame = new ElementPolygon(x, hBox / 2 - 20, wBox, 130, panelColor * TransitionAlpha, 1, true);
-            frame.draw(screenManager);
+            frame.draw(spriteBatch, basicEffect);
         }
 
         /// <summary>

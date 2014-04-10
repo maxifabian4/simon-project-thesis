@@ -100,15 +100,13 @@ namespace ProyectoSimon
         /// </summary>
         public virtual void Draw(MenuScreen screen, bool isSelected, GameTime gameTime, SpriteFont font, int originX, int destineX, float valueTransition)
         {
-            // Draw text, centered on the middle of each line.
-            ScreenManager screenManager = screen.getScreenManager();
-            SpriteBatch spriteBatch = screenManager.SpriteBatch;
-
             // Draw the box.
             if (isSelected)
-                drawBoxRectangle(spriteBatch, screenManager, originX, destineX, font, valueTransition, screen);
+            {
+                drawBoxRectangle(screen.ScreenManager.SpriteBatch, screen.ScreenManager.BasicEffect, originX, destineX, font, valueTransition, screen);
+            }
             // Draw the menu entry.
-            drawTextEntry(spriteBatch, isSelected, font, screen.TransitionAlpha, gameTime);
+            drawTextEntry(screen.ScreenManager.SpriteBatch, isSelected, font, screen.TransitionAlpha, gameTime);
         }
 
         private void drawTextEntry(SpriteBatch spriteBatch, bool isSelected, SpriteFont font, float transitionAlpha, GameTime gameTime)
@@ -125,14 +123,14 @@ namespace ProyectoSimon
             spriteBatch.End();
         }
 
-        private void drawBoxRectangle(SpriteBatch spriteBatch, ScreenManager screenManager, int originX, int destineX, SpriteFont font, float valueTransition, MenuScreen screen)
+        private void drawBoxRectangle(SpriteBatch spriteBatch, BasicEffect basicEffect, int originX, int destineX, SpriteFont font, float valueTransition, MenuScreen screen)
         {
             // Rectangle box.
             int originY, destineY;
             originY = (int)(position.Y - font.MeasureString(text).Y / 2);
             destineY = (int)(position.Y + font.MeasureString(text).Y / 2);
             ElementPolygon box = new ElementPolygon(originX, originY, destineX, destineY - originY + 5, selectedBoxColor, 1, true);
-            box.draw(screenManager);
+            box.draw(spriteBatch, basicEffect);
             //ElementPolygon boxEdge = new ElementPolygon(originX + 20, originY, destineX - 40, destineY - originY + 5, Color.White, 0.5f, false);
             //boxEdge.drawPrimitive(screenManager);
         }

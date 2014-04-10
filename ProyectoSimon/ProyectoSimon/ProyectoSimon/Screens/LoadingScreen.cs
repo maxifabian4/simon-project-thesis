@@ -36,7 +36,7 @@ namespace ProyectoSimon
         /// The constructor is private: loading screens should
         /// be activated via the static Load method instead.
         /// </summary>
-        private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow,
+        private LoadingScreen(ScreenManager ScreenManager, bool loadingIsSlow,
                               GameScreen[] screensToLoad)
         {
             this.loadingIsSlow = loadingIsSlow;
@@ -48,20 +48,20 @@ namespace ProyectoSimon
         /// <summary>
         /// Activates the loading screen.
         /// </summary>
-        public static void Load(ScreenManager screenManager, bool loadingIsSlow,
+        public static void Load(ScreenManager ScreenManager, bool loadingIsSlow,
                                 PlayerIndex? controllingPlayer,
                                 params GameScreen[] screensToLoad)
         {
             // Tell all the current screens to transition off.
-            foreach (GameScreen screen in screenManager.GetScreens())
+            foreach (GameScreen screen in ScreenManager.GetScreens())
                 screen.ExitScreen();
 
             // Create and activate the loading screen.
-            LoadingScreen loadingScreen = new LoadingScreen(screenManager,
+            LoadingScreen loadingScreen = new LoadingScreen(ScreenManager,
                                                             loadingIsSlow,
                                                             screensToLoad);
 
-            screenManager.AddScreen(loadingScreen, controllingPlayer);
+            ScreenManager.AddScreen(loadingScreen, controllingPlayer);
         }
 
         /// <summary>
@@ -76,20 +76,20 @@ namespace ProyectoSimon
             // off, it is time to actually perform the load.
             if (otherScreensAreGone)
             {
-                screenManager.RemoveScreen(this);
+                ScreenManager.RemoveScreen(this);
 
                 foreach (GameScreen screen in screensToLoad)
                 {
                     if (screen != null)
                     {
-                        screenManager.AddScreen(screen, ControllingPlayer);
+                        ScreenManager.AddScreen(screen, ControllingPlayer);
                     }
                 }
 
                 // Once the load has finished, we use ResetElapsedTime to tell
                 // the  game timing mechanism that we have just finished a very
                 // long frame, and that it should not try to catch up.
-                screenManager.Game.ResetElapsedTime();
+                ScreenManager.Game.ResetElapsedTime();
             }
         }
 
@@ -104,7 +104,7 @@ namespace ProyectoSimon
             // screens to be gone: in order for the transition to look good we must
             // have actually drawn a frame without them before we perform the load.
             if ((ScreenState == ScreenState.Active) &&
-                (screenManager.GetScreens().Length == 1))
+                (ScreenManager.GetScreens().Length == 1))
             {
                 otherScreensAreGone = true;
             }
@@ -117,13 +117,13 @@ namespace ProyectoSimon
             // to bother drawing the message.
             if (loadingIsSlow)
             {
-                SpriteBatch spriteBatch = screenManager.SpriteBatch;
+                SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
                 SpriteFont menuFont = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
 
                 string message = "cargando...";
 
                 // Center the text in the viewport.
-                Viewport viewport = screenManager.GraphicsDevice.Viewport;
+                Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
                 Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
                 Vector2 textSize = menuFont.MeasureString(message);
                 Vector2 textPosition = (viewportSize - textSize) / 2;

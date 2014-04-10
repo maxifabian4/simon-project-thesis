@@ -145,7 +145,7 @@ namespace ProyectoSimon
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
                 // it should not try to catch up.
-                screenManager.Game.ResetElapsedTime();
+                ScreenManager.Game.ResetElapsedTime();
             }
         }
 
@@ -190,7 +190,7 @@ namespace ProyectoSimon
                     }
                 }
 
-                //if (screenManager.Kinect.isInRange())
+                //if (ScreenManager.Kinect.isInRange())
                 //{
                 if (arrowsIndex == elements)
                     verifyGameStatus();
@@ -245,7 +245,7 @@ namespace ProyectoSimon
                 PauseMenuScreen pauseMenuScreen = new PauseMenuScreen();
                 pauseMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
                 pauseMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-                screenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
+                ScreenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
             }
             else
             {
@@ -267,11 +267,11 @@ namespace ProyectoSimon
         public override void Draw(GameTime gameTime)
         {
             // Apply effects to draw primitives.
-            SpriteBatch spriteBatch = screenManager.SpriteBatch;
+            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
     //        if (getPlayerState() == 0)
     //        {
-    //            screenManager.getBasicEffect().CurrentTechnique.Passes[0].Apply();
+    //            ScreenManager.getBasicEffect().CurrentTechnique.Passes[0].Apply();
     //            // Draw each physics elements in the world.
                 //drawElementsInTheWorld(physicsElements, change);
     //            // Draw skeleton if it isn't hidden.
@@ -301,17 +301,17 @@ namespace ProyectoSimon
                 Rectangle rect = new Rectangle(0, 0, texture.Width, texture.Height);
                 Vector2 vector = new Vector2(texture.Width, texture.Height) / 2;
 
-                screenManager.SpriteBatch.Begin();
+                ScreenManager.SpriteBatch.Begin();
 
-                screenManager.SpriteBatch.Draw(texture, arrowCircle.getBody().Position * 30, rect, Color.White * alpha, (90 * change) * MathHelper.Pi / 180, vector, scale, SpriteEffects.None, 1);
+                ScreenManager.SpriteBatch.Draw(texture, arrowCircle.getBody().Position * 30, rect, Color.White * alpha, (90 * change) * MathHelper.Pi / 180, vector, scale, SpriteEffects.None, 1);
 
-                screenManager.SpriteBatch.End();
+                ScreenManager.SpriteBatch.End();
             }
 
-            //if (screenManager.Kinect.isInRange())
+            //if (ScreenManager.Kinect.isInRange())
             //{
                 //skeleton.traslateSkeleton(new Vector2(-200, 0));
-                skeleton.display(screenManager);
+            skeleton.display(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             //}
             //drawMouseCursor();
         }
@@ -325,9 +325,9 @@ namespace ProyectoSimon
         {
             // Cambiar !!!
             ElementPolygon rectPrimitive = new ElementPolygon(rect.Center.X - rect.Width / 2, rect.Center.Y - rect.Height / 2, rect.Width, rect.Height, fillColor, alpha, true);
-            rectPrimitive.draw(screenManager);
+            rectPrimitive.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             ElementPolygon rectEdgePrimitive = new ElementPolygon(rect.Center.X - rect.Width / 2, rect.Center.Y - rect.Height / 2, rect.Width, rect.Height, edgeColor, alpha, false);
-            rectEdgePrimitive.draw(screenManager);
+            rectEdgePrimitive.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
         }
 
         private int getIndexAngle()
@@ -357,14 +357,14 @@ namespace ProyectoSimon
         }
 
         // Draw a simple line primitive. SACAR DESPUES !!!
-        //private void drawLine(ScreenManager screenManager, Color colorLine, float alpha, Vector2 begin, Vector2 end)
+        //private void drawLine(ScreenManager ScreenManager, Color colorLine, float alpha, Vector2 begin, Vector2 end)
         //{
         //    Box2D.XNA.FixedArray8<Vector2> vertexs = new Box2D.XNA.FixedArray8<Vector2>();
         //    vertexs[0] = new Vector2(begin.X, begin.Y);
         //    vertexs[1] = new Vector2(end.X, end.Y);
 
         //    ElementPolygon line = new ElementPolygon(vertexs, colorLine, 1, false, 2);
-        //    line.drawPrimitive(screenManager);
+        //    line.drawPrimitive(ScreenManager);
         //}
     }
 }

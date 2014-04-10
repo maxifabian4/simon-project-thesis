@@ -116,9 +116,9 @@ namespace ProyectoSimon
             // Initialize parameters.
             int wBox = 400;
             int hBox = 300;
-            int x = (screenManager.getWidthScreen() - wBox) / 2;
-            int y = (screenManager.getHeightScreen() - hBox) / 2;
-            SpriteBatch spriteBatch = screenManager.SpriteBatch;
+            int x = (ScreenManager.getWidthScreen() - wBox) / 2;
+            int y = (ScreenManager.getHeightScreen() - hBox) / 2;
+            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             SpriteFont menuFont = GameContentManager.Instance.getFont(GameContentManager.FONT_STATISTICSFONT);
             string titleText = "Resultados del juego";
             int verticalValue = (int)menuFont.MeasureString(titleText).Y;
@@ -128,11 +128,11 @@ namespace ProyectoSimon
             // Draw title.
             drawTextInBox(spriteBatch, menuFont, titleText, colorTitleText, x, x + wBox, y + 10);
             // Draw header line.
-            //drawLine(screenManager.SpriteBatch, new Vector2(x + 10, y + verticalValue + 15), new Vector2(x + wBox - 10, y + verticalValue + 15));
+            //drawLine(ScreenManager.SpriteBatch, new Vector2(x + 10, y + verticalValue + 15), new Vector2(x + wBox - 10, y + verticalValue + 15));
             // Draw footer line.
-            //drawLine(screenManager.SpriteBatch, new Vector2(x + 10, y + hBox - 50), new Vector2(x + wBox - 10, y + hBox - 50));
+            //drawLine(ScreenManager.SpriteBatch, new Vector2(x + 10, y + hBox - 50), new Vector2(x + wBox - 10, y + hBox - 50));
             // Draw statistics elements.
-            drawStatisticsData(screenManager.SpriteBatch, menuFont, verticalValue, x, y, wBox);
+            drawStatisticsData(ScreenManager.SpriteBatch, menuFont, verticalValue, x, y, wBox);
             // Draw "buttons" in the box.
             drawButtonsInBox(spriteBatch, menuFont, colorFrameText, x + wBox, y + hBox - 40);
         }
@@ -199,7 +199,7 @@ namespace ProyectoSimon
         //    vertexs[1] = new Vector2(v2.X, v2.Y);
 
         //    ElementPolygon line = new ElementPolygon(vertexs, Color.White * TransitionAlpha, .6f, false, 2);
-        //    line.drawPrimitive(screenManager);
+        //    line.drawPrimitive(ScreenManager);
         //}
 
         /// <summary>
@@ -208,13 +208,13 @@ namespace ProyectoSimon
         private void drawMessageBox(int x, int y, int wBox, int hBox, int verticalValue)
         {
             /// ???????????? spriteBatch
-            Rectangle backgroundRectangle = new Rectangle(0, 0, screenManager.getWidthScreen(), screenManager.getHeightScreen());
+            Rectangle backgroundRectangle = new Rectangle(0, 0, ScreenManager.getWidthScreen(), ScreenManager.getHeightScreen());
             // Darken down any other screens that were drawn beneath the popup.
-            screenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3, backgroundRectangle);
+            ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3, backgroundRectangle);
             ElementPolygon frame = new ElementPolygon(x, y, wBox, hBox, colorFrameBox * TransitionAlpha, 1, true);
-            frame.draw(screenManager);
+            frame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             ElementPolygon titleFrame = new ElementPolygon(x, y, wBox, verticalValue + 20, colorTitleBox * TransitionAlpha, 1, true);
-            titleFrame.draw(screenManager);
+            titleFrame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
         }
 
         /// <summary>

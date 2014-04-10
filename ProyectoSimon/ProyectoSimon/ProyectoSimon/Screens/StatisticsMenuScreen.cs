@@ -52,7 +52,7 @@ namespace ProyectoSimon
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
             mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
             mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-            LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
+            LoadingScreen.Load(ScreenManager, false, null, mainMenuScreen);
         }
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace ProyectoSimon
             // Draw statistics frame.
             drawStatisticsFrame(verticalValue);
             // Draw tittle.
-            drawTitleFrame(title, screenManager.SpriteBatch, titleFont, horizontalValue);
+            drawTitleFrame(title, ScreenManager.SpriteBatch, titleFont, horizontalValue);
             // Draw statistics data.
-            drawStatisticsData(screenManager.SpriteBatch, dataFont, verticalValue, DataManager.Instance.getCurrentStatisticsItems());
+            drawStatisticsData(ScreenManager.SpriteBatch, dataFont, verticalValue, DataManager.Instance.getCurrentStatisticsItems());
         }
 
         /// <summary>
@@ -118,9 +118,9 @@ namespace ProyectoSimon
         private void drawStatisticsFrame(int verticalValue)
         {
             ElementPolygon frame = new ElementPolygon(x, hScreen / 4, w, hScreen / 4 + 50, statisticsFrameColor * TransitionAlpha, 1, true);
-            frame.draw(screenManager);
+            frame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             ElementPolygon titleFrame = new ElementPolygon(x, hScreen / 4, w, verticalValue + 10, MenuPanelColor * TransitionAlpha, 1, true);
-            titleFrame.draw(screenManager);
+            titleFrame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
         }
     }
 }

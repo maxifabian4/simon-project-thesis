@@ -229,7 +229,7 @@ namespace ProyectoSimon
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
                 // it should not try to catch up.
-                screenManager.Game.ResetElapsedTime();
+                ScreenManager.Game.ResetElapsedTime();
             }
         }
 
@@ -390,13 +390,13 @@ namespace ProyectoSimon
                 PauseMenuScreen pauseMenuScreen = new PauseMenuScreen();
                 pauseMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
                 pauseMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-                screenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
+                ScreenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
             }
             else
             {
-                //updateBodyJoints(screenManager.Kinect.getJoints());
+                //updateBodyJoints(ScreenManager.Kinect.getJoints());
 
-                //jointsIDs = screenManager.Kinect.getJoints();               
+                //jointsIDs = ScreenManager.Kinect.getJoints();               
                 updateJoints(KinectSDK.Instance.getJoints());
 
                 //if (keyboardState.IsKeyDown(Keys.LeftControl))
@@ -515,8 +515,8 @@ namespace ProyectoSimon
 
         public override void Draw(GameTime gameTime)
         {
-            SpriteBatch spriteBatch = screenManager.SpriteBatch;
-            screenManager.getBasicEffect().CurrentTechnique.Passes[0].Apply();
+            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
+            ScreenManager.BasicEffect.CurrentTechnique.Passes[0].Apply();
 
             //draw elements
             drawElementsInTheWorld(physicsElments);
@@ -528,7 +528,7 @@ namespace ProyectoSimon
             if (!hideBody)
             {
                 // Draw lines.
-                KinectSDK.Instance.display(screenManager);
+                KinectSDK.Instance.display(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             }
             // Draw ground.
             //drawGroundPrimitive(spriteBatch);            
@@ -548,17 +548,17 @@ namespace ProyectoSimon
             ElementPolygon rectangleL = new ElementPolygon(zoneL.X, zoneL.Y, zoneL.Width, zoneL.Height, Color.Gray, 0.3f, true);
             ElementPolygon rectangleR = new ElementPolygon(zoneR.X, zoneR.Y, zoneR.Width, zoneR.Height, Color.Gray, 0.3f, true);
             //ElementPolygon rectangleFault = new ElementPolygon(zoneFault.X, zoneFault.Y, zoneFault.Width, zoneFault.Height, Color.Gray, 0.1f, true);
-            //rectangleFault.drawPrimitive(screenManager);
-            rectangleL.draw(screenManager);
-            rectangleR.draw(screenManager);
+            //rectangleFault.drawPrimitive(ScreenManager);
+            rectangleL.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
+            rectangleR.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
 
             //draw boxes
             //ElementPolygon boxLeft = new ElementPolygon(boxL.X, boxL.Y, boxL.Width, boxL.Height, Color.SaddleBrown, 1, true);
-            //boxLeft.drawPrimitive(screenManager);
+            //boxLeft.drawPrimitive(ScreenManager);
             //ElementPolygon boxRight = new ElementPolygon(boxR.X, boxR.Y, boxR.Width, boxR.Height, Color.SaddleBrown, 1, true);
-            //boxLeft.drawPrimitive(screenManager);
-            //boxRight.drawPrimitive(screenManager);
-            //screenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX);            
+            //boxLeft.drawPrimitive(ScreenManager);
+            //boxRight.drawPrimitive(ScreenManager);
+            //ScreenManager.getTexture(ScreenManager.TEXTURE_GAMEBOX);            
             spriteBatch.Begin();
             spriteBatch.Draw(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX), new Vector2(boxL.X, boxL.Y), null, Color.Green, 0, new Vector2(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Width / 3 + 100, GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
             spriteBatch.Draw(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX), new Vector2(boxR.X, boxR.Y), null, Color.Yellow, 0, new Vector2(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Width / 3 + 100, GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
@@ -570,9 +570,9 @@ namespace ProyectoSimon
         private void drawGroundPrimitive(SpriteBatch spriteBatch)
         {
             quad = new ElementPolygon(0, bheight - 30, bwidth, 30, new Color(124, 107, 70), 1, true);
-            quad.draw(screenManager);
+            quad.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             fillQuad = new ElementPolygon(0, bheight - 30, bwidth, 30, new Color(152, 131, 87), 1, false);
-            fillQuad.draw(screenManager);
+            fillQuad.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
         }
     }
 }

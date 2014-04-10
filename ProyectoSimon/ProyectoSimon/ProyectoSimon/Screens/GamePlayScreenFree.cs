@@ -167,7 +167,7 @@ namespace ProyectoSimon
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
                 // it should not try to catch up.
-                screenManager.Game.ResetElapsedTime();
+                ScreenManager.Game.ResetElapsedTime();
             }
         }
 
@@ -235,7 +235,7 @@ namespace ProyectoSimon
                 PauseMenuScreen pauseMenuScreen = new PauseMenuScreen();
                 pauseMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
                 pauseMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-                screenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
+                ScreenManager.AddScreen(pauseMenuScreen, ControllingPlayer);
             }
             else
             {
@@ -269,7 +269,7 @@ namespace ProyectoSimon
         public override void Draw(GameTime gameTime)
         {
             // Apply effects to draw primitives.
-            SpriteBatch spriteBatch = screenManager.SpriteBatch;
+            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             // Show camera if it is active.
             if (camera && video)
             {
@@ -279,21 +279,21 @@ namespace ProyectoSimon
             }
             if (getPlayerState() == 0)
             {
-                screenManager.getBasicEffect().CurrentTechnique.Passes[0].Apply();
+                ScreenManager.BasicEffect.CurrentTechnique.Passes[0].Apply();
                 // Draw each physics elements in the world.
                 drawElementsInTheWorld(physicsElements);
                 // Draw skeleton if it isn't hidden.
                 if (KinectSDK.Instance.isInRange())
-                    skeleton.display(screenManager);
+                    skeleton.display(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             }
 
             // Draw statistics panel.
             drawStatisticsPanel(spriteBatch, new String[] { "nivel " + currentLevel,
                 timeSpan.Minutes.ToString() + "." + timeSpan.Seconds.ToString() + " segundos"});
 
-            //mousePoint.display(screenManager);
+            //mousePoint.display(ScreenManager);
             //for (int i = 0; i < physicsElements.Count; i++)
-            //    physicsElements[i].display(screenManager);
+            //    physicsElements[i].display(ScreenManager);
         }
     }
 }

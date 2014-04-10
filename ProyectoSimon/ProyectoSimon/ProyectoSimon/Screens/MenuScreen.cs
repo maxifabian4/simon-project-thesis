@@ -366,11 +366,10 @@ namespace ProyectoSimon
         public override void Draw(GameTime gameTime)
         {
             // Width value of screen.
-            int widthScreen = screenManager.getWidthScreen();
+            int widthScreen = ScreenManager.getWidthScreen();
             // Height value of screen.
-            int heightScreen = screenManager.getHeightScreen();
-            GraphicsDevice graphics = screenManager.GraphicsDevice;
-            SpriteBatch spriteBatch = screenManager.SpriteBatch;
+            int heightScreen = ScreenManager.getHeightScreen();
+            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             // Gets fonts.
             SpriteFont gameInstanceFont = GameContentManager.Instance.getFont(GameContentManager.GAME_INSTANCE_FONT);
             SpriteFont userModuleFont = GameContentManager.Instance.getFont(GameContentManager.USER_MODULE_FONT);
@@ -381,7 +380,7 @@ namespace ProyectoSimon
             // Draw background.
             DrawBackground(spriteBatch, widthScreen, heightScreen);
             // Create an rectangle on the left.
-            DrawMenuPanel(screenManager, widthScreen, heightScreen);
+            DrawMenuPanel(ScreenManager, widthScreen, heightScreen);
             // Draw game instance name.
             DrawGameInstanceModule(spriteBatch, gameInstanceFont, widthScreen);
             // Draw user module.
@@ -430,7 +429,7 @@ namespace ProyectoSimon
         /// <summary>
         /// Draws a rectangle on the left to show the main menu.
         /// </summary>
-        private void DrawMenuPanel(ScreenManager screenManager, int widthScreen, int heightScreen)
+        private void DrawMenuPanel(ScreenManager ScreenManager, int widthScreen, int heightScreen)
         {
             ElementPolygon panel = new ElementPolygon(
                 CommonConstants.MARGIN_LEFT_MENU_PANEL,
@@ -440,7 +439,7 @@ namespace ProyectoSimon
                 MenuPanelColor * TransitionAlpha,
                 1,
                 true);
-            panel.draw(screenManager);
+            panel.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
         }
 
         /// <summary>

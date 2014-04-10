@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Box2D.XNA;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ProyectoSimon.Elements
 {
@@ -46,7 +47,7 @@ namespace ProyectoSimon.Elements
         /// Renderizes a box element using some logic. We can draw it using primitives or textures.
         /// </summary>
         /// <param name="screenManager">Main system manager.</param>
-        public override void display(ScreenManager screenManager)
+        public override void display(SpriteBatch spriteBatch, BasicEffect basiEffect)
         {
         }
 

@@ -349,7 +349,7 @@ namespace ProyectoSimon
         /// <summary>
         /// It draws skeleton joints on screen.
         /// </summary> 
-        public void display(ScreenManager screenManager)
+        public void display(SpriteBatch spriteBatch, BasicEffect basicEffect)
         {
             float radius = 10;
             float alpha = 1;
@@ -357,74 +357,74 @@ namespace ProyectoSimon
             if (jointTypes != null && jointTypes.Count > 0)
             {
 
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.ShoulderCenter], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderCenter], jointTypes[Microsoft.Kinect.JointType.Head]);
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.Head], radius, alpha);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.ShoulderCenter], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderCenter], jointTypes[Microsoft.Kinect.JointType.Head]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.Head], radius, alpha);
                 //drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.Head], jointTypes[Microsoft.Kinect.JointType.ShoulderCenter]);
 
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderCenter], jointTypes[Microsoft.Kinect.JointType.ShoulderLeft]);
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.ShoulderLeft], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderLeft], jointTypes[Microsoft.Kinect.JointType.ElbowLeft]);
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.ElbowLeft], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ElbowLeft], jointTypes[Microsoft.Kinect.JointType.WristLeft]);
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.WristLeft], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.WristLeft], jointTypes[Microsoft.Kinect.JointType.HandLeft]);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderCenter], jointTypes[Microsoft.Kinect.JointType.ShoulderLeft]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.ShoulderLeft], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderLeft], jointTypes[Microsoft.Kinect.JointType.ElbowLeft]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.ElbowLeft], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ElbowLeft], jointTypes[Microsoft.Kinect.JointType.WristLeft]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.WristLeft], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.WristLeft], jointTypes[Microsoft.Kinect.JointType.HandLeft]);
 
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.HandLeft], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderCenter], jointTypes[Microsoft.Kinect.JointType.ShoulderRight]);
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.ShoulderRight], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderRight], jointTypes[Microsoft.Kinect.JointType.ElbowRight]);
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.ElbowRight], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ElbowRight], jointTypes[Microsoft.Kinect.JointType.WristRight]);
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.WristRight], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.WristRight], jointTypes[Microsoft.Kinect.JointType.HandRight]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.HandLeft], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderCenter], jointTypes[Microsoft.Kinect.JointType.ShoulderRight]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.ShoulderRight], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ShoulderRight], jointTypes[Microsoft.Kinect.JointType.ElbowRight]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.ElbowRight], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.ElbowRight], jointTypes[Microsoft.Kinect.JointType.WristRight]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.WristRight], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.WristRight], jointTypes[Microsoft.Kinect.JointType.HandRight]);
 
-                drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.HandRight], radius, alpha);
-                drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipCenter], jointTypes[Microsoft.Kinect.JointType.HipLeft]);
+                drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.HandRight], radius, alpha);
+                drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipCenter], jointTypes[Microsoft.Kinect.JointType.HipLeft]);
 
                 if (KinectSDK.Instance.getTrackingMode().Equals(SkeletonTrackingMode.Default.ToString()))
                 {
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.HipCenter], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipCenter], jointTypes[Microsoft.Kinect.JointType.Spine]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.HipCenter], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipCenter], jointTypes[Microsoft.Kinect.JointType.Spine]);
 
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.Spine], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.Spine], jointTypes[Microsoft.Kinect.JointType.ShoulderCenter]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.Spine], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.Spine], jointTypes[Microsoft.Kinect.JointType.ShoulderCenter]);
 
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.FootLeft], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipCenter], jointTypes[Microsoft.Kinect.JointType.HipRight]);
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.HipRight], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipRight], jointTypes[Microsoft.Kinect.JointType.KneeRight]);
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.KneeRight], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.KneeRight], jointTypes[Microsoft.Kinect.JointType.AnkleRight]);
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.AnkleRight], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.AnkleRight], jointTypes[Microsoft.Kinect.JointType.FootRight]);
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.FootRight], radius, alpha);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.FootLeft], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipCenter], jointTypes[Microsoft.Kinect.JointType.HipRight]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.HipRight], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipRight], jointTypes[Microsoft.Kinect.JointType.KneeRight]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.KneeRight], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.KneeRight], jointTypes[Microsoft.Kinect.JointType.AnkleRight]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.AnkleRight], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.AnkleRight], jointTypes[Microsoft.Kinect.JointType.FootRight]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.FootRight], radius, alpha);
 
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.HipLeft], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipLeft], jointTypes[Microsoft.Kinect.JointType.KneeLeft]);
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.KneeLeft], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.KneeLeft], jointTypes[Microsoft.Kinect.JointType.AnkleLeft]);
-                    drawCircleJoint(screenManager, jointTypes[Microsoft.Kinect.JointType.AnkleLeft], radius, alpha);
-                    drawLine(screenManager, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.AnkleLeft], jointTypes[Microsoft.Kinect.JointType.FootLeft]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.HipLeft], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.HipLeft], jointTypes[Microsoft.Kinect.JointType.KneeLeft]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.KneeLeft], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.KneeLeft], jointTypes[Microsoft.Kinect.JointType.AnkleLeft]);
+                    drawCircleJoint(spriteBatch, basicEffect, jointTypes[Microsoft.Kinect.JointType.AnkleLeft], radius, alpha);
+                    drawLine(spriteBatch, colorSkeleton, alpha, jointTypes[Microsoft.Kinect.JointType.AnkleLeft], jointTypes[Microsoft.Kinect.JointType.FootLeft]);
                 }
             }
         }
         /// <summary>
         /// Draw a simple circle primitive.
         /// </summary>         
-        private void drawCircleJoint(ScreenManager screenManager, Vector2 vector2, float radius, float alpha)
+        private void drawCircleJoint(SpriteBatch spriteBatch, BasicEffect basicEffect, Vector2 vector2, float radius, float alpha)
         {
             Color colorSkeleton = new Color(206, 103, 0); // Change!!
             ElementCircle circle = new ElementCircle(radius, vector2, colorSkeleton, colorSkeleton, alpha);
-            circle.drawBorderWeigth(screenManager, new Color(64, 64, 64), 1);
-            circle.draw(screenManager);
+            circle.drawBorderWeigth(spriteBatch, basicEffect, new Color(64, 64, 64), 1);
+            circle.draw(spriteBatch, basicEffect);
         }
         /// <summary>
         /// Draw a simple line primitive.
         /// </summary>           
-        private void drawLine(ScreenManager screenManager, Color colorLine, float alpha, Vector2 begin, Vector2 end)
+        private void drawLine(SpriteBatch spriteBatch, Color colorLine, float alpha, Vector2 begin, Vector2 end)
         {
-            screenManager.SpriteBatch.DrawLine(begin, end, colorLine, 9, 0.5f);
+            spriteBatch.DrawLine(begin, end, colorLine, 9, 0.5f);
         }
     }
 }

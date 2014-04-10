@@ -27,11 +27,11 @@ namespace ProyectoSimon
         /// <summary>
         /// Ability to draw itself.
         /// </summary>
-        public override void draw(ScreenManager screenManager)
+        public override void draw(SpriteBatch spriteBatch, BasicEffect basicEffect)
         {
-            screenManager.SpriteBatch.Begin();
-            screenManager.SpriteBatch.Draw(texture, position, null, textureColor, 0, origin, 1, SpriteEffects.None, 0);
-            screenManager.SpriteBatch.End();
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, position, null, textureColor, 0, origin, 1, SpriteEffects.None, 0);
+            spriteBatch.End();
         }
 
     }
