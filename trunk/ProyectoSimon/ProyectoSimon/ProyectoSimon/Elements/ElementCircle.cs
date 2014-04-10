@@ -109,7 +109,7 @@ namespace ProyectoSimon
         /// <summary>
         /// Draws a shape border specifying a size.
         /// </summary>
-        public override void drawBorderWeigth(ScreenManager sManager, Color color, float size)
+        public override void drawBorderWeigth(SpriteBatch spriteBatch, BasicEffect basicEffect, Color color, float size)
         {
             if (size > 0)
             {
@@ -118,7 +118,7 @@ namespace ProyectoSimon
                 for (float i = 0; i < size; i += .5f)
                 {
                     circleBorder = new ElementCircle(radius + i, center, color, 1);
-                    circleBorder.draw(sManager);
+                    circleBorder.draw(spriteBatch, basicEffect);
                 }
             }
         }

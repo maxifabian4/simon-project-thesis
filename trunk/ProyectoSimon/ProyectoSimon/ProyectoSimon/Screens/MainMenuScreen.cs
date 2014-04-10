@@ -1,10 +1,3 @@
-//-----------------------------------------------------------------------------
-// MainMenuScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -49,34 +42,34 @@ namespace ProyectoSimon
                 if (DataManager.Instance.getIndexGame() == 0)
                 {
                     GamePlayScreenCircles circleGame = new GamePlayScreenCircles(
-                        screenManager.getWidthScreen(),
-                        screenManager.getHeightScreen(),
+                        ScreenManager.getWidthScreen(),
+                        ScreenManager.getHeightScreen(),
                         DataManager.Instance.getGames()[CurrentGame].getLevels());
-                    LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(GameContentManager.TEXTURE_BACKGROUND_GAME2), circleGame);
+                    LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new BackgroundScreen(GameContentManager.TEXTURE_BACKGROUND_GAME2), circleGame);
                 }
                 else if (DataManager.Instance.getIndexGame() == 1)
                 {
                     GamePlayScreenChooser selectorGame = new GamePlayScreenChooser(
-                        screenManager.getWidthScreen(),
-                        screenManager.getHeightScreen(),
+                        ScreenManager.getWidthScreen(),
+                        ScreenManager.getHeightScreen(),
                         DataManager.Instance.getGames()[CurrentGame].getLevels());
-                    LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(GameContentManager.TEXTURE_BACKGROUND_GAME), selectorGame);
+                    LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new BackgroundScreen(GameContentManager.TEXTURE_BACKGROUND_GAME), selectorGame);
                 }
                 else if (DataManager.Instance.getIndexGame() == 2)
                 {
                     GamePlayScreenArrows arrowsGame = new GamePlayScreenArrows(
-                        screenManager.getWidthScreen(),
-                        screenManager.getHeightScreen(),
+                        ScreenManager.getWidthScreen(),
+                        ScreenManager.getHeightScreen(),
                         DataManager.Instance.getGames()[CurrentGame].getLevels());
-                    LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(GameContentManager.TEXTURE_BACKGROUND_ARROWS), arrowsGame);
+                    LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new BackgroundScreen(GameContentManager.TEXTURE_BACKGROUND_ARROWS), arrowsGame);
                 }
                 else if (DataManager.Instance.getIndexGame() == 3)
                 {
                     GamePlayScreenFree freeGame = new GamePlayScreenFree(
-                        screenManager.getWidthScreen(),
-                        screenManager.getHeightScreen(),
+                        ScreenManager.getWidthScreen(),
+                        ScreenManager.getHeightScreen(),
                         DataManager.Instance.getGames()[CurrentGame].getLevels());
-                    LoadingScreen.Load(screenManager, true, e.PlayerIndex, new BackgroundScreen(GameContentManager.TEXTURE_BACKGROUND_GAME2), freeGame);
+                    LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new BackgroundScreen(GameContentManager.TEXTURE_BACKGROUND_GAME2), freeGame);
                 }
             }
             else
@@ -89,7 +82,7 @@ namespace ProyectoSimon
         {
             MessageBoxScreen kinectState = new MessageBoxScreen(CommonConstants.TITLE_MESSAGE_UNPLUGGED_KINECT, CommonConstants.DESCRIPTION_MESSAGE_UNPLUGGED_KINECT);
             kinectState.Accepted += ConfirmExitMessageKinectAccepted;
-            screenManager.AddScreen(kinectState, null);
+            ScreenManager.AddScreen(kinectState, null);
         }
 
         /// <summary>
@@ -100,7 +93,7 @@ namespace ProyectoSimon
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
             mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
             mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-            LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
+            LoadingScreen.Load(ScreenManager, false, null, mainMenuScreen);
         }
 
         /// <summary>
@@ -110,17 +103,17 @@ namespace ProyectoSimon
         {
             string[] statisticsItems = DataManager.Instance.getCurrentStatisticsItems();
             int availableAreaX0, availableAreaX1;
-            availableAreaX0 = CommonConstants.MARGIN_LEFT_MENU_PANEL + screenManager.getWidthScreen() / 4;
-            availableAreaX1 = screenManager.getWidthScreen();
+            availableAreaX0 = CommonConstants.MARGIN_LEFT_MENU_PANEL + ScreenManager.getWidthScreen() / 4;
+            availableAreaX1 = ScreenManager.getWidthScreen();
             StatisticsMenuScreen statisticsMenuScreen = new StatisticsMenuScreen(
                 statisticsItems,
                 availableAreaX0,
                 availableAreaX1,
-                screenManager.getWidthScreen(),
-                screenManager.getHeightScreen());
+                ScreenManager.getWidthScreen(),
+                ScreenManager.getHeightScreen());
             statisticsMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
             statisticsMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-            screenManager.AddScreen(statisticsMenuScreen, e.PlayerIndex);
+            ScreenManager.AddScreen(statisticsMenuScreen, e.PlayerIndex);
         }
 
         /// <summary>
@@ -129,16 +122,16 @@ namespace ProyectoSimon
         void NewUserMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             int availableAreaX0, availableAreaX1;
-            availableAreaX0 = CommonConstants.MARGIN_LEFT_MENU_PANEL + screenManager.getWidthScreen() / 4;
-            availableAreaX1 = screenManager.getWidthScreen();
+            availableAreaX0 = CommonConstants.MARGIN_LEFT_MENU_PANEL + ScreenManager.getWidthScreen() / 4;
+            availableAreaX1 = ScreenManager.getWidthScreen();
             UserFormMenuScreen userFormMenuScreen = new UserFormMenuScreen(
                 availableAreaX0,
                 availableAreaX1,
-                screenManager.getWidthScreen(),
-                screenManager.getHeightScreen());
+                ScreenManager.getWidthScreen(),
+                ScreenManager.getHeightScreen());
             userFormMenuScreen.CurrentUser = CommonConstants.NEW_USER_INDEX;
             userFormMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-            screenManager.AddScreen(userFormMenuScreen, e.PlayerIndex);
+            ScreenManager.AddScreen(userFormMenuScreen, e.PlayerIndex);
         }
 
         /// <summary>
@@ -150,7 +143,7 @@ namespace ProyectoSimon
             string message = CommonConstants.EXIT_SYSTEM_ANSWER_OPTIONS;
             MessageBoxScreen confirmExitMessageBox = new MessageBoxScreen(question, message);
             confirmExitMessageBox.Accepted += ConfirmExitMessageBoxAccepted;
-            screenManager.AddScreen(confirmExitMessageBox, playerIndex);
+            ScreenManager.AddScreen(confirmExitMessageBox, playerIndex);
         }
 
         /// <summary>
@@ -158,7 +151,7 @@ namespace ProyectoSimon
         /// </summary>
         void ConfirmExitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
-            screenManager.Game.Exit();
+            ScreenManager.Game.Exit();
         }
     }
 }

@@ -219,7 +219,7 @@ namespace ProyectoSimon
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
             mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
             mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-            LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
+            LoadingScreen.Load(ScreenManager, false, null, mainMenuScreen);
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace ProyectoSimon
                 MainMenuScreen mainMenuScreen = new MainMenuScreen();
                 mainMenuScreen.CurrentUser = DataManager.Instance.getUsersCount() - 1;
                 mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-                LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
+                LoadingScreen.Load(ScreenManager, false, null, mainMenuScreen);
             }
         }
 
@@ -268,9 +268,9 @@ namespace ProyectoSimon
             // Draw statistics frame.
             drawUserFormFrame(verticalValue);
             // Draw tittle.
-            drawTitleFrame(title, screenManager.SpriteBatch, titleFont, horizontalValue);
+            drawTitleFrame(title, ScreenManager.SpriteBatch, titleFont, horizontalValue);
             // Draw user input comands.
-            drawUserComands(screenManager.SpriteBatch, comandsFont, verticalValue + y);
+            drawUserComands(ScreenManager.SpriteBatch, comandsFont, verticalValue + y);
         }
 
         /// <summary>
@@ -336,14 +336,14 @@ namespace ProyectoSimon
 
             // Draw capture frame.
             if (video == null)
-                captureFrame.draw(screenManager);
+                captureFrame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
 
-            edgeCaptureFrame.draw(screenManager);
+            edgeCaptureFrame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
 
             if (!isSelected)
-                cameraFrame.draw(screenManager);
+                cameraFrame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
 
-            edgeCameraFrame.draw(screenManager);
+            edgeCameraFrame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
         }
 
         /// <summary>
@@ -378,8 +378,8 @@ namespace ProyectoSimon
             spriteBatch.DrawString(menuFont, textLabel, new Vector2(posX, posY), userDataColor * TransitionAlpha);
             spriteBatch.End();
             // Draw field.
-            namefield.draw(screenManager);
-            edgeNamefield.draw(screenManager);
+            namefield.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
+            edgeNamefield.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             // Draw current keys.
             spriteBatch.Begin();
             spriteBatch.DrawString(menuFont, textField, new Vector2(posX + blankSpace + wText + 5, posY + 2), Color.White * TransitionAlpha);
@@ -403,9 +403,9 @@ namespace ProyectoSimon
         private void drawUserFormFrame(int verticalValue)
         {
             ElementPolygon frame = new ElementPolygon(x, hScreen / 4, w, hScreen / 4 * 2 + 10, userFrameColor * TransitionAlpha, 1, true);
-            frame.draw(screenManager);
+            frame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             ElementPolygon titleFrame = new ElementPolygon(x, hScreen / 4, w, verticalValue + 12, MenuPanelColor * TransitionAlpha, 1, true);
-            titleFrame.draw(screenManager);
+            titleFrame.draw(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
         }
     }
 }

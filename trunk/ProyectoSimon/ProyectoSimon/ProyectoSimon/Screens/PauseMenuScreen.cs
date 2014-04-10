@@ -44,7 +44,7 @@ namespace ProyectoSimon
             string message = CommonConstants.EXIT_GAME_ANSWER_OPTIONS;
             MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen(question, message);
             confirmQuitMessageBox.Accepted += ConfirmQuitMessageBoxAccepted;
-            screenManager.AddScreen(confirmQuitMessageBox, ControllingPlayer);
+            ScreenManager.AddScreen(confirmQuitMessageBox, ControllingPlayer);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace ProyectoSimon
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
             mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
             mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-            LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
+            LoadingScreen.Load(ScreenManager, false, null, mainMenuScreen);
         }
     }
 }

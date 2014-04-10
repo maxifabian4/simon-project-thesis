@@ -1,12 +1,3 @@
-#region File Description
-//-----------------------------------------------------------------------------
-// GameScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-#endregion
-
 using System;
 using System.IO;
 using Microsoft.Xna.Framework;
@@ -42,8 +33,14 @@ namespace ProyectoSimon
         /// </summary>
         public bool IsPopup
         {
-            get { return isPopup; }
-            protected set { isPopup = value; }
+            get
+            {
+                return isPopup;
+            }
+            protected set
+            {
+                isPopup = value;
+            }
         }
 
         bool isPopup = false;
@@ -54,8 +51,14 @@ namespace ProyectoSimon
         /// </summary>
         public TimeSpan TransitionOnTime
         {
-            get { return transitionOnTime; }
-            protected set { transitionOnTime = value; }
+            get
+            {
+                return transitionOnTime;
+            }
+            protected set
+            {
+                transitionOnTime = value;
+            }
         }
 
         TimeSpan transitionOnTime = TimeSpan.Zero;
@@ -66,8 +69,14 @@ namespace ProyectoSimon
         /// </summary>
         public TimeSpan TransitionOffTime
         {
-            get { return transitionOffTime; }
-            protected set { transitionOffTime = value; }
+            get
+            {
+                return transitionOffTime;
+            }
+            protected set
+            {
+                transitionOffTime = value;
+            }
         }
 
         TimeSpan transitionOffTime = TimeSpan.Zero;
@@ -79,8 +88,14 @@ namespace ProyectoSimon
         /// </summary>
         public float TransitionPosition
         {
-            get { return transitionPosition; }
-            protected set { transitionPosition = value; }
+            get
+            {
+                return transitionPosition;
+            }
+            protected set
+            {
+                transitionPosition = value;
+            }
         }
 
         float transitionPosition = 1;
@@ -92,7 +107,10 @@ namespace ProyectoSimon
         /// </summary>
         public float TransitionAlpha
         {
-            get { return 1f - TransitionPosition; }
+            get
+            {
+                return 1f - TransitionPosition;
+            }
         }
 
         /// <summary>
@@ -100,8 +118,14 @@ namespace ProyectoSimon
         /// </summary>
         public ScreenState ScreenState
         {
-            get { return screenState; }
-            protected set { screenState = value; }
+            get
+            {
+                return screenState;
+            }
+            protected set
+            {
+                screenState = value;
+            }
         }
 
         ScreenState screenState = ScreenState.TransitionOn;
@@ -116,8 +140,14 @@ namespace ProyectoSimon
         /// </summary>
         public bool IsExiting
         {
-            get { return isExiting; }
-            protected internal set { isExiting = value; }
+            get
+            {
+                return isExiting;
+            }
+            protected internal set
+            {
+                isExiting = value;
+            }
         }
 
         bool isExiting = false;
@@ -137,17 +167,25 @@ namespace ProyectoSimon
 
         bool otherScreenHasFocus;
 
-        public ScreenManager getScreenManager()
+        /// <summary>
+        /// The screen manager is a component which manages one or more GameScreen
+        /// instances. It maintains a stack of screens, calls their Update and Draw
+        /// methods at the appropriate times, and automatically routes input to the
+        /// topmost active screen.
+        /// </summary>
+        public ScreenManager ScreenManager
         {
-            return screenManager;
+            get
+            {
+                return screenManager;
+            }
+            set
+            {
+                screenManager = value;
+            }
         }
 
-        public void setScreenManager(ScreenManager s)
-        {
-            screenManager = s;
-        }
-
-        public ScreenManager screenManager;
+        private ScreenManager screenManager;
 
         /// <summary>
         /// Gets the index of the player who is currently controlling this screen,
@@ -159,8 +197,14 @@ namespace ProyectoSimon
         /// </summary>
         public PlayerIndex? ControllingPlayer
         {
-            get { return controllingPlayer; }
-            internal set { controllingPlayer = value; }
+            get
+            {
+                return controllingPlayer;
+            }
+            internal set
+            {
+                controllingPlayer = value;
+            }
         }
 
         PlayerIndex? controllingPlayer;
@@ -174,12 +218,18 @@ namespace ProyectoSimon
         /// </summary>
         public bool IsSerializable
         {
-            get { return isSerializable; }
-            protected set { isSerializable = value; }
+            get
+            {
+                return isSerializable;
+            }
+            protected set
+            {
+                isSerializable = value;
+            }
         }
 
         bool isSerializable = true;
-        
+
         /// <summary>
         /// Activates the screen. Called when the screen is added to the screen manager or if the game resumes
         /// from being paused or tombstoned.
@@ -188,17 +238,23 @@ namespace ProyectoSimon
         /// True if the game was preserved during deactivation, false if the screen is just being added or if the game was tombstoned.
         /// On Xbox and Windows this will always be false.
         /// </param>
-        public virtual void Activate(bool instancePreserved) { }
-        
+        public virtual void Activate(bool instancePreserved)
+        {
+        }
+
         /// <summary>
         /// Deactivates the screen. Called when the game is being deactivated due to pausing or tombstoning.
         /// </summary>
-        public virtual void Deactivate() { }
+        public virtual void Deactivate()
+        {
+        }
 
         /// <summary>
         /// Unload content for the screen. Called when the screen is removed from the screen manager.
         /// </summary>
-        public virtual void Unload() { }
+        public virtual void Unload()
+        {
+        }
 
         /// <summary>
         /// Allows the screen to run logic, such as updating the transition position.
@@ -261,7 +317,7 @@ namespace ProyectoSimon
             if (time == TimeSpan.Zero)
                 transitionDelta = 1;
             else
-                transitionDelta = (float)(gameTime.ElapsedGameTime.TotalMilliseconds / time.TotalMilliseconds);
+                transitionDelta = (float) (gameTime.ElapsedGameTime.TotalMilliseconds / time.TotalMilliseconds);
 
             // Update the transition position.
             transitionPosition += transitionDelta * direction;
@@ -283,12 +339,16 @@ namespace ProyectoSimon
         /// is only called when the screen is active, and not when some other
         /// screen has taken the focus.
         /// </summary>
-        public virtual void HandleInput(GameTime gameTime, InputState input) { }
+        public virtual void HandleInput(GameTime gameTime, InputState input)
+        {
+        }
 
         /// <summary>
         /// This is called when the screen should draw itself.
         /// </summary>
-        public virtual void Draw(GameTime gameTime) { }
+        public virtual void Draw(GameTime gameTime)
+        {
+        }
 
         /// <summary>
         /// Tells the screen to go away. Unlike ScreenManager.RemoveScreen, which

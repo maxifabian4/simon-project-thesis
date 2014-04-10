@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using ProyectoSimon.Elements;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ProyectoSimon
 {
@@ -18,7 +19,6 @@ namespace ProyectoSimon
         private String property;
         private Color color;
 
-        
         public BoxGame(int p1, int p2, int p3, int p4)
         {
             rec = new Rectangle(p1, p2, p3, p4);
@@ -76,7 +76,7 @@ namespace ProyectoSimon
         /// Renderizes a box element using testures.
         /// </summary>
         /// <param name="screenManager">Screen manager used to renderize.</param>
-        public override void display(ScreenManager screenManager)
+        public override void display(SpriteBatch spriteBatch, BasicEffect basicEffect)
         {
             TextureElement element = new TextureElement(
                 GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX),
@@ -84,7 +84,7 @@ namespace ProyectoSimon
                 new Vector2(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Width / 3 + 100,
                 GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Height / 2),
                 color);
-            element.draw(screenManager);
+            element.draw(spriteBatch, basicEffect);
         }
 
     }

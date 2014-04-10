@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Box2D.XNA;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ProyectoSimon.Elements
 {
@@ -21,7 +22,7 @@ namespace ProyectoSimon.Elements
         /// Displays the GameElement object depending on the instance.
         /// </summary>
         /// <param name="screenManager">Current screen manager.</param>
-        public abstract void display(ScreenManager screenManager);
+        public abstract void display(SpriteBatch spriteBatch, BasicEffect basicEffect);
 
         /// <summary>
         /// Changes its own properties after external events.

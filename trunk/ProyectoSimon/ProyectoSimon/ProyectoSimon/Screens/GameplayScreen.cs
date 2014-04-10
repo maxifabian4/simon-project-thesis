@@ -72,7 +72,7 @@ namespace ProyectoSimon
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
                 // it should not try to catch up.
-                screenManager.Game.ResetElapsedTime();
+                ScreenManager.Game.ResetElapsedTime();
             }
         }
 
@@ -119,7 +119,7 @@ namespace ProyectoSimon
           
             PlayerIndex player;
             if (pauseAction.Evaluate(input, ControllingPlayer, out player))
-                screenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace ProyectoSimon
         protected void drawElementsInTheWorld(List<GameElement> elements)
         {
             for (int i = 0; i < elements.Count; i++)
-                elements[i].display(screenManager);
+                elements[i].display(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace ProyectoSimon
             if (won)
                 finishState.AcceptedNext += ConfirmNextMessageBoxAcepted;
 
-            screenManager.AddScreen(finishState, null);
+            ScreenManager.AddScreen(finishState, null);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace ProyectoSimon
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
             mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
             mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
-            LoadingScreen.Load(screenManager, false, null, mainMenuScreen);
+            LoadingScreen.Load(ScreenManager, false, null, mainMenuScreen);
         }
 
         /// <summary>
@@ -244,9 +244,9 @@ namespace ProyectoSimon
             Vector2 generalPosition = new Vector2(15, 10);
             // Draw panel.
             //quad = new ElementPolygon(5, 10, 170, 110, Color.Black, 0.5f, true);
-            //quad.drawPrimitive(screenManager);
+            //quad.drawPrimitive(ScreenManager);
             //fillQuad = new ElementPolygon(5, 10, 170, 110, new Color(33, 33, 33), 1, false);
-            //fillQuad.drawPrimitive(screenManager);
+            //fillQuad.drawPrimitive(ScreenManager);
 
             spriteBatch.Begin();
             for (int i = 0; i < items.Length; i++) {

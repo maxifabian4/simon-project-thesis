@@ -1,10 +1,3 @@
-//-----------------------------------------------------------------------------
-// ScreenManager.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -17,7 +10,6 @@ using System.Xml.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
-
 namespace ProyectoSimon
 {
     /// <summary>
@@ -28,15 +20,24 @@ namespace ProyectoSimon
     /// </summary>
     public class ScreenManager : DrawableGameComponent
     {
-        private List<GameScreen> screens = new List<GameScreen>();
-        // Analizar si es necesario tener una copia de los GameScreen !!!!
-        private List<GameScreen> tempScreensList = new List<GameScreen>();
-        private InputState input = new InputState();
+        // Maintains a stack of screens.
+        private List<GameScreen> screens;
+        // Maintains a stack of temporary screens.
+        private List<GameScreen> tempScreensList;
+
+        // Enables a group of sprites to be drawn using the same settings.
         private SpriteBatch spriteBatch;
-        private ContentManager contentManager;
-        private bool isInitialized;
-        // BasicEffect.
+        // Contains a basic rendering effect.
         private BasicEffect basicEffect;
+
+        // This element tracks both the current and previous state of the input devices, 
+        // and implements query methods for high level input actions such as 
+        // "move up through the menu" or "pause the game".
+        private InputState input;
+
+        // Determines if we load/unload content.
+        private bool isInitialized;
+
 
         /// <summary>
         /// A default SpriteBatch shared by all the screens. This saves
@@ -49,15 +50,29 @@ namespace ProyectoSimon
                 return spriteBatch;
             }
         }
+
+        /// <summary>
+        /// Returns the basic rendering effect.
+        /// </summary>
+        public BasicEffect BasicEffect
+        {
+            get
+            {
+                return basicEffect;
+            }
+        }
+
         /// <summary>
         /// Constructs a new screen manager component.
         /// </summary>
         public ScreenManager(Game game)
             : base(game)
         {
-            // Initialize structures.
-
+            screens = new List<GameScreen>();
+            tempScreensList = new List<GameScreen>();
+            input = new InputState();
         }
+
         /// <summary>
         /// Initializes the screen manager component.
         /// </summary>
@@ -68,47 +83,7 @@ namespace ProyectoSimon
             // Load the SpriteBatch.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // Create a BasicEffect to draw primitives.
-            inicializeBasicEffect();           
-        }
-
-        /// <summary>
-        /// Load your graphics content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            // Load content belonging to the screen manager.
-            contentManager = Game.Content;
-            // Tell each of the screens to load their content.
-            foreach (GameScreen screen in screens)
-                screen.Activate(false);
-            DataManager dm = DataManager.Instance;
-            dm.setGraphicDevice(this.GraphicsDevice);
-            dm.initialize();
-            GameContentManager cm = GameContentManager.Instance;
-            cm.setContent(this.contentManager);
-            cm.initialize();
-            KinectSDK kinect = KinectSDK.Instance;
-            kinect.setGraphicDevice(this.GraphicsDevice, this.GraphicsDevice.Viewport.Width, this.GraphicsDevice.Viewport.Height);
-        }
-
-        /// <summary>
-        /// Inicializes a BasicEffect to draw primitives in the screens.
-        /// </summary>
-        private void inicializeBasicEffect()
-        {
-            basicEffect = new BasicEffect(GraphicsDevice);
-            basicEffect.VertexColorEnabled = true;
-            basicEffect.Projection = Matrix.CreateOrthographicOffCenter(0, spriteBatch.GraphicsDevice.Viewport.Width, spriteBatch.GraphicsDevice.Viewport.Height, 0, 0, 1);
-        }
-        
-        /// <summary>
-        /// Unload your graphics content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // Tell each of the screens to unload their content.
-            foreach (GameScreen screen in screens)
-                screen.Unload();
+            inicializeBasicEffect();
         }
 
         /// <summary>
@@ -176,7 +151,7 @@ namespace ProyectoSimon
         public void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
         {
             screen.ControllingPlayer = controllingPlayer;
-            screen.setScreenManager(this);
+            screen.ScreenManager = this;
             screen.IsExiting = false;
 
             // If we have a graphics device, tell the screen to load content.
@@ -250,11 +225,54 @@ namespace ProyectoSimon
         }
 
         /// <summary>
-        /// Return the basicEffect asociated.
+        /// Loads your graphics content.
         /// </summary>
-        public BasicEffect getBasicEffect()
+        protected override void LoadContent()
         {
-            return basicEffect;
+            // Tell each of the screens to load their content.
+            foreach (GameScreen screen in screens)
+            {
+                screen.Activate(false);
+            }
+
+            DataManager dm = DataManager.Instance;
+            dm.setGraphicDevice(this.GraphicsDevice);
+            dm.initialize();
+
+            GameContentManager cm = GameContentManager.Instance;
+            cm.setContent(Game.Content);
+            cm.initialize();
+
+            KinectSDK kinect = KinectSDK.Instance;
+            kinect.setGraphicDevice(this.GraphicsDevice, this.GraphicsDevice.Viewport.Width, this.GraphicsDevice.Viewport.Height);
         }
+
+        /// <summary>
+        /// Unload your graphics content.
+        /// </summary>
+        protected override void UnloadContent()
+        {
+            // Tell each of the screens to unload their content.
+            foreach (GameScreen screen in screens)
+                screen.Unload();
+        }
+
+        /// <summary>
+        /// Inicializes a BasicEffect to draw primitives in the screens.
+        /// </summary>
+        private void inicializeBasicEffect()
+        {
+            basicEffect = new BasicEffect(GraphicsDevice);
+            basicEffect.VertexColorEnabled = true;
+            basicEffect.Projection = Matrix.CreateOrthographicOffCenter(
+                0,
+                spriteBatch.GraphicsDevice.Viewport.Width,
+                spriteBatch.GraphicsDevice.Viewport.Height,
+                0,
+                0,
+                1);
+        }
+
     }
+
 }

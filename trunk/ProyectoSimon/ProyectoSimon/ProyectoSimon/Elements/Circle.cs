@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Box2D.XNA;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ProyectoSimon.Elements
 {
@@ -33,7 +34,6 @@ namespace ProyectoSimon.Elements
 
         // Physics world associated.
         private World physicsWorld;
-
 
         public Circle(World physicsWorld, Vector2 position, float radius, Boolean skeleton)
         {
@@ -147,11 +147,11 @@ namespace ProyectoSimon.Elements
         /// Displays the circle object using primitives.
         /// </summary>
         /// <param name="screenManager">Main manager system.</param>
-        public override void display(ScreenManager screenManager)
+        public override void display(SpriteBatch spriteBatch, BasicEffect basicEffect)
         {
             ElementCircle solidCircle = new ElementCircle(radius, body.Position * PIXELS_TO_METERS, mainColor, secondColor, alpha);
-            solidCircle.draw(screenManager);
-            solidCircle.drawBorderWeigth(screenManager, edgeColor, 1.5f);
+            solidCircle.draw(spriteBatch, null);
+            solidCircle.drawBorderWeigth(spriteBatch, basicEffect, edgeColor, 1.5f);
         }
 
         /// <summary>

@@ -43,7 +43,7 @@ namespace ProyectoSimon
             {
                 return primitiveType;
             }
-            
+
             set
             {
                 primitiveType = value;
@@ -85,22 +85,22 @@ namespace ProyectoSimon
         /// <summary>
         /// Draws a shape border specifying a size.
         /// </summary>
-        public abstract void drawBorderWeigth(ScreenManager sManager, Color color, float size);
+        public abstract void drawBorderWeigth(SpriteBatch spriteBatch, BasicEffect basicEffect, Color color, float size);
 
         /// <summary>
         /// Ability to draw itself.
         /// </summary>
-        public override void draw(ScreenManager screenManager)
+        public override void draw(SpriteBatch spriteBatch, BasicEffect basicEffect)
         {
-            screenManager.getBasicEffect().CurrentTechnique.Passes[0].Apply();
+            basicEffect.CurrentTechnique.Passes[0].Apply();
 
-            screenManager.SpriteBatch.Begin();
-            screenManager.SpriteBatch.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+            spriteBatch.Begin();
+            spriteBatch.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
                 PrimitiveType,
                 VertexData,
                 VertexOffset,
                 PrimitiveCount);
-            screenManager.SpriteBatch.End();
+            spriteBatch.End();
         }
 
     }
