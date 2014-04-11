@@ -20,8 +20,8 @@ namespace ProyectoSimon.Elements
 
         public Ground(World world, Vector2 v1, Vector2 v2)
         {
-            this.v1 = v1 / PIXELS_TO_METERS;
-            this.v2 = v2 / PIXELS_TO_METERS;
+            this.v1 = v1 / CommonConstants.PIXELS_TO_METERS;
+            this.v2 = v2 / CommonConstants.PIXELS_TO_METERS;
             // Create the physics world.
             makeGround(world);
         }

@@ -94,7 +94,7 @@ namespace ProyectoSimon
 
         private Circle makePhysicElement()
         {
-            Circle aux = new Circle(physicsWorld, new Vector2(bwidth, bheight / 2), 20, false);
+            Circle aux = new Circle(physicsWorld, new Vector2(bwidth, bheight / 2), CommonConstants.CIRCLERADIUS, false);
             aux.setLinearVelocity(new Vector2(-10, 0)); // atributo desde xml !!
 
             return aux;

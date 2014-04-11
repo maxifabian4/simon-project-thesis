@@ -123,7 +123,7 @@ namespace ProyectoSimon
             {
                 x = random.Next(350, bwidth - 350);
                 y = random.Next(20, bheight - 100);
-                physicsElements.Add(new Circle(physicsWorld, new Vector2(x, y), 20, false));
+                physicsElements.Add(new Circle(physicsWorld, new Vector2(x, y), CommonConstants.CIRCLERADIUS, false));
             }
 
             // Add floor element.
@@ -256,7 +256,7 @@ namespace ProyectoSimon
                 //mousePoint.getBody().Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 
                 if (moreBalls.Evaluate(input, ControllingPlayer, out player))
-                    physicsElements.Add(new Circle(physicsWorld, new Vector2(bheight/4, bwidth / 4), 20, false));
+                    physicsElements.Add(new Circle(physicsWorld, new Vector2(bheight / 4, bwidth / 4), CommonConstants.CIRCLERADIUS, false));
                 
                 if (lessBalls.Evaluate(input, ControllingPlayer, out player))
                     physicsElements.Remove(physicsElements[physicsElements.Count-1]);

@@ -21,12 +21,13 @@ namespace ProyectoSimon
     {
         private ElementPolygon quad, fillQuad;
         private Random random = new Random();
-        //protected InputAction keyA, cameraKey;
         // Phisycs world parameters.
         private World physicsWorld;
         protected List<GameElement> physicsElments, bodyJoints;
         private string[] movements;
         private BoxGame leftBox, rightBox;
+        // Kinect parameters.
+        Skeleton skeleton;
         // Zones.
         Rectangle zoneL, zoneR, boxL, boxR, zoneFault;
         // Logic Game parameters
@@ -34,12 +35,6 @@ namespace ProyectoSimon
         private int hits, faults, currentElement, elements, bwidth, bheight;
         private GameTime gameTime;
         private Color circleColor, circleEdgeColor, circleJointColor;
-        private static int JOINTS_COUNT = 20;
-        private static int CIRCLERADIUS = 20;
-        private static int JOINTRADIUS = 10;
-        private static int PIXELS_TO_METERS = 30;
-        // Statistics.
-        //private Statistics currentStatistics;
 
         /// <summary>
         /// Constructor.
@@ -50,20 +45,6 @@ namespace ProyectoSimon
             currentStatistics = new Statistics("clasificador");
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
-
-            //pauseAction = new InputAction(
-            //    new Buttons[] { },
-            //    new Keys[] { Keys.Escape },
-            //    true);
-
-            //keyA = new InputAction(
-            //    new Buttons[] { },
-            //    new Keys[] { Keys.A },
-            //    true);
-            //cameraKey = new InputAction(
-            //    new Buttons[] { },
-            //    new Keys[] { Keys.RightShift, Keys.LeftShift },
-            //    true);
             generateInput();
             simulate = true;
             camera = false;
@@ -84,9 +65,9 @@ namespace ProyectoSimon
             boxR = new Rectangle(bwidth - 300, bheight - 125, 200, 100);
             zoneFault = new Rectangle(0, bheight * 2 / 3, bwidth, bheight / 2);
             //boxes
-            leftBox = new BoxGame(100 / PIXELS_TO_METERS, (bheight - 125) / PIXELS_TO_METERS, 200 / PIXELS_TO_METERS, 100 / PIXELS_TO_METERS);
+            leftBox = new BoxGame(100 / CommonConstants.PIXELS_TO_METERS, (bheight - 125) / CommonConstants.PIXELS_TO_METERS, 200 / CommonConstants.PIXELS_TO_METERS, 100 / CommonConstants.PIXELS_TO_METERS);
             leftBox.setProperty("left");
-            rightBox = new BoxGame((bwidth - 300) / PIXELS_TO_METERS, (bheight - 125) / PIXELS_TO_METERS, 200 / PIXELS_TO_METERS, 100 / PIXELS_TO_METERS);
+            rightBox = new BoxGame((bwidth - 300) / CommonConstants.PIXELS_TO_METERS, (bheight - 125) / CommonConstants.PIXELS_TO_METERS, 200 / CommonConstants.PIXELS_TO_METERS, 100 / CommonConstants.PIXELS_TO_METERS);
             rightBox.setProperty("right");
             loadWorld();
         }
@@ -100,10 +81,12 @@ namespace ProyectoSimon
                 for (int i = 0; i < elements; i++)
                     movements[i] = getRandomMove();
             else
-                movements = (string[])levels[currentLevel].getAttribute("move");
+                movements = (string[]) levels[currentLevel].getAttribute("move");
 
             physicsWorld = new World(new Vector2(0, Convert.ToInt16(levels[currentLevel].getAttribute("gravity"))), true);
             simulate = true;
+            //This game doesn't need a skeleton in physic world, it's a reason why skeleton constructor recibes a null physic world.
+            skeleton = new Skeleton(null);
             crearBordes(bwidth, bheight);
             currentElement = 0;
             loadElements();
@@ -132,8 +115,8 @@ namespace ProyectoSimon
             {
                 x = bwidth / 2;
                 y = 30;
-                body = createCircle(new Vector2(x, y), CIRCLERADIUS, physicsWorld);
-                Circle element = new Circle(physicsWorld, body.GetPosition(), CIRCLERADIUS, false);
+                body = createCircle(new Vector2(x, y), CommonConstants.CIRCLERADIUS, physicsWorld);
+                Circle element = new Circle(physicsWorld, body.GetPosition(), CommonConstants.CIRCLERADIUS, false);
                 element.setLinearVelocity(Vector2.Zero);
 
                 element.setProperty(movements[currentElement]);
@@ -146,29 +129,7 @@ namespace ProyectoSimon
                 physicsElments.Add(element);
             }
             currentElement++;
-        }
-
-        //public void updateBodyJoints(IDictionary<Microsoft.Kinect.JointType, Vector2> js)
-        //{
-        //    jointsIDs = js;
-        //    float deltha = 0.25f;
-        //    Vector2 posNew, posOld, posResult;
-        //    if (js != null)
-        //    {
-        //        ICollection<Microsoft.Kinect.JointType> keys = js.Keys;
-        //        //float x,y;
-        //        for (int i = 0; i < JOINTS_COUNT; i++)
-        //        {
-        //            ////x = js[keys.ElementAt<JointID>(i)].X;
-        //            ////y = js[keys.ElementAt<JointID>(i)].Y;
-        //            //posNew = js[keys.ElementAt<JointID>(i)];
-        //            //posOld = bodyJoints[i].getBody().Position;
-        //            //posResult = posNew - posOld;
-        //            //if (posResult.LengthSquared() > deltha)
-        //            //    bodyJoints[i].getBody().Position = js[keys.ElementAt<JointID>(i)];
-        //        }               
-        //    }
-        //}       
+        }       
 
         private void crearBordes(int bbwidth, int bbheight)
         {
@@ -241,7 +202,9 @@ namespace ProyectoSimon
         /// <summary>
         /// Unload graphics content used by the game.
         /// </summary>
-        public override void Unload() { }
+        public override void Unload()
+        {
+        }
 
         /// <summary>
         /// Updates the state of the game. This method checks the GameScreen.IsActive
@@ -264,21 +227,21 @@ namespace ProyectoSimon
 
         private void verifyElementBox()
         {
-            if (((Circle)physicsElments[0]).getBody().Position.Y > (bheight - 45) / PIXELS_TO_METERS)
+            if (((Circle) physicsElments[0]).getBody().Position.Y > (bheight - 45) / CommonConstants.PIXELS_TO_METERS)
             {
                 faults++;
-                physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
+                physicsWorld.DestroyBody(((Circle) physicsElments[0]).getBody());
                 physicsElments.Remove(physicsElments[0]);
                 //Console.WriteLine("fallo" + ((Circle)physicsElments[0]).getBody().Position.Y);
                 loadElements();
             }
             else
             {
-                Console.WriteLine(" entro" + ((Circle)physicsElments[0]).getBody().Position.Y + " " + bheight);
+                //Console.WriteLine(" entro" + ((Circle) physicsElments[0]).getBody().Position.Y + " " + bheight);
                 if (leftBox.inside(((Circle) physicsElments[0]).getBody().Position) && leftBox.isStorable((Circle) physicsElments[0]))
                 {
                     hits++;
-                    physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
+                    physicsWorld.DestroyBody(((Circle) physicsElments[0]).getBody());
                     physicsElments.Remove(physicsElments[0]);
                     loadElements();
                 }
@@ -286,7 +249,7 @@ namespace ProyectoSimon
                     if (leftBox.inside(((Circle) physicsElments[0]).getBody().Position) && !leftBox.isStorable((Circle) physicsElments[0]))
                     {
                         faults++;
-                        physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
+                        physicsWorld.DestroyBody(((Circle) physicsElments[0]).getBody());
                         physicsElments.Remove(physicsElments[0]);
                         loadElements();
                     }
@@ -294,7 +257,7 @@ namespace ProyectoSimon
                         if (rightBox.inside(((Circle) physicsElments[0]).getBody().Position) && rightBox.isStorable((Circle) physicsElments[0]))
                         {
                             hits++;
-                            physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
+                            physicsWorld.DestroyBody(((Circle) physicsElments[0]).getBody());
                             physicsElments.Remove(physicsElments[0]);
                             loadElements();
                         }
@@ -302,32 +265,28 @@ namespace ProyectoSimon
                             if (rightBox.inside(((Circle) physicsElments[0]).getBody().Position) && !rightBox.isStorable((Circle) physicsElments[0]))
                             {
                                 faults++;
-                                physicsWorld.DestroyBody(((Circle)physicsElments[0]).getBody());
+                                physicsWorld.DestroyBody(((Circle) physicsElments[0]).getBody());
                                 physicsElments.Remove(physicsElments[0]);
                                 loadElements();
                             }
             }
         }
-
         private void controllZone()
         {
-            if (jointsIDs != null)
+            if (KinectSDK.Instance.getJointPosition(Microsoft.Kinect.JointType.HandLeft).X < 300 + 100 && KinectSDK.Instance.getJointPosition(Microsoft.Kinect.JointType.HandLeft).X > bwidth / 4 &&
+                        KinectSDK.Instance.getJointPosition(Microsoft.Kinect.JointType.HandLeft).Y < (200 + 100) && KinectSDK.Instance.getJointPosition(Microsoft.Kinect.JointType.HandLeft).Y > 200)
             {
-                if (jointsIDs[Microsoft.Kinect.JointType.HandLeft].X < 300 + 100 && jointsIDs[Microsoft.Kinect.JointType.HandLeft].X > bwidth / 4 &&
-                    jointsIDs[Microsoft.Kinect.JointType.HandLeft].Y < (200 + 100) && jointsIDs[Microsoft.Kinect.JointType.HandLeft].Y > 200)
-                {
-                    //Console.WriteLine("izq");
-                    ((Circle)physicsElments[0]).getBody().Position = new Vector2(200, bheight - bheight / 2) / PIXELS_TO_METERS;
+                //Console.WriteLine("izq");
+                ((Circle) physicsElments[0]).getBody().Position = new Vector2(200, bheight - bheight / 2) / CommonConstants.PIXELS_TO_METERS;
 
-                }
-                else
-                    if (jointsIDs[Microsoft.Kinect.JointType.HandRight].X < bwidth * 3 / 4 && jointsIDs[Microsoft.Kinect.JointType.HandRight].X > (bwidth * 3 / 4 - 100) &&
-                    jointsIDs[Microsoft.Kinect.JointType.HandRight].Y < 200 + 100 && jointsIDs[Microsoft.Kinect.JointType.HandRight].Y > 200)
-                    {
-                        //Console.WriteLine("der");
-                        ((Circle)physicsElments[0]).getBody().Position = new Vector2((bwidth - 200) / PIXELS_TO_METERS, (bheight - bheight / 2) / PIXELS_TO_METERS);
-                    }
             }
+            else
+                if (KinectSDK.Instance.getJointPosition(Microsoft.Kinect.JointType.HandRight).X < bwidth * 3 / 4 && KinectSDK.Instance.getJointPosition(Microsoft.Kinect.JointType.HandRight).X > (bwidth * 3 / 4 - 100) &&
+                KinectSDK.Instance.getJointPosition(Microsoft.Kinect.JointType.HandRight).Y < 200 + 100 && KinectSDK.Instance.getJointPosition(Microsoft.Kinect.JointType.HandRight).Y > 200)
+                {
+                    //Console.WriteLine("der");
+                    ((Circle) physicsElments[0]).getBody().Position = new Vector2((bwidth - 200) / CommonConstants.PIXELS_TO_METERS, (bheight - bheight / 2) / CommonConstants.PIXELS_TO_METERS);
+                }
         }
 
         public override void restartStage()
@@ -345,39 +304,13 @@ namespace ProyectoSimon
             loadWorld();
         }
 
-        //private void verifyInteractionBetweenBodies()
-        //{
-        //    Contact contact = physicsWorld.GetContactList();
-        //    //IContactListener listener = physicsWorld.ContactListener;
-        //    //listener.EndContact(contact);            
-        //    Body bodyReturn = handContactBall(contact);
-        //    timeSpan -= gameTime.ElapsedGameTime;
-
-        //    if (bodyReturn != null)
-        //    {
-        //        //ElementPhysic e = getPhysicElement(bodyReturn);
-        //        //e.incHitNumber();
-        //        //e.setColor(Color.Red);
-        //        //if (e.getHitNumber().Equals(2))
-        //        ////if(e.getColor().Equals(Color.Red))
-        //        //{
-        //        //    physicsWorld.DestroyBody(bodyReturn);
-        //        //    physicsElments.Remove(e);
-        //        //    elements--;
-        //        //}
-        //        //hits++;
-
-        //        ////hit.Play();
-        //    }
-        //}
-
         public override void HandleInput(GameTime gameTime, InputState input)
         {
             if (input == null)
                 throw new ArgumentNullException("input");
 
             // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
+            int playerIndex = (int) ControllingPlayer.Value;
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             PlayerIndex player;
@@ -397,10 +330,11 @@ namespace ProyectoSimon
                 //updateBodyJoints(ScreenManager.Kinect.getJoints());
 
                 //jointsIDs = ScreenManager.Kinect.getJoints();               
-                updateJoints(KinectSDK.Instance.getJoints());
+                //updateJoints(KinectSDK.Instance.getJoints());
 
                 //if (keyboardState.IsKeyDown(Keys.LeftControl))
                 //    simulate = !simulate;
+                skeleton.update(KinectSDK.Instance.getJoints());
                 if (seatedMode.Evaluate(input, ControllingPlayer, out player))
                     KinectSDK.Instance.setSeatedMode();
                 if (defaultMode.Evaluate(input, ControllingPlayer, out player))
@@ -409,12 +343,12 @@ namespace ProyectoSimon
                     camera = true;
                 else
                     if (camera && cameraKey.Evaluate(input, ControllingPlayer, out player))
-                        camera = false;  
+                        camera = false;
 
                 if (simulate)
                 {
 
-                    physicsWorld.Step((float)gameTime.ElapsedGameTime.TotalSeconds, 10, 10);
+                    physicsWorld.Step((float) gameTime.ElapsedGameTime.TotalSeconds, 10, 10);
                     //Console.WriteLine((float)gameTime.ElapsedGameTime.TotalSeconds);
                     //rHand.Position = hRight;
                     //lHand.Position = hLeft;
@@ -440,79 +374,6 @@ namespace ProyectoSimon
             }
         }
 
-        // crear una clase que implemente IDicttionary??'
-        public void updateJoints(IDictionary<Microsoft.Kinect.JointType, Vector2> js)
-        {
-            jointsIDs = js;
-            float deltha = 0.25f;
-            Vector2 posNew, posOld, posResult;
-            if (js != null)
-            {
-                ICollection<Microsoft.Kinect.JointType> keys = js.Keys;
-                //float x,y;
-                for (int i = 0; i < JOINTS_COUNT; i++)
-                {
-                    //x = js[keys.ElementAt<JointID>(i)].X;
-                    //y = js[keys.ElementAt<JointID>(i)].Y;
-                    posNew = js[keys.ElementAt<Microsoft.Kinect.JointType>(i)];
-                    posOld = jointsIDs[keys.ElementAt<Microsoft.Kinect.JointType>(i)];
-                    posResult = posNew - posOld;
-                    if (posResult.LengthSquared() > deltha)
-                        jointsIDs[keys.ElementAt<Microsoft.Kinect.JointType>(i)] = js[keys.ElementAt<Microsoft.Kinect.JointType>(i)];
-                }
-                //controll skeleton
-                hideBody = false;
-                posResult = js[Microsoft.Kinect.JointType.Head] - js[Microsoft.Kinect.JointType.ShoulderCenter];
-                Vector2 posResult1 = js[Microsoft.Kinect.JointType.Head] - js[Microsoft.Kinect.JointType.ShoulderCenter];
-                //Console.WriteLine("head " + js[JointID.Head]);
-                //Console.WriteLine("shoulder " + js[JointID.ShoulderCenter]);
-                //if (posResult.LengthSquared() > 10000 || posResult1.LengthSquared() < 2500)
-                //{
-                //    hideBody = true;
-                //}
-            }
-        }
-
-        //private ElementPhysic getPhysicElement(Body b)
-        //{
-        //    ElementPhysic p = null;
-        //    for (int i = 0; i < physicsElments.Count; i++)
-        //        if (((Circle)physicsElments[i]).getBody().Equals(b))
-        //            return p = physicsElments[i];
-        //    if (p == null)
-        //    {
-        //        for (int i = 0; i < bodyJoints.Count; i++)
-        //            if (((Circle)physicsElments[i]).getBody().Equals(b))
-        //                return p = bodyJoints[i];
-        //    }
-        //    return p;
-        //}
-
-        //private Body handContactBall(Contact c)
-        //{
-        //    Body ret = null;
-        //    if (c != null && c.IsTouching())
-        //    {
-        //        ElementPhysic elementA = getPhysicElement(c.GetFixtureA().GetBody());
-        //        ElementPhysic elementB = getPhysicElement(c.GetFixtureB().GetBody());
-
-        //        //if (elementA != null && elementB != null && elementA.getColor().Equals(circleJoint) && elementB.getColor().Equals(circleColor) )
-        //        //    ret = c.GetFixtureB().GetBody();
-        //        //else if (elementA != null && elementB != null && elementB.getColor().Equals(circleJoint) &&  elementB.getColor().Equals(Color.Red))
-        //        //    ret = c.GetFixtureB().GetBody();
-        //        //else if (elementA != null && elementB != null && elementB.getColor().Equals(circleJoint) && elementA.getColor().Equals(circleColor))
-        //        //    ret = c.GetFixtureA().GetBody();               
-        //        //else if (elementA != null && elementB != null && elementB.getColor().Equals(circleJoint) && elementA.getColor().Equals(Color.Red))                   
-        //        //    ret = c.GetFixtureA().GetBody();
-
-        //        //if (elementA != null && elementB != null && elementA.getColor().Equals(circleJointColor) && (elementB.getColor().Equals(circleColor) || elementB.getColor().Equals(Color.Red)))
-        //        //    ret = c.GetFixtureB().GetBody();
-        //        //else if (elementA != null && elementB != null && elementB.getColor().Equals(circleJointColor) && (elementA.getColor().Equals(circleColor) || elementA.getColor().Equals(Color.Red)))
-        //        //    ret = c.GetFixtureA().GetBody();
-        //    }
-        //    return ret;
-        //}
-
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
@@ -527,8 +388,8 @@ namespace ProyectoSimon
             //drawSkeleton(spriteBatch);
             if (!hideBody)
             {
-                // Draw lines.
-                KinectSDK.Instance.display(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
+                // Draw skeleton.
+                skeleton.display(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             }
             // Draw ground.
             //drawGroundPrimitive(spriteBatch);            
@@ -563,7 +424,7 @@ namespace ProyectoSimon
             spriteBatch.Draw(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX), new Vector2(boxL.X, boxL.Y), null, Color.Green, 0, new Vector2(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Width / 3 + 100, GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
             spriteBatch.Draw(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX), new Vector2(boxR.X, boxR.Y), null, Color.Yellow, 0, new Vector2(GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Width / 3 + 100, GameContentManager.Instance.getTexture(GameContentManager.TEXTURE_GAMEBOX).Height / 2), 1, SpriteEffects.None, 0);
             spriteBatch.End();
-            
+
             base.Draw(gameTime);
         }
 
