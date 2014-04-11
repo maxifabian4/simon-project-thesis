@@ -15,9 +15,6 @@ namespace ProyectoSimon.Elements
     /// </summary>
     public abstract class GameElement
     {
-        // Constant value used to render primitives to the screen.
-        protected const int PIXELS_TO_METERS = 30;
-
         /// <summary>
         /// Displays the GameElement object depending on the instance.
         /// </summary>

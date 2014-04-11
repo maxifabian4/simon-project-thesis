@@ -15,7 +15,7 @@ namespace ProyectoSimon.Elements
     public class Skeleton : GameElement
     {
         // Number of skeleton joints.
-        private static int JOINTS_COUNT = 20;
+        //private static int JOINTS_COUNT = 20;
 
         // Physics circles used to represent the skeleton.
         private List<Circle> circleJoints;
@@ -29,6 +29,7 @@ namespace ProyectoSimon.Elements
 
         public Skeleton(World physicsWorld)
         {
+            circleJoints = new List<Circle>();
             if (physicsWorld != null)
             {
                 makeJoints(physicsWorld);
@@ -40,12 +41,10 @@ namespace ProyectoSimon.Elements
         private void makeJoints(World physicsWorld)
         {
             Circle circle;
-            circleJoints = new List<Circle>();
-
             // Create a physics circle for each skeleton joints that make up a tracked skeleton.
-            for (int i = 0; i < JOINTS_COUNT; i++)
+            for (int i = 0; i < CommonConstants.JOINTS_COUNT; i++)
             {
-                circle = new Circle(physicsWorld, new Vector2(50, 50), 10, true);
+                circle = new Circle(physicsWorld, new Vector2(50, 50), CommonConstants.JOINTRADIUS, true);
 
                 // Set physics properties.
                 circle.setBodyType(BodyType.Static);
@@ -69,9 +68,9 @@ namespace ProyectoSimon.Elements
             {
                 keys = js.Keys;
 
-                for (int i = 0; i < JOINTS_COUNT; i++)
+                for (int i = 0; i < CommonConstants.JOINTS_COUNT; i++)
                 {
-                    circleJoints[i].getBody().Position = js[keys.ElementAt<Microsoft.Kinect.JointType>(i)] / PIXELS_TO_METERS;
+                    circleJoints[i].getBody().Position = js[keys.ElementAt<Microsoft.Kinect.JointType>(i)] / CommonConstants.PIXELS_TO_METERS;
                 }
             }
 

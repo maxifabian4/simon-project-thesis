@@ -94,7 +94,7 @@ namespace ProyectoSimon
             {
                 x = random.Next(350, bwidth - 350);
                 y = random.Next(20, bheight - 100);
-                physicsElements.Add(new Circle(physicsWorld, new Vector2(x, y), 20,false));
+                physicsElements.Add(new Circle(physicsWorld, new Vector2(x, y), CommonConstants.CIRCLERADIUS, false));
             }
 
             // Add floor element.

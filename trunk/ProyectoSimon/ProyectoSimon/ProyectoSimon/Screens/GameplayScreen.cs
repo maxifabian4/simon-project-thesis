@@ -27,8 +27,7 @@ namespace ProyectoSimon
     {
         protected float pauseAlpha;
         protected InputAction pauseAction;
-        protected IList<Level> levels;
-        protected IDictionary<Microsoft.Kinect.JointType, Vector2> jointsIDs;
+        protected IList<Level> levels;        
         protected Statistics currentStatistics;
         protected TimeSpan timeSpan;
         protected int currentLevel;

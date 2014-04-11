@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace ProyectoSimon.Utils
+namespace ProyectoSimon
 {
     /// <summary>
     /// Constants are immutable values which are known at compile time and do not change for the life of the program.
@@ -27,6 +27,12 @@ namespace ProyectoSimon.Utils
         public const string DEFAULT_USER_CAPTURE = "foto";
         public const int DEFAULT_USER_AGE_VALUE = 0;
         public const int NEW_USER_INDEX = -1;
+
+        // Default constants used to draw.
+        public static int JOINTS_COUNT = 20;// Skeleton joints number.
+        public static int CIRCLERADIUS = 20;// Circle radius.
+        public static int JOINTRADIUS = 10;// Skeleton joint radius.
+        public static int PIXELS_TO_METERS = 30;// Constant value used to render primitives on screen.
 
         // Constants used to draw a default template in the MainMenuScreen.
         public const string DEFAULT_USER_AGE_STRING = "{0} años";

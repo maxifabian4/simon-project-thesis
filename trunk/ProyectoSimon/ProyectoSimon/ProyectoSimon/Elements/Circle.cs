@@ -149,8 +149,8 @@ namespace ProyectoSimon.Elements
         /// <param name="screenManager">Main manager system.</param>
         public override void display(SpriteBatch spriteBatch, BasicEffect basicEffect)
         {
-            ElementCircle solidCircle = new ElementCircle(radius, body.Position * PIXELS_TO_METERS, mainColor, secondColor, alpha);
-            solidCircle.draw(spriteBatch, null);
+            ElementCircle solidCircle = new ElementCircle(radius, body.Position * CommonConstants.PIXELS_TO_METERS, mainColor, secondColor, alpha);
+            solidCircle.draw(spriteBatch, basicEffect);
             solidCircle.drawBorderWeigth(spriteBatch, basicEffect, edgeColor, 1.5f);
         }
 
@@ -162,12 +162,12 @@ namespace ProyectoSimon.Elements
         {
             BodyDef bodyDef = new BodyDef();
             bodyDef.type = BodyType.Dynamic;
-            bodyDef.position = position / PIXELS_TO_METERS;
+            bodyDef.position = position / CommonConstants.PIXELS_TO_METERS;
 
             body = physicsWorld.CreateBody(bodyDef);
 
             CircleShape dynamicCircle = new CircleShape();
-            dynamicCircle._radius = radius / PIXELS_TO_METERS;
+            dynamicCircle._radius = radius / CommonConstants.PIXELS_TO_METERS;
 
             FixtureDef fixtureDef = new FixtureDef();
             fixtureDef.shape = dynamicCircle;
@@ -191,12 +191,12 @@ namespace ProyectoSimon.Elements
         {
             BodyDef bodyDef = new BodyDef();
             bodyDef.type = BodyType.Dynamic;
-            bodyDef.position = position / PIXELS_TO_METERS;
+            bodyDef.position = position / CommonConstants.PIXELS_TO_METERS;
 
             body = physicsWorld.CreateBody(bodyDef);
 
             CircleShape dynamicCircle = new CircleShape();
-            dynamicCircle._radius = radius / PIXELS_TO_METERS;
+            dynamicCircle._radius = radius / CommonConstants.PIXELS_TO_METERS;
 
             FixtureDef fixtureDef = new FixtureDef();
             fixtureDef.shape = dynamicCircle;
