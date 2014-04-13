@@ -83,5 +83,7 @@ namespace ProyectoSimon
         public const string EXIT_SYSTEM_QUESTION = "Desea salir del systema?";
         public const string EXIT_SYSTEM_ANSWER_OPTIONS = "ACEPTAR = enter CANCELAR = esc";
 
+        // Log file properties.
+        public const string LOG_FILE_PATH = "Logs\\log-{0}.txt";
     }
 }

@@ -19,6 +19,7 @@ using Microsoft.Xna.Framework.Storage;
 using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
+using ProyectoSimon.Utils;
 
 namespace ProyectoSimon
 {
@@ -40,6 +41,8 @@ namespace ProyectoSimon
         /// </summary>
         public Game()
         {
+            CustomLog.Log(null, CustomLog.LoggerLevel.INFO, "Simon Framework has been started.");
+
             Content.RootDirectory = "Content";
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - 100;
