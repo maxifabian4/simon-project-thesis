@@ -160,6 +160,7 @@
     <Compile Include="Screens\UserFormMenuScreen.cs" />
     <Compile Include="Utils\CommonConstants.cs" />
     <Compile Include="Utils\CommonUtilMethods.cs" />
+    <Compile Include="Utils\CustomLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
