@@ -1,10 +1,3 @@
-//-----------------------------------------------------------------------------
-// GameplayScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-
 using System;
 using System.Threading;
 using Microsoft.Xna.Framework;
@@ -27,17 +20,16 @@ namespace ProyectoSimon
     {
         protected float pauseAlpha;
         protected InputAction pauseAction;
-        protected IList<Level> levels;        
+        protected IList<Level> levels;
         protected Statistics currentStatistics;
         protected TimeSpan timeSpan;
         protected int currentLevel;
         protected InputAction cameraKey, seatedMode, defaultMode;
-
+        protected int width, height;
         /// <summary>
         /// Load graphics content for the game.
         /// </summary>
         /// 
-
         protected void generateInput()
         {
             pauseAction = new InputAction(
@@ -83,7 +75,9 @@ namespace ProyectoSimon
         /// <summary>
         /// Unload graphics content used by the game.
         /// </summary>
-        public override void Unload() { }
+        public override void Unload()
+        {
+        }
 
         /// <summary>
         /// Updates the state of the game. This method checks the GameScreen.IsActive
@@ -115,14 +109,14 @@ namespace ProyectoSimon
         {
             if (input == null)
                 throw new ArgumentNullException("input");
-          
+
             PlayerIndex player;
             if (pauseAction.Evaluate(input, ControllingPlayer, out player))
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
         }
 
         /// <summary>
-        /// Create a Circle body an put it in the Box2D world.
+        /// Creates a Circle body an put it in the Box2D world.
         /// </summary>
         protected Body createCircle(Vector2 position, float radius, World physicsWorld)
         {
@@ -181,7 +175,6 @@ namespace ProyectoSimon
         /// </summary>
         void ConfirmExitMessageStateAccepted(object sender, PlayerIndexEventArgs e)
         {
-            //stage.stopSong();
             MainMenuScreen mainMenuScreen = new MainMenuScreen();
             mainMenuScreen.CurrentUser = DataManager.Instance.getUserIndex();
             mainMenuScreen.CurrentGame = DataManager.Instance.getIndexGame();
@@ -193,17 +186,15 @@ namespace ProyectoSimon
         /// </summary>
         void ConfirmExitMessageBoxCancelled(object sender, PlayerIndexEventArgs e)
         {
-            ////stage.stopSong();
             restartStage();
-            //playSong();
         }
-
+        /// <summary>
+        /// Listener implemented when the user pick next level option on message box. 
+        /// </summary>
         void ConfirmNextMessageBoxAcepted(object sender, PlayerIndexEventArgs e)
         {
-            ////stage.stopSong();
             nextLevel();
             restartStage();
-            //playSong();
         }
 
         /// <summary>
@@ -237,18 +228,15 @@ namespace ProyectoSimon
         /// <summary>
         /// Provate method to draw a panel with the current statistics.
         /// </summary>
-        protected void drawStatisticsPanel(SpriteBatch spriteBatch, String[] items) { 
+        protected void drawStatisticsPanel(SpriteBatch spriteBatch, String[] items)
+        {
             // Load font to draw.
             SpriteFont statisticsFont = GameContentManager.Instance.getFont(GameContentManager.FONT_STATISTICSFONT);
             Vector2 generalPosition = new Vector2(15, 10);
-            // Draw panel.
-            //quad = new ElementPolygon(5, 10, 170, 110, Color.Black, 0.5f, true);
-            //quad.drawPrimitive(ScreenManager);
-            //fillQuad = new ElementPolygon(5, 10, 170, 110, new Color(33, 33, 33), 1, false);
-            //fillQuad.drawPrimitive(ScreenManager);
 
             spriteBatch.Begin();
-            for (int i = 0; i < items.Length; i++) {
+            for (int i = 0; i < items.Length; i++)
+            {
                 // Draw text panel.
                 spriteBatch.DrawString(statisticsFont, items[i], generalPosition + new Vector2(2, 2), Color.Black);
                 spriteBatch.DrawString(statisticsFont, items[i], generalPosition, Color.White);
