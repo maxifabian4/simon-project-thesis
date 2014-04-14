@@ -27,32 +27,21 @@ namespace ProyectoSimon
         protected List<GameElement> physicsElements;
         // Logic game parameters.
         private bool simulate, camera, video, win;
-        private int elements, bwidth, bheight;
+        private int elements;
         private GameTime gameTime;
         private Color circleColor, circleEdgeColor, circleJointColor;
-        //private Circle mousePoint;
-        //private static int PIXELS_TO_METERS = 30;
 
         /// <summary>
-        /// Constructor.
+        /// Class constructor where initializes all dinamic game structures .
         /// </summary>
         public GamePlayScreenFree(int w, int h, IList<Level> l)
         {
             // Create the statistics.
-            currentStatistics = new Statistics("libre");            
+            currentStatistics = new Statistics("libre");
 
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
             generateInput();
-            //pauseAction = new InputAction(
-            //    new Buttons[] { },
-            //    new Keys[] { Keys.Escape },
-            //    true);
-
-            //cameraKey = new InputAction(
-            //    new Buttons[] { },
-            //    new Keys[] { Keys.RightShift, Keys.LeftShift },
-            //    true);
 
             moreBalls = new InputAction(
                 new Buttons[] { },
@@ -63,21 +52,11 @@ namespace ProyectoSimon
                 new Buttons[] { },
                 new Keys[] { Keys.OemMinus },
                 true);
-            
+
             winKey = new InputAction(
                new Buttons[] { },
                new Keys[] { Keys.G },
                true);
-
-            //seatedMode = new InputAction(
-            //   new Buttons[] { },
-            //   new Keys[] { Keys.LeftAlt, Keys.RightAlt },
-            //   true);
-
-            //defaultMode = new InputAction(
-            //   new Buttons[] { },
-            //   new Keys[] { Keys.LeftControl, Keys.RightControl },
-            //   true);
 
             simulate = true;
             camera = false;
@@ -85,15 +64,14 @@ namespace ProyectoSimon
             currentLevel = 0;
             levels = l;
             elements = Convert.ToInt32(levels[currentLevel].getAttribute("elements"));
-            bwidth = w;
-            bheight = h;
-            circleColor = new Color(227, 117, 64);
-            circleEdgeColor = new Color(193, 82, 28);
-            circleJointColor = new Color(206, 103, 0);
+            width = w;
+            height = h;        
 
             loadWorld();
         }
-
+        /// <summary>
+        /// It initializes a physic world, elements and player skeleton.
+        /// </summary>
         private void loadWorld()
         {
             // Inicialize physic elements list.
@@ -106,14 +84,13 @@ namespace ProyectoSimon
             // Load Kinect's elements.
             skeleton = new Skeleton(physicsWorld);
             // Load Box2d elements.
-            loadPhysicElements();            
+            loadPhysicElements();
             timeSpan = TimeSpan.Zero;
 
-            //mousePoint = new Circle(physicsWorld, new Vector2(30,30), 20, false);
-            //mousePoint.change(Color.White, Color.WhiteSmoke);
-
         }
-
+        /// <summary>
+        /// It creates game screen limits and circles in a random location on the screen.
+        /// </summary>
         private void loadPhysicElements()
         {
             int x, y;
@@ -121,21 +98,23 @@ namespace ProyectoSimon
             // Number of circles depend of the levels.
             for (int i = 0; i < Convert.ToInt32(levels[currentLevel].getAttribute("elements")); i++)
             {
-                x = random.Next(350, bwidth - 350);
-                y = random.Next(20, bheight - 100);
+                x = random.Next(350, width - 350);
+                y = random.Next(20, height - 100);
                 physicsElements.Add(new Circle(physicsWorld, new Vector2(x, y), CommonConstants.CIRCLERADIUS, false));
             }
 
             // Add floor element.
-            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, bheight), new Vector2(bwidth, bheight)));
+            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, height), new Vector2(width, height)));
             // Add wall right element.
-            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, 0.0f), new Vector2(0.0f, bheight)));
+            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, 0.0f), new Vector2(0.0f, height)));
             // Add wall left element.
-            physicsElements.Add(new Ground(physicsWorld, new Vector2(bwidth, 0.0f), new Vector2(bwidth, bheight)));
+            physicsElements.Add(new Ground(physicsWorld, new Vector2(width, 0.0f), new Vector2(width, height)));
             // Add roof element.
-            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, 0.0f), new Vector2(bwidth, 0.0f)));
-        }      
-
+            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, 0.0f), new Vector2(width, 0.0f)));
+        }
+        /// <summary>
+        /// It returns player state which indicates if a player won the game.
+        /// </summary>
         public override int getPlayerState()
         {
             // Playing state by default.
@@ -144,14 +123,14 @@ namespace ProyectoSimon
                 state = 1;
             return state;
         }
-
+        /// <summary>
+        /// It sets statistics game on a string array to show it after finalize the game level. 
+        /// </summary>
         public override string[] setCurrentStatistics()
         {
             return new string[] {       
                 "tiempo|" + timeSpan.Minutes + "." + timeSpan.Seconds,};
         }
-       
-
         /// <summary>
         /// Load graphics content for the game.
         /// </summary>
@@ -179,7 +158,9 @@ namespace ProyectoSimon
         /// <summary>
         /// Unload graphics content used by the game.
         /// </summary>
-        public override void Unload() { }
+        public override void Unload()
+        {
+        }
 
         /// <summary>
         /// Updates the state of the game. This method checks the GameScreen.IsActive
@@ -188,46 +169,44 @@ namespace ProyectoSimon
         /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            //Console.WriteLine("UPDATE");
             base.Update(gameTime, otherScreenHasFocus, false);
 
             if (IsActive)
             {
                 simulate = true;
                 this.gameTime = gameTime;
-                //mousePoint.getBody().Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 timeSpan += gameTime.ElapsedGameTime;
-                verifyGameStatus();                              
-                //verifyGameStatus();
-            }            
+                verifyGameStatus();
+            }
         }
-
+        /// <summary>
+        /// It reloads the physic world and elements to replay the game level. 
+        /// </summary>
         public override void restartStage()
         {
-            //levels[currentLevel].setAttribute("beginTime", DateTime.Now);
             loadWorld();
             elements = Convert.ToInt32(levels[currentLevel].getAttribute("elements"));
         }
-
+        /// <summary>
+        /// It loads next game level to play.
+        /// </summary>
         public override void nextLevel()
         {
-            //stopSong();
-            //levels[currentLevel].setAttribute("beginTime", DateTime.Now);
             if (levels.Count > currentLevel + 1)
                 currentLevel++;
-
-            //loadWorld();
         }
-
+        /// <summary>
+        /// It recibes all player input from kinect, keyboard, etc.
+        /// </summary>
         public override void HandleInput(GameTime gameTime, InputState input)
         {
             if (input == null)
                 throw new ArgumentNullException("input");
 
             // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
+            int playerIndex = (int) ControllingPlayer.Value;
 
-            KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];            
+            KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             PlayerIndex player;
 
             if (pauseAction.Evaluate(input, ControllingPlayer, out player))
@@ -249,23 +228,23 @@ namespace ProyectoSimon
                     camera = true;
                 else
                     if (camera && cameraKey.Evaluate(input, ControllingPlayer, out player))
-                        camera = false;                
+                        camera = false;
                 if (simulate)
                     physicsWorld.Step(1.0f / 60.0f, 8, 3);
-               
-                //mousePoint.getBody().Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-                
+
                 if (moreBalls.Evaluate(input, ControllingPlayer, out player))
-                    physicsElements.Add(new Circle(physicsWorld, new Vector2(bheight / 4, bwidth / 4), CommonConstants.CIRCLERADIUS, false));
-                
+                    physicsElements.Add(new Circle(physicsWorld, new Vector2(height / 4, width / 4), CommonConstants.CIRCLERADIUS, false));
+
                 if (lessBalls.Evaluate(input, ControllingPlayer, out player))
-                    physicsElements.Remove(physicsElements[physicsElements.Count-1]);
+                    physicsElements.Remove(physicsElements[physicsElements.Count - 1]);
 
                 if (winKey.Evaluate(input, ControllingPlayer, out player))
                     win = true;
             }
         }
-
+        /// <summary>
+        /// It displays player skeleton, kinect video, game statistics panel and game elements.
+        /// </summary>
         public override void Draw(GameTime gameTime)
         {
             // Apply effects to draw primitives.
@@ -274,7 +253,7 @@ namespace ProyectoSimon
             if (camera && video)
             {
                 spriteBatch.Begin();
-                KinectSDK.Instance.DrawVideoCam(spriteBatch, new Rectangle(4, 4, bwidth - 10, bheight - 10));
+                KinectSDK.Instance.DrawVideoCam(spriteBatch, new Rectangle(4, 4, width - 10, height - 10));
                 spriteBatch.End();
             }
             if (getPlayerState() == 0)
@@ -290,10 +269,6 @@ namespace ProyectoSimon
             // Draw statistics panel.
             drawStatisticsPanel(spriteBatch, new String[] { "nivel " + currentLevel,
                 timeSpan.Minutes.ToString() + "." + timeSpan.Seconds.ToString() + " segundos"});
-
-            //mousePoint.display(ScreenManager);
-            //for (int i = 0; i < physicsElements.Count; i++)
-            //    physicsElements[i].display(ScreenManager);
         }
     }
 }

@@ -33,6 +33,12 @@ namespace ProyectoSimon
         public static int CIRCLERADIUS = 20;// Circle radius.
         public static int JOINTRADIUS = 10;// Skeleton joint radius.
         public static int PIXELS_TO_METERS = 30;// Constant value used to render primitives on screen.
+        public static Color mainColor = new Color(193, 82, 28);// circle main color used in class Circle.
+        public static Color secondColor = new Color(227, 117, 64);// circle second color used in class Circle.
+        public static Color edgeColor = new Color(84, 84, 84);// edge color used in class Circle and kinectSDK.
+        public static Color greenColor = Color.Green;// circle color used in GamePlayScreenChooser.
+        public static Color goldColor = Color.Gold;// circle color used in GamePlayScreenChooser.
+        public static Color skeletonColor = new Color(206, 103, 0);// skeleton color circles and lines.
 
         // Constants used to draw a default template in the MainMenuScreen.
         public const string DEFAULT_USER_AGE_STRING = "{0} años";

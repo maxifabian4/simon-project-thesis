@@ -19,20 +19,18 @@ namespace ProyectoSimon
     {
         private Random random = new Random();
         // Kinect parameters.
-        Skeleton skeleton;
-        // Input parameters.
-        //protected InputAction cameraKey;
+        Skeleton skeleton;        
         // Physics world parameters.
         private World physicsWorld;
         protected List<GameElement> physicsElements;
         // Logic game parameters.
         private bool simulate, camera, video;
-        private int kickeds, elements, bwidth, bheight;
+        private int kickeds, elements;
         private GameTime gameTime;
         private Color circleColor, circleEdgeColor, circleJointColor;
 
         /// <summary>
-        /// Constructor.
+        /// Class constructor where initializes all dinamic game structures .
         /// </summary>
         public GamePlayScreenCircles(int w, int h, IList<Level> l)
         {
@@ -42,32 +40,21 @@ namespace ProyectoSimon
 
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
-
-            //pauseAction = new InputAction(
-            //    new Buttons[] { },
-            //    new Keys[] { Keys.Escape },
-            //    true);
-
-            //cameraKey = new InputAction(
-            //    new Buttons[] { },
-            //    new Keys[] { Keys.RightShift,Keys.LeftShift },
-            //    true);
-            generateInput();                 
+            generateInput();
             simulate = true;
             camera = false;
             video = true;
             currentLevel = 0;
             levels = l;
             elements = Convert.ToInt32(levels[currentLevel].getAttribute("elements"));
-            bwidth = w;
-            bheight = h;
-            circleColor = new Color(227, 117, 64);
-            circleEdgeColor = new Color(193, 82, 28);
-            circleJointColor = new Color(206, 103, 0);
+            width = w;
+            height = h;      
 
             loadWorld();
         }
-
+        /// <summary>
+        /// It initializes a physic world, elements and player skeleton.
+        /// </summary>
         private void loadWorld()
         {
             // Inicialize physic elements list.
@@ -76,15 +63,17 @@ namespace ProyectoSimon
             physicsWorld = new World(new Vector2(0, Convert.ToInt32(levels[currentLevel].getAttribute("gravity"))), true);
             // Asign a custom ContactListener.
             physicsWorld.ContactListener = new CirclesContactListener();
-            simulate = true;            
+            simulate = true;
             // Load Kinect's elements.
             skeleton = new Skeleton(physicsWorld);
             // Load Box2d elements.
             loadPhysicElements();
             kickeds = 0;
-            timeSpan = TimeSpan.FromMilliseconds(Convert.ToInt32(levels[currentLevel].getAttribute("time")));       
+            timeSpan = TimeSpan.FromMilliseconds(Convert.ToInt32(levels[currentLevel].getAttribute("time")));
         }
-
+        /// <summary>
+        /// It creates game screen limits and circles in a random location on the screen.
+        /// </summary>
         private void loadPhysicElements()
         {
             int x, y;
@@ -92,36 +81,23 @@ namespace ProyectoSimon
             // Number of circles depend of the levels.
             for (int i = 0; i < Convert.ToInt32(levels[currentLevel].getAttribute("elements")); i++)
             {
-                x = random.Next(350, bwidth - 350);
-                y = random.Next(20, bheight - 100);
+                x = random.Next(350, width - 350);
+                y = random.Next(20, height - 100);
                 physicsElements.Add(new Circle(physicsWorld, new Vector2(x, y), CommonConstants.CIRCLERADIUS, false));
             }
 
             // Add floor element.
-            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, bheight), new Vector2(bwidth, bheight)));
+            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, height), new Vector2(width, height)));
             // Add wall right element.
-            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, 0.0f), new Vector2(0.0f, bheight)));
+            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, 0.0f), new Vector2(0.0f, height)));
             // Add wall left element.
-            physicsElements.Add(new Ground(physicsWorld, new Vector2(bwidth, 0.0f), new Vector2(bwidth, bheight)));
+            physicsElements.Add(new Ground(physicsWorld, new Vector2(width, 0.0f), new Vector2(width, height)));
             // Add roof element.
-            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, 0.0f), new Vector2(bwidth, 0.0f)));
+            physicsElements.Add(new Ground(physicsWorld, new Vector2(0.0f, 0.0f), new Vector2(width, 0.0f)));
         }
-
-        //public void playSong()
-        //{
-        //    game.Play();
-        //}
-
-        //public void stopSong()
-        //{
-        //    game.Stop();
-        //}
-        //private void hideSkeletonWorld()
-        //{
-        //    //for (int i = 0; i < JOINTS_COUNT; i++)
-        //    //    bodyJoints[i].getBody().Position = new Vector2(0, 0);
-        //}
-
+        /// <summary>
+        /// It returns player state which indicates if a player won the game.
+        /// </summary>
         public override int getPlayerState()
         {
             // Playing state by default.
@@ -134,18 +110,18 @@ namespace ProyectoSimon
                 if ((timeSpan.Minutes == TimeSpan.Zero.Minutes) && (timeSpan.Seconds == TimeSpan.Zero.Seconds) && kickeds != elements)
                 {
                     state = -1;
-                    //loose.Play();
                 }
                 else
                     if (kickeds == elements)
                     {
                         state = 1;
-                        // win.Play();
                     }
 
             return state;
         }
-
+        /// <summary>
+        /// It sets statistics game on a string array to show it after finalize the game level. 
+        /// </summary>
         public override string[] setCurrentStatistics()
         {
             return new string[] { 
@@ -155,7 +131,9 @@ namespace ProyectoSimon
                 "elementos golpeados|" + kickeds,
                 "elementos faltantes|" + (elements - kickeds)};
         }
-
+        /// <summary>
+        /// It returns how many hits has a circle. 
+        /// </summary>
         private int getCountKicked()
         {
             GameElement element;
@@ -164,10 +142,10 @@ namespace ProyectoSimon
             for (int i = 0; i < physicsElements.Count; i++)
             {
                 element = physicsElements[i];
-                if (element.ToString().Contains("Circle") && ((Circle)element).isKicked())
+                if (element.ToString().Contains("Circle") && ((Circle) element).isKicked())
                     count++;
             }
-            
+
             return count;
         }
 
@@ -198,7 +176,9 @@ namespace ProyectoSimon
         /// <summary>
         /// Unload graphics content used by the game.
         /// </summary>
-        public override void Unload() { }
+        public override void Unload()
+        {
+        }
 
         /// <summary>
         /// Updates the state of the game. This method checks the GameScreen.IsActive
@@ -220,36 +200,37 @@ namespace ProyectoSimon
                     timeSpan -= gameTime.ElapsedGameTime;
                     verifyGameStatus();
                 }
-                else simulate = false;
+                else
+                    simulate = false;
                 //verifyGameStatus();
             }
         }
-
+        /// <summary>
+        /// It reloads the physic world and elements to replay the game level. 
+        /// </summary>
         public override void restartStage()
-        {
-            //levels[currentLevel].setAttribute("beginTime", DateTime.Now);
+        {            
             loadWorld();
             elements = Convert.ToInt32(levels[currentLevel].getAttribute("elements"));
         }
-
+        /// <summary>
+        /// It loads next game level to play.
+        /// </summary>
         public override void nextLevel()
-        {
-            //stopSong();
-            //levels[currentLevel].setAttribute("beginTime", DateTime.Now);
+        {            
             if (levels.Count > currentLevel + 1)
                 currentLevel++;
-
-            
-            //loadWorld();
         }
-
+        /// <summary>
+        /// It recibes all player input from kinect, keyboard, etc.
+        /// </summary>
         public override void HandleInput(GameTime gameTime, InputState input)
         {
             if (input == null)
                 throw new ArgumentNullException("input");
 
             // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
+            int playerIndex = (int) ControllingPlayer.Value;
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             PlayerIndex player;
@@ -275,10 +256,12 @@ namespace ProyectoSimon
                         camera = false;
 
                 if (simulate)
-                    physicsWorld.Step(1.0f/60.0f, 8, 3);
+                    physicsWorld.Step(1.0f / 60.0f, 8, 3);
             }
         }
-
+        /// <summary>
+        /// It displays player skeleton, kinect video, game statistics panel and game elements.
+        /// </summary>
         public override void Draw(GameTime gameTime)
         {
             // Apply effects to draw primitives.
@@ -293,17 +276,17 @@ namespace ProyectoSimon
                 if (KinectSDK.Instance.isInRange())
                     skeleton.display(ScreenManager.SpriteBatch, ScreenManager.BasicEffect);
             }
-            
+
             // Draw statistics panel.
             drawStatisticsPanel(spriteBatch, new String[] { "nivel " + currentLevel,
                 timeSpan.Minutes.ToString() + "." + timeSpan.Seconds.ToString() + " segundos",
                 kickeds + "/" + elements + " aciertos" });
-            
+
             // Show camera if it is active.
             if (camera && video)
             {
                 spriteBatch.Begin();
-                KinectSDK.Instance.DrawVideoCam(spriteBatch, new Rectangle(bwidth - 323, 3, 320, 240));
+                KinectSDK.Instance.DrawVideoCam(spriteBatch, new Rectangle(width - 323, 3, 320, 240));
                 spriteBatch.End();
             }
         }

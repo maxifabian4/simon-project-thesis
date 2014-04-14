@@ -42,9 +42,9 @@ namespace ProyectoSimon.Elements
             this.radius = radius;
             this.alpha = 1.0f;
             this.kicked = false;
-            this.mainColor = new Color(193, 82, 28);
-            this.secondColor = new Color(227, 117, 64);
-            this.edgeColor = new Color(84, 84, 84);
+            this.mainColor = CommonConstants.mainColor;
+            this.secondColor = CommonConstants.secondColor;
+            this.edgeColor = CommonConstants.edgeColor;
             this.physicsWorld = physicsWorld;
 
             // Apply physic properties depending on the usage.
