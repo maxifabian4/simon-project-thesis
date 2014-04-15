@@ -18,14 +18,18 @@ namespace ProyectoSimon
         private StoredDataXML userStoredDataXML, gamePlayStoredDataXML;
         private int userIndex;
         private int currentGame;
-
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         private DataManager()
         {
             users = new List<User>();
             userIndex = 0;
             currentGame = 0;
         }
-
+        /// <summary>
+        /// It returns a class instance.
+        /// </summary>
         public static DataManager Instance
         {
             get
@@ -37,7 +41,9 @@ namespace ProyectoSimon
                 return instance;
             }
         }
-
+        /// <summary>
+        /// It loads users and games from xml files.
+        /// </summary>
         public void initialize()
         {
             // Load the store users from XML file.
@@ -45,7 +51,9 @@ namespace ProyectoSimon
             // Load instances.
             loadGamesFromXml();
         }
-
+        /// <summary>
+        /// Sets a game Graphic Device.
+        /// </summary>
         public void setGraphicDevice(GraphicsDevice gd)
         {
             graphicDevice = gd;
@@ -193,25 +201,12 @@ namespace ProyectoSimon
                     else
                         addMultipleAttibutes(childNodo.ChildNodes, level);
                 }
-
-                // Get the level information.
-                //gravity = nodo.GetElementsByTagName("gravity");
-                //elements = nodo.GetElementsByTagName("elements");
-                //time = nodo.GetElementsByTagName("time");
-                //movements = nodo.GetElementsByTagName("move");
-
-                //level = new Level();
-                //level.addAttribute("gravity", Convert.ToInt32(gravity[0].InnerText));
-                //level.addAttribute("elements", Convert.ToInt32(elements[0].InnerText));
-                //level.addAttribute("time", Convert.ToInt32(time[0].InnerText));
-
-                //for (int i = 0; i < movements.Count;i++ )
-                //    level.addAttribute("move"+ i, movements[i].InnerText);
-
                 game.addLevel(level);
             }
         }
-
+        /// <summary>
+        /// It adds a multiple attributes.
+        /// </summary>
         private void addMultipleAttibutes(XmlNodeList multipleNodeList, Level level)
         {
             string attributeName = multipleNodeList[0].Name;
