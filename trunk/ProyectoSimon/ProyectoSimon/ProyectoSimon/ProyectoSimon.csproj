@@ -125,9 +125,9 @@
     <Compile Include="Elements\Ground.cs" />
     <Compile Include="Elements\Skeleton.cs" />
     <Compile Include="Elements\TextureElement.cs" />
-    <Compile Include="GameScreen.cs" />
-    <Compile Include="InputAction.cs" />
-    <Compile Include="InputState.cs" />
+    <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Input\InputAction.cs" />
+    <Compile Include="Input\InputState.cs" />
     <Compile Include="IScreenFactory.cs" />
     <Compile Include="Managers\KinectSDK.cs" />
     <Compile Include="LogicalGame\GameInstace.cs" />
