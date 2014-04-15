@@ -23,7 +23,9 @@ namespace ProyectoSimon
         public static string STATISTIC_ATTRIBUTE = "attribute";
         public static string ATTRIBUTE_NAME = "name";
         public static string ATTRIBUTE_VALUE = "value";
-
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         public StoredDataXML(string path, string pluralElem, string singularElem)
         {
             xDoc = new XmlDocument();
@@ -32,7 +34,9 @@ namespace ProyectoSimon
             singularElement = singularElem;
             pluralElement = pluralElem;
         }
-
+        /// <summary>
+        /// It sets an elements to save on xml file.
+        /// </summary>
         public void setStoredElements(List<User> users)
         {
             XmlTextWriter writer = new XmlTextWriter("Data//users.xml", System.Text.Encoding.UTF8);

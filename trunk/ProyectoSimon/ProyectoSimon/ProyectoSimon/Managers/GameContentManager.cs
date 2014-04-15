@@ -31,7 +31,9 @@ namespace ProyectoSimon
         //Structures
         private IDictionary<String, SpriteFont> fonts;
         private IDictionary<String, Texture2D> textures;
-
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         private GameContentManager()
         {
             //vars initialitation just in case non statics vars
@@ -39,7 +41,9 @@ namespace ProyectoSimon
             textures = new Dictionary<String, Texture2D>();
 
         }
-
+        /// <summary>
+        /// It returns a class instance.
+        /// </summary>
         public static GameContentManager Instance
         {
             get
@@ -51,7 +55,9 @@ namespace ProyectoSimon
                 return instance;
             }
         }
-
+        /// <summary>
+        /// It loads all game fonts and textures.
+        /// </summary>
         public void initialize()
         {
             // Load the fonts;
@@ -59,7 +65,9 @@ namespace ProyectoSimon
             // Load textures.
             loadTextures();
         }
-
+        /// <summary>
+        /// It sets a game content.
+        /// </summary>
         public void setContent(ContentManager cm)
         {
             contentManager = cm;

@@ -195,9 +195,6 @@ namespace ProyectoSimon
                         {
                             scaledJoint = scaleTo(joint, width, height);
                             jointTypes.Add(joint.JointType, new Vector2(
-                                //joint.Position.X * bbwidth * 0.5f + (0.75f * bbwidth),
-                                //joint.Position.Y * bbheight * -1 * 0.65f + (0.9f * bbheight)));                                
-
                             scaledJoint.Position.X, scaledJoint.Position.Y));
 
                         }
